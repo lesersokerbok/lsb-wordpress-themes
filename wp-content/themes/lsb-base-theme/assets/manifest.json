@@ -1,0 +1,24 @@
+{
+  "dest": "wp-content/themes/lsb-base-theme/assets/manifest.json",
+  "querystring": true,
+  "wp-content/themes/lsb-base-theme/assets/css/main.min.css": {
+    "path": "wp-content/themes/lsb-base-theme/assets/css/main.min.css",
+    "hash": "e9174449e06dd320e19438233a405405",
+    "handle": "roots_css"
+  },
+  "wp-content/themes/lsb-base-theme/assets/js/scripts.min.js": {
+    "path": "wp-content/themes/lsb-base-theme/assets/js/scripts.min.js",
+    "hash": "23718ac47d4f54ec764544f882874712",
+    "handle": "roots_js"
+  },
+  "wp-content/themes/lsb-boksok.no-theme/assets/css/main.min.css": {
+    "path": "wp-content/themes/lsb-boksok.no-theme/assets/css/main.min.css",
+    "hash": "dcd1eae284488a12e25ed194298fd627",
+    "handle": "roots_child_css"
+  },
+  "wp-content/themes/lsb-boksok.no-theme/assets/js/scripts.min.js": {
+    "path": "wp-content/themes/lsb-boksok.no-theme/assets/js/scripts.min.js",
+    "hash": "aa7535c3728d2b012a8deb56c737caa8",
+    "handle": "roots_child_js"
+  }
+}

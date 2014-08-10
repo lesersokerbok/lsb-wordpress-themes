@@ -10,7 +10,7 @@
  * @link https://github.com/roots/roots/pull/1042
  */
 $roots_includes = array(
-  'lib/lsb-books.php',
+  'lib/lsb-books.php'
 );
 
 foreach ($roots_includes as $file) {
@@ -21,3 +21,6 @@ foreach ($roots_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
+
+// Initialize books
+new LsbBooks();

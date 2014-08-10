@@ -1,0 +1,70 @@
+.widget {
+
+  font-size: @font-size-small;
+  margin-top: (@line-height-computed * 2);
+
+  h3 {
+    font-size: @font-size-base;
+    padding-bottom: @line-height-computed;
+    margin: 0 0 @line-height-computed;
+    border-bottom: 1px solid @page-header-border-color;
+
+    a {
+      color: inherit;
+    }
+  }
+
+  ul {
+    margin: 0 0 1em 1em;
+    padding: 0;
+  }
+
+  // Standard widgets
+
+  &.widget_calendar {
+      table {
+        width: 100%;
+
+        caption {
+          font-weight: bold;
+          margin-bottom: 1em;
+        }
+
+        th, td {
+          text-align: center;
+        }
+      }
+
+  }
+
+  &.widget_rss {
+    h3 a img {
+      display: none;
+    }
+
+    ul {
+      margin: 0;
+
+      li {
+        list-style: none;
+        margin-bottom: 1em;
+
+        span, cite, a {
+          display: block;
+        }
+
+        a, div {
+          margin: (@line-height-computed / 4) 0;
+        }
+
+        span, cite, div {
+          font-size: 90%;
+        }
+
+        cite:before {
+          content: "— ";
+        }
+      }
+    }
+  }
+}

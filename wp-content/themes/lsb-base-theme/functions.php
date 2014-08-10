@@ -10,18 +10,19 @@
  * @link https://github.com/roots/roots/pull/1042
  */
 $roots_includes = array(
-  'lib/utils.php',           // Utility functions
-  'lib/init.php',            // Initial theme setup and constants
-  'lib/wrapper.php',         // Theme wrapper class
-  'lib/sidebar.php',         // Sidebar class
-  'lib/config.php',          // Configuration
-  'lib/activation.php',      // Theme activation
-  'lib/titles.php',          // Page titles
-  'lib/nav.php',             // Custom nav modifications
-  'lib/gallery.php',         // Custom [gallery] modifications
-  'lib/comments.php',        // Custom comments modifications
-  'lib/scripts.php',         // Scripts and stylesheets
-  'lib/extras.php',          // Custom functions
+  'lib/utils.php',          // Utility functions
+  'lib/init.php',           // Initial theme setup and constants
+  'lib/wrapper.php',        // Theme wrapper class
+  'lib/sidebar.php',        // Sidebar class
+  'lib/config.php',         // Configuration
+  'lib/activation.php',     // Theme activation
+  'lib/titles.php',         // Page titles
+  'lib/nav.php',            // Custom nav modifications
+  'lib/gallery.php',        // Custom [gallery] modifications
+  'lib/comments.php',       // Custom comments modifications
+  'lib/scripts.php',        // Scripts and stylesheets
+  'lib/extras.php',         // Custom functions
+  'lib/pagination.php',     // Boostrap pagination
 );
 
 foreach ($roots_includes as $file) {
@@ -32,3 +33,15 @@ foreach ($roots_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
+
+if(!function_exists('_log')){
+  function _log( $message ) {
+    if( WP_DEBUG === true ){
+      if( is_array( $message ) || is_object( $message ) ){
+        error_log( print_r( $message, true ) );
+      } else {
+        error_log( $message );
+      }
+    }
+  }
+}

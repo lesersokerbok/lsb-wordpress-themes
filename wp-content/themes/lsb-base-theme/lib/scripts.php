@@ -30,9 +30,13 @@ function roots_scripts() {
   } else {
     $get_assets = file_get_contents(get_template_directory() . '/assets/manifest.json');
     $assets     = json_decode($get_assets, true);
+    $assetsPrefix = wp_make_link_relative(get_template_directory_uri());
+    if (is_child_theme()) {
+        $assetsPrefix = wp_make_link_relative(get_stylesheet_directory_uri());
+    }
     $assets     = array(
-      'css'       => '/assets/css/main.min.css?' . $assets['assets/css/main.min.css']['hash'],
-      'js'        => '/assets/js/scripts.min.js?' . $assets['assets/js/scripts.min.js']['hash'],
+      'css'       => '/assets/css/main.min.css?' . $assets[ltrim($assetsPrefix,'/') . '/assets/css/main.min.css']['hash'],
+      'js'        => '/assets/js/scripts.min.js?' . $assets[ltrim($assetsPrefix,'/') . '/assets/js/scripts.min.js']['hash'],
       'modernizr' => '/assets/js/vendor/modernizr.min.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
     );
@@ -42,7 +46,7 @@ function roots_scripts() {
 
   // Load style.css from child theme
   if (is_child_theme()) {
-      wp_enqueue_style('roots_child', get_stylesheet_directory_uri() . $assets['css'], false, null);
+      wp_enqueue_style('roots_child_css', get_stylesheet_directory_uri() . $assets['css'], false, null);
   } else {
       wp_enqueue_style('roots_css', get_template_directory_uri() . $assets['css'], false, null);
   }
@@ -62,9 +66,20 @@ function roots_scripts() {
     wp_enqueue_script('comment-reply');
   }
 
-  wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, false);
+  if (is_child_theme() && WP_ENV !== 'development') {
+    wp_enqueue_script('modernizr', get_stylesheet_directory_uri() . $assets['modernizr'], array(), null, false);
+  } else {
+    wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, false);
+  }
+
   wp_enqueue_script('jquery');
-  wp_enqueue_script('roots_js', get_template_directory_uri() . $assets['js'], array(), null, true);
+
+  if (is_child_theme()) {
+    wp_enqueue_script('roots_child_js', get_stylesheet_directory_uri() . $assets['js'], array(), null, true);
+  } else {
+    wp_enqueue_script('roots_js', get_template_directory_uri() . $assets['js'], array(), null, true);
+  }
+
 }
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);
 
