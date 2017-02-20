@@ -77,7 +77,7 @@ git push lsbtest
 ```
 
 ### Accepting a pull request
-Pull request are accepted and merged using the ??? option.
+Pull request are accepted and merged using the `squash and merge` option.
 
 ### Deploying
 After a pull request is accepted the `master` branch should be deployed as soon as possible.
