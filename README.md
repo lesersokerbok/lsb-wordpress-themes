@@ -3,23 +3,30 @@ Leser søker bok has three main websites:
 * Home page (lesersokerbok.no)
 * Boksøk (boksok.no) | A searchable directory of books reviewed by Leser søker bok.
 * Ut av Hylla (utavhylla.wordpress.com) | A blog and resource center for "Bok for alle"-bibliotek.
+  * Discontinued, but this available.
 
 This repository contains the code for the two first sites, the third runs on wordpress.com.
 
-## Gitter
-This repository has a chatroom on Gitter:  
-
-[![Join the chat at https://gitter.im/lesersokerbok/lsb-wordpress-themes](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lesersokerbok/lsb-wordpress-themes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+## Testing
+There is also a test site [lsbtest.wpengine.com](http://lsbtest.wpengine.com/).
 
 ## Themes
-There are three themes: 
+There is one theme:
 * `lsb-base-theme`
-* `lsb-lesersokerbok.no-theme`
-* `lsb-boksok.no-theme`
 
-Both `lsb-lesersokerbok.no-theme` and `lsb-boksok.no-theme` are child themes of `lsb-base-theme`.
-
-The plan going forward is to move much of the functionality differences into plugins.
+## Plugins
+There are several plugins:
+* `lsb-bibsyst-integration`
+	* Responsible for the Bibsyst integration.
+* `lsb-boksok-core`
+	* Adds Boksøks core functionality
+* `lsb-page-sections`
+	* Responsible for page section acf fields
+	* Used by the frontpage template
+* `lsb-people`
+	* Adds the custom post type person
+	* Used for emplyees and board members
+	* Used by the board and employee templates.
 
 ## Issues
 Issues are tracked with [GitHub Issues](https://github.com/lesersokerbok/lsb-wordpress-themes/issues), but can also be viewed as a kanban board through [Huboard](https://huboard.com/lesersokerbok/lsb-wordpress-themes#/).
@@ -36,21 +43,53 @@ Sign in using your GitHub account.
 
 Never push an issue into the next lane when you are done.
 
-## Dev
+## Development
 
-### Branching strategy
-Vincent Driessen's ["A successful Git branching model"](http://nvie.com/posts/a-successful-git-branching-model/). Also explained by Atlassian in an [article about different branching models](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
+The projects uses the [GitHub Flow](https://guides.github.com/introduction/flow/).
 
-[Git Flow](https://github.com/nvie/gitflow) is used to simplify this process. However for larger feature branches **do not** finish by using git flow's `git flow feature finish <name>`. Instead push the feature branch to Git Hub and create a pull request for a teammate to review.
+All work is done in a seperate branch and added to the `master` branch using pull requests. 
+
+### Initial Setup  
+* Clone this project:  
+`git clone git@github.com:lesersokerbok/lsb-wpengine.git`
+* Install packages needed by the `lsb-base-theme`:  
+	`(cd wp-content/themes/lsb-base-theme/ && npm install)`
+* Set up push access to WPEngine innstalls before testing and deployment.
+	* E-mail Benedicte (raae@bgraphic.no) with your SSH Public Key.
+	* Check if you have access by running:  
+	`ssh git@git.wpengine.com info`
+	* Add lsbtest as a remote:  
+	`git remote add lsbtest git@git.wpengine.com:production/lsbtest.git`
+	* Add lsbprod as a remote:  
+	`git remote add lsbprod git@git.wpengine.com:production/lsb.git`
+
+### Development
+To build assets while developing use:  
+`(cd wp-content/themes/lsb-base-theme/ && grunt dev)`
+
+### Testing
+Before a pull request is accepted it should be testet at the `lsbtest` origin.
+
+```
+(cd wp-content/themes/lsb-base-theme/ && grunt build)
+git commit -a -m "Assets built"
+git push lsbtest
+```
+
+### Accepting a pull request
+Pull request are accepted and merged using the ??? option.
+
+### Deploying
+After a pull request is accepted the `master` branch should be deployed as soon as possible.
+
+```
+git checkout master
+git pull
+git push lsbprod
+```
 
 ### Localization
 Norwegian is used as the base language and all strings shuld be ready for translations. This is also true for backend code.
-
-### Grunt
-* Build assets while developing using `grunt dev`.
-* Bulde assets for production with `grunt build`.
-
-The Grunt script creates assets for all three themes.
 
 ### Debugging
 
@@ -75,56 +114,3 @@ $ tail -f wp-content/debug.log
 ```
 
 The ```debug.log``` file is ignored by git.
-
-## Test / Release
-The sites are hosted at WPEnginge as multisite installs.
-
-There are two installs:
-* [lsbtest.wpengine.com](http://lsbtest.wpengine.com/): Used for testing purposes
-* [lsb.wpengine.com](http://lsb.wpengine.com/): Used for production.
-
-### Deployment
-If you have not already done so go through the Initial Setup process.
-
-#### Testing
-Before finishing a feature branch or accepting a pull request test 
-the changes at the `lsbtest` install.
-* Build assets:  
-`grunt build`
-* Commit assets:  
-`git commit -a -m "Assets built for testing"`
-* Push to test:  
-`git push lsbtest`
-
-#### Realease
-Releases and hotfixes should be tested at the `lsbtest` install before being
-pushed to the `lsb` install.
-* Create a release or hotfix branch:  
-`git flow hotfix start <x.x.x>` or  
-`git flow release start <x.x.x>`
-* Update version number in `package.json` and check in:  
-`git commit package.json -m "Bumped version number"`  
-* Build assets:  
-`grunt build`
-* Commit assets:  
-`git commit -a -m "Assets built for release/hotfix"`
-* Push to test  
-`git push lsbtest`
-* Test the sites and if no errors are found finish the release or hotfix:  
-`git flow hotfix finish <x.x.x>` or  
-`git flow release finish <x.x.x>`
-* Create snapshot of site on [my.wpengine.com](https://my.wpengine.com/installs/lsb/backup_points)
-* Push to origin  
-`git push -all`  
-`git push -tags`
-* Finally push to the `lsb` install:  
-`git push lsbprod`
-
-#### Initial Setup  
-* Get push access e-mail Benedicte (raae@bgraphic.no) your SSH Public Key.
-* Continue when you have gotten access to the installs, check by running:  
-`ssh git@git.wpengine.com info`
-* Add lsbtest as a remote:  
-`git remote add lsbtest git@git.wpengine.com:production/lsbtest.git`
-* Add lsb as a remote:  
-`git remote add lsbprod git@git.wpengine.com:production/lsb.git`
