@@ -1,15 +1,14 @@
 {
   "name": "lsb-wordpress-themes",
-  "version": "4.0.1",
   "author": "Lilly Labs hei@lillylabs.no",
   "homepage": "http://lillylabs.no",
   "description": "Wordpress themes for Leser søker bok",
   "repository": {
     "type": "git",
-    "url": "git@github.com:lesersokerbok/lsb-wordpress-themes.git"
+    "url": "git@github.com:lesersokerbok/lsb-wpengine.git"
   },
   "bugs": {
-    "url": "https://github.com/lesersokerbok/lsb-wordpress-themes/issues"
+    "url": "https://github.com/lesersokerbok/lsb-wpengine/issues"
   },
   "licenses": [
     {
