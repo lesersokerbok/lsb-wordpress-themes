@@ -3,7 +3,7 @@ Leser søker bok has three main websites:
 * Home page (lesersokerbok.no)
 * Boksøk (boksok.no) | A searchable directory of books reviewed by Leser søker bok.
 * Ut av Hylla (utavhylla.wordpress.com) | A blog and resource center for "Bok for alle"-bibliotek.
-  * Discontinued, but this available.
+  * Discontinued, but is still available.
 
 This repository contains the code for the two first sites, the third runs on wordpress.com.
 
@@ -13,6 +13,8 @@ There is also a test site [lsbtest.wpengine.com](http://lsbtest.wpengine.com/).
 ## Themes
 There is one theme:
 * `lsb-base-theme`
+
+The theme is based on [roots.io](roots.io).
 
 ## Plugins
 There are several plugins:
@@ -27,6 +29,9 @@ There are several plugins:
 	* Adds the custom post type person
 	* Used for emplyees and board members
 	* Used by the board and employee templates.
+	
+In addition there is a public plugin to be used by libraries and organizations to add a Boksøk search widget in their sidebar.
+* [`lsb-boksok-public`](https://github.com/lesersokerbok/lsb-boksok-public)
 
 ## Issues
 Issues are tracked with [GitHub Issues](https://github.com/lesersokerbok/lsb-wordpress-themes/issues), but can also be viewed as a kanban board through [Huboard](https://huboard.com/lesersokerbok/lsb-wordpress-themes#/).
