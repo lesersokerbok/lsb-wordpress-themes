@@ -24,21 +24,35 @@ function roots_scripts() {
 
 	// Development assets
 	$assets = array(
-      'css'       => '/assets/css/bundle.temp.css',
-      'js'        => '/assets/js/bundle.temp.js',
-      //'modernizr' => '/assets/vendor/modernizr/modernizr.js'
+  	'css'       => 'assets/css/bundle.temp.css',
+    'js'        => 'assets/js/bundle.temp.js',
+     //'modernizr' => '/assets/vendor/modernizr/modernizr.js'
     );
+
+	$version = array(
+		'css'				=> time(),
+		'js'				=> time()
+	);
 
   if ('development' !== WP_ENV) {
 		// Production assets
-		$assets['css'] = '/assets/css/bundle.min.css';
-		$assets['js'] = '/assets/js/bundle.min.js';
+		$assets['css'] = 'assets/css/bundle.min.css';
+		$assets['js'] = 'assets/js/bundle.min.js';
+
+		$manifest_json = file_get_contents(get_template_directory() . '/assets/manifest.json');
+  	$manifest     = json_decode($manifest_json, true);
+
+		$version['css'] = $manifest[$assets['css']];
+		$version['js'] = $manifest[$assets['js']];
   }
 
-	wp_enqueue_style('lsb_css', get_template_directory_uri() . $assets['css'], false, null);
+	$assets['css'] = get_template_directory_uri() . '/' . $assets['css'];
+	$assets['js'] = get_template_directory_uri(). '/' . $assets['js'];
+
+	wp_enqueue_style('lsb_css', $assets['css'], array(), $version['css'], 'all');
 
 	//wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, false);
-	wp_enqueue_script('lsb_js', get_template_directory_uri() . $assets['js'], array( 'jquery' ), null, true);
+	wp_enqueue_script('lsb_js', $assets['js'], array( 'jquery' ), $version['js'], true);
 }
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);
 
