@@ -13,8 +13,7 @@ node_modules
 !wp-content/themes/
 wp-content/themes/*
 !wp-content/themes/lsb-base-theme
-!wp-content/themes/lsb-boksok.no-theme
-!wp-content/themes/lsb-lesersokerbok.no-theme
+wp-content/themes/lsb-base-theme/assets/*/*.temp.*
 
 !wp-content/plugins/
 wp-content/plugins/*
