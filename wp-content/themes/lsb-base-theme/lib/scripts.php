@@ -2,15 +2,6 @@
 /**
  * Scripts and stylesheets
  *
- * Enqueue stylesheets in the following order:
- * 1. /theme/assets/css/main.css?5c998229dee9462e
- *
- * Enqueue scripts in the following order:
- * 1. jquery-1.11.1.min.js via Google CDN
- * 2. /theme/assets/js/vendor/modernizr.min.js
- * 3. /theme/assets/js/scripts.js (in footer)
- * 4. /child-theme/style.css (if a child theme is activated)
- *
  * Google Analytics is loaded after enqueued scripts if:
  * - An ID has been defined in config.php
  * - You're not logged in as an administrator
@@ -25,8 +16,7 @@ function roots_scripts() {
 	// Development assets
 	$assets = array(
   	'css'       => 'assets/css/bundle.temp.css',
-    'js'        => 'assets/js/bundle.temp.js',
-     //'modernizr' => '/assets/vendor/modernizr/modernizr.js'
+    'js'        => 'assets/js/bundle.temp.js'
     );
 
 	$version = array(
