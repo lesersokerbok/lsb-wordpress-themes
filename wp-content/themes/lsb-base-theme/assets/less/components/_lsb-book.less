@@ -67,7 +67,6 @@
 article.lsb_book {
 
 	.lsb-supported {
-		background: 50% no-repeat;
 
 		&.purple {
 			fill: @lsb-purple;
@@ -91,6 +90,17 @@ article.lsb_book {
 
 		&.yellow {
 			fill: @lsb-yellow;
+		}
+
+		.panel-body {
+			display: flex;
+			align-items: center;
+
+			.logo {
+				margin-right: 10px;
+				height: 35px;
+				width: auto;
+			}
 		}
 	}
 }
