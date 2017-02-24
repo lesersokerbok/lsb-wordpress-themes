@@ -12,7 +12,7 @@
 
 <?php if(!is_paged()) : ?>
 	<?php get_template_part('templates/page-sections'); ?>
-<? endif; ?>
+<?php endif; ?>
 
 <?php if ( have_posts() ): ?>
 	<section class="loop">
