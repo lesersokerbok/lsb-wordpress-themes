@@ -1,116 +1,25 @@
-# Include your project-specific ignores in this file
-# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+# Ignore wp files
 
-.DS_Store
-node_modules
-.htaccess
-*.log
-.brackets.json
-
-.travis/deploy_key
-.travis/deploy_key.pub
-
-!wp-content/themes/
-wp-content/themes/*
-!wp-content/themes/lsb-base-theme
-wp-content/themes/lsb-base-theme/assets/*/*.temp.*
-
-!wp-content/plugins/
-wp-content/plugins/*
-!wp-content/plugins/soil
-!wp-content/plugins/lsb-*
-
-wp-content/languages/plugins
-wp-content/languages/*.*
-wp-content/languages/themes/*.*
-
-# wordpress specific
-wp-config.php
-wp-content/uploads/
-wp-content/blogs.dir/
-wp-content/upgrade/*
-wp-content/backup-db/*
-wp-content/advanced-cache.php
-wp-content/wp-cache-config.php
-wp-content/cache/*
-wp-content/cache/supercache/*
-
-# wpengine specific
-.smushit-status
-.gitattributes
-_wpeprivate
-wp-content/object-cache.php
-wp-content/mu-plugins/mu-plugin.php
-wp-content/mu-plugins/slt-force-strong-passwords.php
-wp-content/mu-plugins/limit-login-attempts
-wp-content/mu-plugins/wpengine-common
-wp-content/mysql.sql
-
-# wp core (as of 3.4.1)
-/db-config.php
-/index.php
-/license.txt
-/readme.html
-/wp-activate.php
-/wp-app.php
-/wp-atom.php
-/wp-blog-header.php
-/wp-comments-post.php
-/wp-commentsrss2.php
-/wp-config-sample.php
-/wp-cron.php
-/wp-feed.php
-/wp-links-opml.php
-/wp-load.php
-/wp-login.php
-/wp-mail.php
-/wp-rdf.php
-/wp-rss.php
-/wp-rss2.php
-/wp-pass.php
-/wp-register.php
-/wp-settings.php
-/wp-signup.php
-/wp-trackback.php
-/xmlrpc.php
+/wp-*.php
 /wp-admin
 /wp-includes
-/wp-content/index.php
-/wp-content/themes/twentyten
-/wp-content/themes/index.php
-/wp-content/plugins/index.php
+/wp-content/*
+/wp-content/plugins/*
+/wp-content/themes/*
+/wp-content/uploads/*
+/index.php
+/.htaccess
+/license.txt
+/xmlrpc.php
 
-# large/disallowed file types
-# a CDN should be used for these
-*.hqx
-*.bin
-*.exe
-*.dll
-*.deb
-*.dmg
-*.iso
-*.img
-*.msi
-*.msp
-*.msm
-*.mid
-*.midi
-*.kar
-*.mp3
-*.ogg
-*.m4a
-*.ra
-*.3gpp
-*.3gp
-*.mp4
-*.mpeg
-*.mpg
-*.mov
-*.webm
-*.flv
-*.m4v
-*.mng
-*.asx
-*.asf
-*.wmv
-*.avi
+# Keep some wp themes and plugins
+
+!/wp-content/plugins/lsb-*/*
+!/wp-content/themes/lsb-base-theme/*
+/wp-content/themes/lsb-base-theme/**/*.temp.*
+
+# Ignore other files
+
+*.log
+.DS_Store
+node_modules
