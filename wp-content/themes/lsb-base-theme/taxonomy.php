@@ -2,7 +2,7 @@
 	<div>
 		<header>
 			<h1>
-				<?php TaxonomyUtil::the_single_term_icon(get_queried_object())?><?php echo roots_title(); ?>
+				<?php TaxonomyUtil::the_single_term_icon(get_queried_object()); ?><?php echo roots_title(); ?>
 			</h1>
 			<?php echo category_description(); ?>
 		</header>
