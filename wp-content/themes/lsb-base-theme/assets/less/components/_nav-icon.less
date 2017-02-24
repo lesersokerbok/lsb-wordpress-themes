@@ -1,75 +1,74 @@
 .nav {
 
-  &.icon-nav {
+	&.icon-nav {
 
-    a {
-      text-decoration: none;
-    }
-    
-    li {
-      display: inline-block;
-    }
+		a {
+			text-decoration: none;
+		}
+					li {
+			display: inline-block;
+		}
 
-    .icon-menu-item {
-      font-size: 140%;
-      color: lighten(@text-color, 46.7%);
+		.icon-menu-item {
+			font-size: 140%;
+			color: lighten(@text-color, 46.7%);
 
-      &:hover {
-        background-color: transparent;
-        text-decoration: none;
-      }
+			&:hover {
+				background-color: transparent;
+				text-decoration: none;
+			}
 
-      @media (min-width: @grid-float-breakpoint) {
-        padding-left: 5px;
-        padding-right: 5px;
-        float: none;
-      }
+			@media (min-width: @grid-float-breakpoint) {
+				padding-left: 5px;
+				padding-right: 5px;
+				float: none;
+			}
 
-      span {
-        .sr-only;
-      }
-    }
+			span {
+				.sr-only;
+			}
+		}
 
-    .social-menu-item {
-      .icon-menu-item;
-      .social;
-    }
+		.social-menu-item {
+			.icon-menu-item;
+			.social;
+		}
 
-    a[href*="twitter"] {
-      .social-menu-item;
-      .social.twitter;
-    }
+		a[href*="twitter"] {
+			.social-menu-item;
+			.social.twitter;
+		}
 
-    a[href*="facebook"] {
-      .social-menu-item;
-      .social.facebook;
-    }
+		a[href*="facebook"] {
+			.social-menu-item;
+			.social.facebook;
+		}
 
-    a[href*="instagram"] {
-      .social-menu-item;
-      .social.instagram;
-    }
+		a[href*="instagram"] {
+			.social-menu-item;
+			.social.instagram;
+		}
 
-    a[href*="pinterest"] {
-      .social-menu-item;
-      .social.pinterest;
-    }
+		a[href*="pinterest"] {
+			.social-menu-item;
+			.social.pinterest;
+		}
 
-    a[href*="vimeo"] {
-      .social-menu-item;
-      .social.vimeo;
-    }
+		a[href*="vimeo"] {
+			.social-menu-item;
+			.social.vimeo;
+		}
 
-    a[href*="youtube"] {
-      .social-menu-item;
-      .social.youtube;
-    }
+		a[href*="youtube"] {
+			.social-menu-item;
+			.social.youtube;
+		}
 
-    .info a {
-      .icon-menu-item;
+		.info a {
+			.icon-menu-item;
 
-      .glyphicon;
-     	.glyphicon-info-sign;
-    }
-  }
+			.glyphicon;
+			.glyphicon-info-sign;
+		}
+	}
 }

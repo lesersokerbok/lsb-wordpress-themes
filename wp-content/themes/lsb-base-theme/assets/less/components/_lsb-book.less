@@ -1,131 +1,131 @@
 /* ==========================================================================
-   LSB Book specific styling
-   ========================================================================== */
+	 LSB Book specific styling
+	 ========================================================================== */
 
 .book-shelf {
 
-  .book-shelf-body {
-    white-space: nowrap;
-    position: relative;
-    transform-style: preserve-3d;
+	.book-shelf-body {
+		white-space: nowrap;
+		position: relative;
+		transform-style: preserve-3d;
 
-    .book-shelf-left-scroll,
-    .book-shelf-right-scroll  {
-      color: @link-color;
-      position: absolute;
-      top: 30%;
-      font-size: @font-size-h1;
-      opacity: 0.5;
-      cursor: pointer;
+		.book-shelf-left-scroll,
+		.book-shelf-right-scroll  {
+			color: @link-color;
+			position: absolute;
+			top: 30%;
+			font-size: @font-size-h1;
+			opacity: 0.5;
+			cursor: pointer;
 
-      display: none;
+			display: none;
 
-      &:hover {
-        opacity: 0.9;
-      }
-    }
+			&:hover {
+				opacity: 0.9;
+			}
+		}
 
-    .book-shelf-left-scroll {
-      transform: translateX(-110%);
-      left: 0;
-    }
+		.book-shelf-left-scroll {
+			transform: translateX(-110%);
+			left: 0;
+		}
 
-    .book-shelf-right-scroll {
-      transform: translateX(110%);
-      right: 0;
-    }
+		.book-shelf-right-scroll {
+			transform: translateX(110%);
+			right: 0;
+		}
 
-    .book-shelf-scroll {
-      overflow-x: scroll;
-      overflow-y: hidden;
-      margin-left: -@line-height-computed/2;
-      margin-top: -@line-height-computed/2;
+		.book-shelf-scroll {
+			overflow-x: scroll;
+			overflow-y: hidden;
+			margin-left: -@line-height-computed/2;
+			margin-top: -@line-height-computed/2;
 
-      article.summary.lsb_book {
-        display: inline-block;
-        white-space: normal;
-        vertical-align: top;
-        max-width: 400px;
+			article.summary.lsb_book {
+				display: inline-block;
+				white-space: normal;
+				vertical-align: top;
+				max-width: 400px;
 
-        &:last-child {
-          padding-right: 0;
-        }
+				&:last-child {
+					padding-right: 0;
+				}
 
-        @media (max-width: @screen-sm-max) {
-          max-width: 180px;
+				@media (max-width: @screen-sm-max) {
+					max-width: 180px;
 
-          a.thumbnail {
-            margin-bottom: 0;
-          }
-        }
-      }
-    }
+					a.thumbnail {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
 
-  }
+	}
 }
 
 article.lsb_book {
 
-  .lsb-supported {
-    background: 50% no-repeat;
+	.lsb-supported {
+		background: 50% no-repeat;
 
-    &.purple {
-      background-image: url('../img/logo_trans_purple.png');
-    }
+		&.purple {
+			background-image: url('../img/logo_trans_purple.png');
+		}
 
-    &.green {
-      background-image: url('../img/logo_trans_green.png');
-    }
+		&.green {
+			background-image: url('../img/logo_trans_green.png');
+		}
 
-    &.blue {
-      background-image: url('../img/logo_trans_blue.png');
-    }
+		&.blue {
+			background-image: url('../img/logo_trans_blue.png');
+		}
 
-    &.orange {
-      background-image: url('../img/logo_trans_orange.png');
-    }
+		&.orange {
+			background-image: url('../img/logo_trans_orange.png');
+		}
 
-    &.red {
-      background-image: url('../img/logo_trans_red.png');
-    }
+		&.red {
+			background-image: url('../img/logo_trans_red.png');
+		}
 
-    &.yellow {
-      background-image: url('../img/logo_trans_yellow.png');
-    }
-  }
+		&.yellow {
+			background-image: url('../img/logo_trans_yellow.png');
+		}
+	}
 }
 
 article.summary.lsb_book {
 
-  padding: @line-height-computed/2;
-  text-align: center;
+	padding: @line-height-computed/2;
+	text-align: center;
 
-  h2 {
-    margin: 12px 0 6px;
-    font-weight: bold;
-    font-size: @font-size-h5;
-    text-align: left;
-  }
+	h2 {
+		margin: 12px 0 6px;
+		font-weight: bold;
+		font-size: @font-size-h5;
+		text-align: left;
+	}
 
-  .entry-image {
-    text-align: center;
-    width: 100%;
-    position: relative;
+	.entry-image {
+		text-align: center;
+		width: 100%;
+		position: relative;
 
-    .lsb-supported {
-      background-color: white;
-      padding: 0;
-      height: 40px;
-      width: 40px;
-      border-top-left-radius: @thumbnail-border-radius;
-      position: absolute;
-      right: @thumbnail-padding/2;
-      bottom: @thumbnail-padding/2;
-    }
-  }
+		.lsb-supported {
+			background-color: white;
+			padding: 0;
+			height: 40px;
+			width: 40px;
+			border-top-left-radius: @thumbnail-border-radius;
+			position: absolute;
+			right: @thumbnail-padding/2;
+			bottom: @thumbnail-padding/2;
+		}
+	}
 
-  .meta {
-    font-size: @font-size-small;
-    text-align: left;
-  }
+	.meta {
+		font-size: @font-size-small;
+		text-align: left;
+	}
 }

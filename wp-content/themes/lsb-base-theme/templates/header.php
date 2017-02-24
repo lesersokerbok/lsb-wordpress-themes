@@ -1,15 +1,15 @@
 <header class="banner navbar navbar-static-top" role="banner">
-  <div class="container-fluid">
+	<div class="container-fluid">
 
-    <div class="navbar-header">
-      <ul class="brand nav navbar-nav">
-        <li>
-          <a href="<?php echo home_url(); ?>/">
+		<div class="navbar-header">
+			<ul class="brand nav navbar-nav">
+				<li>
+					<a href="<?php echo home_url(); ?>/">
 						<?php get_template_part('templates/logo'); ?>
-            &nbsp;
-          </a>
-        </li>
-      </ul>
+						&nbsp;
+					</a>
+				</li>
+			</ul>
 
 			<ul class="toggle nav navbar-nav">
 				<li>
@@ -18,15 +18,15 @@
 					</a>
 				</li>
 			</ul>
-    </div>
+		</div>
 
-    <nav class="collapse navbar-collapse" role="navigation">
-      <?php
-        if (has_nav_menu('primary_navigation')) :
-          wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav'));
-        endif;
-      ?>
-    </nav>
+		<nav class="collapse navbar-collapse" role="navigation">
+			<?php
+				if (has_nav_menu('primary_navigation')) :
+					wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav'));
+				endif;
+			?>
+		</nav>
 
-  </div>
+	</div>
 </header>

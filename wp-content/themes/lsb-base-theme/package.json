@@ -14,14 +14,14 @@
     "boostrapJs": "./node_modules/bootstrap/js/transition.js ./node_modules/bootstrap/js/alert.js ./node_modules/bootstrap/js/button.js ./node_modules/bootstrap/js/collapse.js ./node_modules/bootstrap/js/dropdown.js ./node_modules/bootstrap/js/tooltip.js ./node_modules/bootstrap/js/popover.js ./node_modules/bootstrap/js/scrollspy.js ./node_modules/bootstrap/js/affix.js"
   },
   "scripts": {
-		"postinstall": "npm run copy",
-		"copy": "npm-run-all copy:*",
-		"copy:fonts": "cpy ./node_modules/bootstrap/dist/fonts/* ./assets/fonts",
+    "postinstall": "npm run copy",
+    "copy": "npm-run-all copy:*",
+    "copy:fonts": "cpy ./node_modules/bootstrap/dist/fonts/* ./assets/fonts",
     "build": "npm-run-all --parallel build:*",
     "build:js": "uglifyjs $npm_package_config_boostrapJs ./assets/js/_*.js --output ./assets/js/bundle.min.js",
     "build:less": "lessc ./assets/less/_main.less ./assets/css/bundle.min.css --clean-css",
-		"build:cacheBust": "hashsum ./assets/ -pr -f json > ./assets/manifest.json",
-		"watch": "npm-run-all --parallel watch:*",
+    "build:cacheBust": "hashsum ./assets/ -pr -f json > ./assets/manifest.json",
+    "watch": "npm-run-all --parallel watch:*",
     "watch:js": "uglifyjs $npm_package_config_boostrapJs ./assets/js/_*.js --output ./assets/js/bundle.temp.js",
     "watch:less": "lessc ./assets/less/_main.less ./assets/css/bundle.temp.css --source-map"
   },

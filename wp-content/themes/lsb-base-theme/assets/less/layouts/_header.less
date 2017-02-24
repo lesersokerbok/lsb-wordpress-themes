@@ -1,6 +1,6 @@
 .banner.navbar {
-	
-  margin-top: @navbar-margin-bottom*1.5;
+
+	margin-top: @navbar-margin-bottom*1.5;
 	margin-bottom: @navbar-margin-bottom*1.5;
 
 	.navbar-collapse {
@@ -24,8 +24,8 @@
 		}
 	}
 
-  .navbar-nav {
-    text-align: center;
+	.navbar-nav {
+		text-align: center;
 		float: none;
 		margin: 0 auto;
 		max-width: @screen-sm;
@@ -33,12 +33,12 @@
 		> li {
 			padding: 2px;
 			display: inline-block;
-			
+
 			> a {
-      	text-decoration: none;
-      	font-weight: bold;
+				text-decoration: none;
+				font-weight: bold;
 				border: 2px solid transparent;
-    	}
+			}
 
 			&.active a {
 				border-color: @brand-primary;
@@ -52,68 +52,68 @@
 			a:hover, {
 				border-color: @brand-primary;
 				transition: all .25s ease-in-out
-      }
+			}
 		}
 
 		li.menu-litt-a-lese {
 			&.active a {
 				border-color: @litt-a-lese;
 			}
-			
+
 			a:hover {
-				border-color: @litt-a-lese;	
+				border-color: @litt-a-lese;
 			}
-  	}
-		
+		}
+
 		li.menu-enkelt-innhold {
 			&.active a {
 				border-color: @enkelt-innhold;
 			}
-			
+
 			a:hover {
-				border-color: @enkelt-innhold;	
+				border-color: @enkelt-innhold;
 			}
-  	}
-		
+		}
+
 		li.menu-storskrift {
 			&.active a {
 				border-color: @storskrift;
 			}
-			
+
 			a:hover {
 				border-color: @storskrift;
 			}
-  	}
-		
+		}
+
 		li.menu-punktskrift-folebilder {
 			&.active a {
 				border-color: @punktskrift-folebilder;
 			}
-			
+
 			a:hover {
 				border-color: @punktskrift-folebilder;
 			}
-  	}
-		
+		}
+
 		li.menu-tegnsprak-nmt {
 			&.active a {
 				border-color: @tegnsprak-nmt;
 			}
-			
+
 			a:hover {
 				border-color: @tegnsprak-nmt;
 			}
-  	}
-		
+		}
+
 		li.menu-bliss-piktogram {
 			&.active a {
 				border-color: @bliss-piktogram;
 			}
-			
+
 			a:hover {
 				border-color: @bliss-piktogram;
 			}
-  	}
+		}
 
 		&.toggle {
 			li > a {
@@ -146,10 +146,10 @@
 					.logo .fill {
 						fill: @text-color;
 					}
-    		}
+				}
 			}
 		}
-  }
+	}
 
 	@media (min-width: @grid-float-breakpoint) {
 		.navbar-header {
@@ -188,14 +188,14 @@
 
 @media (max-width: @grid-float-breakpoint-max) {
 	.navbar-nav .open .dropdown-menu {
-    position: absolute;
-    float: left;
+		position: absolute;
+		float: left;
 //    width: auto;
-    margin-top: 2px 0 0;
-    background-color: @dropdown-bg;
-  	border: 1px solid @dropdown-fallback-border; // IE8 fallback
-  	border: 1px solid @dropdown-border;
-    .box-shadow(0 6px 12px rgba(0,0,0,.175));
-  	background-clip: padding-box;
+		margin-top: 2px 0 0;
+		background-color: @dropdown-bg;
+		border: 1px solid @dropdown-fallback-border; // IE8 fallback
+		border: 1px solid @dropdown-border;
+		.box-shadow(0 6px 12px rgba(0,0,0,.175));
+		background-clip: padding-box;
 	}
 }

@@ -17,22 +17,22 @@ define('GOOGLE_ANALYTICS_ID', LSB_GOOGLE_ANALYTICS_ID); // UA-XXXXX-Y (Note: Uni
  * .main classes
  */
 function roots_main_class() {
-  if (roots_display_sidebar()) {
-    // Classes on pages with the sidebar
-    $class = 'col-sm-8 has-sidebar';
-  } else {
-    // Classes on full width pages
-    $class = 'col-sm-12';
-  }
+	if (roots_display_sidebar()) {
+		// Classes on pages with the sidebar
+		$class = 'col-sm-8 has-sidebar';
+	} else {
+		// Classes on full width pages
+		$class = 'col-sm-12';
+	}
 
-  return apply_filters('roots/main_class', $class);
+	return apply_filters('roots/main_class', $class);
 }
 
 /**
  * .sidebar classes
  */
 function roots_sidebar_class() {
-  return apply_filters('roots/sidebar_class', 'col-sm-4');
+	return apply_filters('roots/sidebar_class', 'col-sm-4');
 }
 
 /**
@@ -41,34 +41,34 @@ function roots_sidebar_class() {
  * See lib/sidebar.php for more details
  */
 function roots_display_sidebar() {
-  $sidebar_config = new Roots_Sidebar(
-    /**
-     * Conditional tag checks (http://codex.wordpress.org/Conditional_Tags)
-     * Any of these conditional tags that return true won't show the sidebar
-     *
-     * To use a function that accepts arguments, use the following format:
-     *
-     * array('function_name', array('arg1', 'arg2'))
-     *
-     * The second element must be an array even if there's only 1 argument.
-     */
-    array(
-      'is_404',
-      'is_front_page',
+	$sidebar_config = new Roots_Sidebar(
+		/**
+		 * Conditional tag checks (http://codex.wordpress.org/Conditional_Tags)
+		 * Any of these conditional tags that return true won't show the sidebar
+		 *
+		 * To use a function that accepts arguments, use the following format:
+		 *
+		 * array('function_name', array('arg1', 'arg2'))
+		 *
+		 * The second element must be an array even if there's only 1 argument.
+		 */
+		array(
+			'is_404',
+			'is_front_page',
 			'is_archive',
 			'is_search',
 			array('is_singular', array('lsb_book'))
-    ),
-    /**
-     * Page template checks (via is_page_template())
-     * Any of these page templates that return true won't show the sidebar
-     */
-    array(
-      'template-frontpage.php'
-    )
-  );
+		),
+		/**
+		 * Page template checks (via is_page_template())
+		 * Any of these page templates that return true won't show the sidebar
+		 */
+		array(
+			'template-frontpage.php'
+		)
+	);
 
-  return apply_filters('roots/display_sidebar', $sidebar_config->display);
+	return apply_filters('roots/display_sidebar', $sidebar_config->display);
 }
 
 /**

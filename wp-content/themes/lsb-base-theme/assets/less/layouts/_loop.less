@@ -1,84 +1,84 @@
 .loop {
 
-  .clearfix();
+	.clearfix();
 
 	h1 {
-    font-size: @font-size-h2;
-  }
+		font-size: @font-size-h2;
+	}
 
-  h2 {
-    font-size: @font-size-h3;
-  }
+	h2 {
+		font-size: @font-size-h3;
+	}
 
-  h3 {
-    font-size: @font-size-h4;
-  }
+	h3 {
+		font-size: @font-size-h4;
+	}
 
-  h4 {
-    font-size: @font-size-h5;
-  }
+	h4 {
+		font-size: @font-size-h5;
+	}
 
-  h5 {
-    font-size: @font-size-h6;
-  }
+	h5 {
+		font-size: @font-size-h6;
+	}
 
-  margin: -@line-height-computed/2;
+	margin: -@line-height-computed/2;
 
-  .page-section-header {
-    margin-left: @line-height-computed/2;
-    margin-right: @line-height-computed/2;
-  }
+	.page-section-header {
+		margin-left: @line-height-computed/2;
+		margin-right: @line-height-computed/2;
+	}
 
 	article.summary {
 		padding-left: @line-height-computed/2;
-    padding-right: @line-height-computed/2;
+		padding-right: @line-height-computed/2;
 	}
 
-  article.summary.lsb_book {
-    float: left;
+	article.summary.lsb_book {
+		float: left;
 
-    @media (max-width: (@screen-xs - 1)) {
-      width: 50%;
-      &:nth-of-type(2n) {
-        clear: right;
-      }
+		@media (max-width: (@screen-xs - 1)) {
+			width: 50%;
+			&:nth-of-type(2n) {
+				clear: right;
+			}
 
-      &:nth-of-type(2n+1) {
-        clear: left;
-      }
-    }
+			&:nth-of-type(2n+1) {
+				clear: left;
+			}
+		}
 
-    @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
-      width: 33.33%;
-      &:nth-of-type(3n) {
-        clear: right;
-      }
+		@media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+			width: 33.33%;
+			&:nth-of-type(3n) {
+				clear: right;
+			}
 
-      &:nth-of-type(3n+1) {
-        clear: left;
-      }
-    }
+			&:nth-of-type(3n+1) {
+				clear: left;
+			}
+		}
 
-    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-      width: 25%;
-      &:nth-of-type(4n) {
-        clear: right;
-      }
+		@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+			width: 25%;
+			&:nth-of-type(4n) {
+				clear: right;
+			}
 
-      &:nth-of-type(4n+1) {
-        clear: left;
-      }
-    }
+			&:nth-of-type(4n+1) {
+				clear: left;
+			}
+		}
 
-    @media (min-width: @screen-md-min) {
-      width: 20%;
-      &:nth-of-type(5n) {
-        clear: right;
-      }
+		@media (min-width: @screen-md-min) {
+			width: 20%;
+			&:nth-of-type(5n) {
+				clear: right;
+			}
 
-      &:nth-of-type(5n+1) {
-        clear: left;
-      }
-    }
-  }
+			&:nth-of-type(5n+1) {
+				clear: left;
+			}
+		}
+	}
 }
