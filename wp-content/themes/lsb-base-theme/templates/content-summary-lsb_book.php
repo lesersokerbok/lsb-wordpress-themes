@@ -4,6 +4,7 @@
 
 			<?php if ( get_field('lsb_supported')): ?>
 				<div class="lsb-supported <?php the_field('lsb_support_cat') ?>">
+					<?php get_template_part('templates/logo'); ?>
 				</div>
 			<?php endif; ?>
 
