@@ -29,7 +29,7 @@ There are several plugins:
 	* Adds the custom post type person
 	* Used for emplyees and board members
 	* Used by the board and employee templates.
-	
+
 In addition there is a public plugin to be used by libraries and organizations to add a Boksøk search widget in their sidebar.
 * [`lsb-boksok-public`](https://github.com/lesersokerbok/lsb-boksok-public)
 
@@ -37,11 +37,11 @@ In addition there is a public plugin to be used by libraries and organizations t
 Issues are tracked with [GitHub Issues](https://github.com/lesersokerbok/lsb-wordpress-themes/issues), but can also be viewed as a kanban board through [Huboard](https://huboard.com/lesersokerbok/lsb-wordpress-themes#/).
 
 **[Huboard](https://huboard.com)**
-is a kanban webservice for GitHub issues.  
+is a kanban webservice for GitHub issues.
 Sign in using your GitHub account.
 
 ### Issue process
-* When you start work on an issue add yourself as assignee. 
+* When you start work on an issue add yourself as assignee.
 * Then pull the issue into the next appropriate lane if needed.
 * When you are done with the work mark the issue as "ready for next stage".
 * If you are having problems and/or need help mark the issue as "blocked".
@@ -52,24 +52,24 @@ Never push an issue into the next lane when you are done.
 
 The projects uses the [GitHub Flow](https://guides.github.com/introduction/flow/).
 
-All work is done in a seperate branch and added to the `master` branch using pull requests. 
+All work is done in a seperate branch and added to the `master` branch using pull requests.
 
-### Initial Setup  
-* Clone this project:  
+### Initial Setup
+* Clone this project:
 `git clone git@github.com:lesersokerbok/lsb-wpengine.git`
-* Install packages needed by the `lsb-base-theme`:  
+* Install packages needed by the `lsb-base-theme`:
 	`(cd wp-content/themes/lsb-base-theme/ && npm install)`
 * Set up push access to WPEngine innstalls before testing and deployment.
 	* E-mail Benedicte (raae@bgraphic.no) with your SSH Public Key.
-	* Check if you have access by running:  
+	* Check if you have access by running:
 	`ssh git@git.wpengine.com info`
-	* Add lsbtest as a remote:  
+	* Add lsbtest as a remote:
 	`git remote add lsbtest git@git.wpengine.com:production/lsbtest.git`
-	* Add lsbprod as a remote:  
+	* Add lsbprod as a remote:
 	`git remote add lsbprod git@git.wpengine.com:production/lsb.git`
 
 ### Development
-To build assets while developing use:  
+To build assets while developing use:
 `(cd wp-content/themes/lsb-base-theme/ && grunt dev)`
 
 ### Testing
