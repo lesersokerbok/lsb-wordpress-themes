@@ -11,7 +11,6 @@ Template Name: Boksøk Forsidemal
 				<?php the_title(); ?>
 			</h1>
 		</header>
-		<?php get_search_form(); ?>
 	</div>
 </div>
 

@@ -25,6 +25,23 @@ var Roots = {
 			// JavaScript to be fired on all pages
 			// Toggle archive description visibility
 
+			$('.lsb-navbar-btn-action').click(function () {
+				$(this).blur();
+			});
+
+			$('.lsb-navbar-btn-toggle').click(function () {
+				$(this).blur();
+			});
+
+			$('.lsb-navbar-btn-toggle[data-target="#main-collapse"]').click(function () {
+				$navbar = $(this).closest('.lsb-navbar-site');
+				$navbar.toggleClass('search');
+
+				if($navbar.hasClass('search')) {
+					$navbar.find('.lsb-search-form input').focus();
+				}
+			});
+
 			$('.page-header button').click(function () {
 				$(this).closest('.page-header').find('.description')
 					.toggleClass('sr-only');

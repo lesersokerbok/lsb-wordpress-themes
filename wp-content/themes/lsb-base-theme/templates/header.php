@@ -1,32 +1,93 @@
-<header class="banner navbar navbar-static-top" role="banner">
-	<div class="container-fluid">
+<header role="banner">
+	<div class="navbar navbar-default navbar-static-top lsb-navbar-site">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
 
-		<div class="navbar-header">
-			<ul class="brand nav navbar-nav">
-				<li>
-					<a href="<?php echo home_url(); ?>/">
-						<?php get_template_part('templates/logo'); ?>
-						&nbsp;
-					</a>
-				</li>
-			</ul>
+				<div class="navbar-right">
+					<?php if (has_nav_menu('primary_navigation')) : ?>
+						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#primary-collapse" aria-expanded="false">
+							<span class="sr-only"><?php esc_html_e( 'Meny', 'lsb' ); ?></span>
+							<span class="glyphicon glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+						</button>
+					<?php else : ?>
+						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#search-collapse" aria-expanded="false">
+							<span class="sr-only"><?php esc_html_e( 'Meny', 'lsb' ); ?></span>
+							<span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#primary-collapse" aria-expanded="false">
+							<span class="sr-only"><?php esc_html_e( 'Meny', 'lsb' ); ?></span>
+							<span class="glyphicon glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+						</button>
+					<?php endif; ?>
+				</div>
 
-			<ul class="toggle nav navbar-nav">
-				<li>
-					<a href="#" class="collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-						<?php esc_html_e( 'Meny', 'lsb' ); ?>
-					</a>
-				</li>
-			</ul>
-		</div>
+				<a class="navbar-brand" href="/">
+					<?php get_template_part('templates/logo'); ?>
+					<span><?php bloginfo( 'name' ); ?></span>
+				</a>
+			</div>
 
-		<nav class="collapse navbar-collapse" role="navigation">
-			<?php
-				if (has_nav_menu('primary_navigation')) :
-					wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav'));
-				endif;
-			?>
-		</nav>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="primary-collapse">
+				<?php
+					if (has_nav_menu('primary_navigation')) :
+						wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav navbar-left'));
+					endif;
+				?>
 
+				<div class="navbar-right">
+					<?php
+						if (has_nav_menu('secondary_navigation')) :
+							wp_nav_menu(array(
+								'theme_location' => 'secondary_navigation',
+								'menu_class' => 'nav navbar-nav',
+								'depth' => 1
+							));
+						endif;
+					?>
+
+					<?php if (!has_nav_menu('primary_navigation')) : ?>
+						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-toggle" data-toggle="collapse" data-target="#main-collapse" aria-expanded="false">
+							<div>
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+								<?php esc_html_e( 'Søk', 'lsb' ); ?>
+							</div>
+							<div>
+								<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+								<?php esc_html_e( 'Meny', 'lsb' ); ?>
+							</div>
+						</button>
+					<?php endif; ?>
+				</div>
+
+				<?php get_search_form(); ?>
+
+			</div><!-- /.navbar-collapse -->
+
+		</div><!-- /.container-fluid -->
 	</div>
+
+	<?php if(!has_nav_menu('primary_navigation')) : ?>
+		<div class="navbar navbar-default navbar-static-top lsb-navbar-search collapse" id="search-collapse">
+			<div class="container-fluid">
+				<?php get_search_form(); ?>
+			</div><!-- /.container-fluid -->
+		</div>
+	<?php endif; ?>
+
+	<?php if(is_front_page() && has_nav_menu('main_navigation')) : ?>
+		<div class="navbar navbar-default navbar-static-top lsb-navbar-page in" id="main-collapse">
+			<div class="container-fluid">
+				<?php
+						wp_nav_menu(array(
+							'theme_location' => 'main_navigation',
+							'menu_class' => 'nav navbar-nav',
+							'depth' => 1,
+							'link_after' => '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>'
+						));
+				?>
+			</div><!-- /.container-fluid -->
+		</div>
+	<?php endif; ?>
 </header>

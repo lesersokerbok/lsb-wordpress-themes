@@ -1,19 +1,20 @@
-// Grid
-// -------------------------
-
-@grid-float-breakpoint: 1006px;
+@grid-float-breakpoint: 1010px;
 
 // Colors
 // -------------------------
 
-@brand-primary: #356584;
-@brand-darker: 	#264960;
+@lsb-brand:     #356584;
 @lsb-purple:    #91127d;
 @lsb-green:     #7ab51d;
 @lsb-yellow:    #fed501;
 @lsb-orange:    #f29400;
 @lsb-red:       #d30132;
 @lsb-blue:      #51b4db;
+
+@brand-primary: @lsb-brand;
+@brand-darker: 	#264960;
+
+@lsb-category-colors: lsb-purple, lsb-green, lsb-yellow, lsb-orange, lsb-red, lsb-blue;
 
 
 // LSB category colors:
@@ -24,12 +25,6 @@
 @tegnsprak-nmt:           @lsb-red;
 @bliss-piktogram:         @lsb-blue;
 
-// Logo
-// -------------------------
-
-@logo-size: 50px;
-@logo-url: url('../img/logo.svg');
-
 // Fonts
 // -------------------------
 
@@ -38,11 +33,19 @@
 // Navbar
 // -------------------------
 
+@navbar-height: 57px;
 @navbar-default-link-color: @text-color;
-@navbar-default-link-active-color: @link-color;
-@navbar-default-link-hover-color: @link-color;
+@navbar-default-brand-hover-bg: darken(@navbar-default-bg, 3.5%);
+@navbar-default-link-hover-bg: darken(@navbar-default-bg, 3.5%);
 @navbar-default-link-active-bg: darken(@navbar-default-bg, 6.5%);
-@navbar-default-link-hover-bg: white;
+@navbar-default-border: darken(@navbar-default-bg, 10%);
+
+@navbar-site-bg: #fafafb;
+
+// Dropdowns
+// -------------------------
+
+@dropdown-link-hover-bg: transparent;
 
 // Max text width for optimal 60-70 charachters when font is 14x.
 @max-text-width: 450px;

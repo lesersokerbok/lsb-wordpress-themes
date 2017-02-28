@@ -6,7 +6,6 @@
 			</h1>
 			<?php do_action('search_alert'); ?>
 		</header>
-		<?php get_search_form(); ?>
 	</div>
 </div>
 

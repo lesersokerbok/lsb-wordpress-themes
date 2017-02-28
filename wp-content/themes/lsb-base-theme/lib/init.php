@@ -10,7 +10,15 @@ function roots_setup() {
 	// Register wp_nav_menu() menus
 	// http://codex.wordpress.org/Function_Reference/register_nav_menus
 	register_nav_menus(array(
-		'primary_navigation' => __('Primary Navigation', 'roots')
+		'primary_navigation' => __('Toppmeny (venstre)', 'roots')
+	));
+
+	register_nav_menus(array(
+		'secondary_navigation' => __('Toppmeny (høyre)', 'roots')
+	));
+
+	register_nav_menus(array(
+		'main_navigation' => __('Hovedmeny', 'roots')
 	));
 
 	register_nav_menus(array(

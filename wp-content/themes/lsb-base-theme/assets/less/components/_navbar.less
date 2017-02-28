@@ -1,0 +1,205 @@
+.navbar + .navbar {
+	margin-top: -@navbar-margin-bottom;
+}
+
+.navbar .lsb-search-form {
+	padding-top: 11.5px; // TODO: Make dynamic
+
+	input {
+		font-weight: 300;
+	}
+
+	.btn-default {
+		background: transparent;
+	}
+}
+
+.navbar-right {
+	.navbar-btn {
+		margin-right: 10px; // TODO: Make dynamic
+
+		&:last-child {
+			margin-right: @grid-gutter-width/2;
+		}
+	}
+}
+
+.navbar-header .navbar-right {
+	float: right;
+
+	@media (min-width: @grid-float-breakpoint) {
+		display: none;
+	}
+}
+
+.lsb-navbar-btn-action {
+	&:focus:active {
+		outline: 0 !important;
+	}
+}
+
+.lsb-navbar-btn-action {
+	&:not(.collapsed) {
+		.btn.active;
+		background-color: @navbar-default-link-active-bg;
+	}
+}
+
+.navbar-nav {
+	font-weight: 500;
+
+	@media (max-width: @grid-float-breakpoint-max) {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	a:focus {
+		background: transparent;
+	}
+
+	span.nav-item-description {
+		display: none;
+	}
+}
+
+.lsb-navbar-site {
+
+	// Colored top border
+	border-top: 3px solid @brand-primary;
+	background-color: @navbar-site-bg;
+
+	.navbar-brand {
+		display: flex;
+		align-items: center;
+		color: @brand-primary !important;
+		text-transform: uppercase;
+		font-weight: 600;
+
+		.logo {
+			height: @navbar-height*0.6;
+			width: @navbar-height*0.6;
+			fill: @brand-primary;
+			margin-right: @navbar-height*0.2;
+		}
+	}
+
+	.lsb-search-form  {
+		display: none;
+		max-width: @screen-sm-min;
+
+		.input-group {
+			padding-left: 10px; // TODO Make dynamic
+		}
+	}
+
+	.lsb-navbar-btn-toggle {
+		> :last-child {
+			display: none;
+		}
+	}
+
+	&.search {
+		.lsb-search-form {
+			display: block;
+		}
+
+		.navbar-nav {
+			display: none;
+		}
+
+		.lsb-navbar-btn-toggle {
+			> :first-child {
+				display: none;
+			}
+
+			> :last-child {
+				display: block;
+			}
+		}
+	}
+
+	@media (max-width: @grid-float-breakpoint-max) {
+		.lsb-navbar-btn-toggle {
+			display: none;
+		}
+
+		.lsb-search-form {
+			display: none !important;
+		}
+
+		.navbar-nav {
+			display: block !important;
+		}
+	}
+}
+
+.lsb-navbar-search {
+	@media (min-width: @grid-float-breakpoint) {
+		display: none !important;
+	}
+}
+
+.lsb-navbar-page {
+	.nav {
+		width: 100%;
+		padding: @navbar-padding-vertical 0;
+		margin: 0;
+
+		> li {
+			width: 100%;
+			display: inline-block;
+			vertical-align: top;
+
+			@media (min-width: @screen-xs-min) {
+				width: 49.5%;
+			}
+
+			@media (min-width: @screen-sm-min) {
+				width: 32.9%;
+			}
+
+			a {
+				padding: @nav-link-padding;
+				text-decoration: underline;
+			}
+
+			.nav-item-description {
+				padding-top: @padding-small-vertical;
+				width: 100%;
+				display: inline-block;
+				font-weight: 300;
+				text-decoration: none;
+			}
+
+			.glyphicon {
+				font-size: 80%;
+				margin-left: 1em;
+				color: @lsb-brand;
+			}
+
+			&.lsb-purple .glyphicon{
+				color: @lsb-purple;
+			}
+
+			&.lsb-green .glyphicon{
+				color: @lsb-green;
+			}
+
+			&.lsb-yellow .glyphicon{
+				color: @lsb-yellow;
+			}
+
+			&.lsb-orange .glyphicon{
+				color: @lsb-orange;
+			}
+
+			&.lsb-red .glyphicon{
+				color: @lsb-red;
+			}
+
+			&.lsb-blue .glyphicon{
+				color: @lsb-blue;
+			}
+		}
+	}
+}

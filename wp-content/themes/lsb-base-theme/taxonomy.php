@@ -6,7 +6,6 @@
 			</h1>
 			<?php echo category_description(); ?>
 		</header>
-		<?php get_search_form(); ?>
 	</div>
 </div>
 
