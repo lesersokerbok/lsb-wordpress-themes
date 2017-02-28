@@ -32,3 +32,7 @@ wp-content/plugins/*
 # specify (see the commented-out example for a hint on how to do this.)
 wp-content/themes/*
 !wp-content/themes/lsb-*/
+wp-content/themes/lsb-*/**/*.temp.*
+
+# Global ignores
+node_modules
