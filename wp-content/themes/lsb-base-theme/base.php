@@ -6,9 +6,13 @@
 		get_template_part('templates/header');
 	?>
 
+	<?php
+		get_template_part('templates/algoliasearch');
+	?>
+
 	<div class="wrap container-fluid" role="document">
 		<div class="content row">
-							<main class="main <?php echo roots_main_class(); ?>" role="main">
+			<main class="main <?php echo roots_main_class(); ?>" role="main">
 				<?php include roots_template_path(); ?>
 			</main><!-- /.main -->
 			<?php if (roots_display_sidebar()) : ?>

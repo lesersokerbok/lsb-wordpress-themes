@@ -41,6 +41,8 @@ function roots_scripts() {
 
 	wp_enqueue_style('lsb_css', $assets['css'], array(), $version['css'], 'all');
 
+	wp_enqueue_script( 'wp-util' );
+	wp_enqueue_script( 'algolia-instantsearch' );
 	//wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, false);
 	wp_enqueue_script('lsb_js', $assets['js'], array( 'jquery' ), $version['js'], true);
 }

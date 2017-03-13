@@ -39,6 +39,9 @@ var Roots = {
 
 				if($navbar.hasClass('search')) {
 					$navbar.find('.lsb-search-form input').focus();
+				} else {
+					$navbar.find('.lsb-search-form input').val('').keyup();
+					console.log($navbar.find('.lsb-search-form input'));
 				}
 			});
 
