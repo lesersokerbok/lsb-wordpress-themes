@@ -7,7 +7,7 @@
 }
 
 .navbar .lsb-search-form {
-	padding-top: 22px; // TODO: Make dynamic
+	padding-top: 23px; // TODO: Make dynamic
 	max-width: @screen-sm-min;
 
 	input {
@@ -65,7 +65,6 @@
 		color: @brand-primary !important;
 		text-transform: uppercase;
 		font-weight: 600;
-		margin-right: 15px;
 
 		.logo {
 			height: @navbar-height*0.5;
@@ -75,43 +74,15 @@
 		}
 	}
 
-	.lsb-navbar-btn-toggle {
-		> :last-child {
-			display: none;
-		}
+	.lsb-search-form .input-group {
+		padding-left: 15px;
 	}
 
-	&.search {
-		.lsb-search-form {
-			display: block;
-		}
-
-		.navbar-nav {
-			display: none;
-		}
-
-		.lsb-navbar-btn-toggle {
-			> :first-child {
-				display: none;
-			}
-
-			> :last-child {
-				display: block;
-			}
-		}
-	}
 
 	@media (max-width: @grid-float-breakpoint-max) {
-		.lsb-navbar-btn-toggle {
-			display: none;
-		}
 
 		.lsb-search-form {
 			display: none !important;
-		}
-
-		.navbar-nav {
-			display: block !important;
 		}
 	}
 }
