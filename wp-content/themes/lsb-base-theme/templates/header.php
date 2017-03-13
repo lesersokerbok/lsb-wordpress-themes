@@ -48,7 +48,11 @@
 					?>
 				</div>
 
-				<?php get_search_form(); ?>
+				<?php
+					if (!has_nav_menu('primary_navigation')) :
+						get_search_form();
+					endif;
+				?>
 
 			</div><!-- /.navbar-collapse -->
 
