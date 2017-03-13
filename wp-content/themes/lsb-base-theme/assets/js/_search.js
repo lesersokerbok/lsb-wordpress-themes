@@ -2,53 +2,50 @@
 (function($) {
 
 	function addRelevantMetaAndContent(book) {
-		var relevant_content = null;
+		var useRelevantContent = true;
 		var relevant_meta = {};
 
-		relevant_meta.creators = {
-			terms: [],
-		};
-
-		relevant_meta.topics = {
-			terms: [],
-		};
-
-		relevant_meta.partof = {
-			terms: [],
-		};
-
-		relevant_meta.audience = {
-			terms: [],
-		};
+		relevant_meta.creators = [];
+		relevant_meta.topics = [];
+		relevant_meta.partof = [];
+		relevant_meta.audience = [];
 
 		for ( var tax_key in book._highlightResult.taxonomies ) {
 			var tax_terms = book._highlightResult.taxonomies[tax_key];
 			for ( var term_index in tax_terms ) {
 				var tax_term = tax_terms[term_index];
-				if(tax_term.matchLevel !== 'none' || tax_key === 'lsb_tax_author') {
+				if ( tax_term.matchLevel !== 'none' || tax_key === 'lsb_tax_author') {
 					if( tax_key === 'lsb_tax_author' || tax_key === 'lsb_tax_illustrator' || tax_key === 'lsb_tax_translator') {
-						relevant_meta.creators.terms.push({value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index]});
+						relevant_meta.creators.push({value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index]});
 					} else if( tax_key === 'lsb_tax_topic') {
-						relevant_meta.topics.terms.push({value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index]});
+						relevant_meta.topics.push({value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index]});
 					} else if( tax_key === 'lsb_tax_series' || tax_key === 'lsb_tax_list' ) {
-						relevant_meta.partof.terms.push({value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index]});
+						relevant_meta.partof.push({value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index]});
 					} else if( tax_key === 'lsb_tax_age' || tax_key === 'lsb_tax_audience' ) {
-						relevant_meta.audience.terms.push({value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index]});
+						relevant_meta.audience.push({value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index]});
 					}
+				}
+
+				if ( tax_term.matchLevel !== 'none' ) {
+					useRelevantContent = false;
 				}
 			}
 		}
 
+		if( book._highlightResult.post_title.matchLevel !== 'none') {
+			useRelevantContent = false;
+		}
 
-		for ( var snippet_index in book._snippetResult ) {
-			var snippet = book._snippetResult[snippet_index];
-			if( snippet.matchLevel !== 'none') {
-				relevant_content = snippet.value;
-				break;
+		if(useRelevantContent) {
+			for ( var snippet_index in book._snippetResult ) {
+				var snippet = book._snippetResult[snippet_index];
+				if( snippet.matchLevel !== 'none') {
+					book.relevant_content = snippet.value;
+					break;
+				}
 			}
 		}
 
-		book.relevant_content = relevant_content;
 		book.relevant_meta = relevant_meta;
 
 	}
@@ -119,6 +116,8 @@
 					}
 
 					addRelevantMetaAndContent(book);
+
+					console.log(book);
 
 					return book;
 				},
