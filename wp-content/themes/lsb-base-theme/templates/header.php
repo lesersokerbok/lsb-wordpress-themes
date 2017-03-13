@@ -12,7 +12,7 @@
 						</button>
 					<?php else : ?>
 						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#search-collapse" aria-expanded="false">
-							<span class="sr-only"><?php esc_html_e( 'Meny', 'lsb' ); ?></span>
+							<span class="sr-only"><?php esc_html_e( 'Søk', 'lsb' ); ?></span>
 							<span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
 						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#primary-collapse" aria-expanded="false">
@@ -46,19 +46,6 @@
 							));
 						endif;
 					?>
-
-					<?php if (!has_nav_menu('primary_navigation')) : ?>
-						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-toggle" data-toggle="collapse" data-target="#main-collapse" aria-expanded="false">
-							<div>
-								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-								<?php esc_html_e( 'Søk', 'lsb' ); ?>
-							</div>
-							<div>
-								<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-								<?php esc_html_e( 'Meny', 'lsb' ); ?>
-							</div>
-						</button>
-					<?php endif; ?>
 				</div>
 
 				<?php get_search_form(); ?>
