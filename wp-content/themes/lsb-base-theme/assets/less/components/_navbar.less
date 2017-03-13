@@ -1,31 +1,23 @@
+.navbar {
+	font-size: 16px;
+}
+
 .navbar + .navbar {
 	margin-top: -@navbar-margin-bottom;
 }
 
 .navbar .lsb-search-form {
-	padding-top: 11.5px; // TODO: Make dynamic
+	padding-top: 23px; // TODO: Make dynamic
+	max-width: @screen-sm-min;
 
 	input {
-		font-weight: 300;
-	}
-
-	.btn-default {
-		background: transparent;
-	}
-}
-
-.navbar-right {
-	.navbar-btn {
-		margin-right: 10px; // TODO: Make dynamic
-
-		&:last-child {
-			margin-right: @grid-gutter-width/2;
-		}
+		font-size: 0.9em;
 	}
 }
 
 .navbar-header .navbar-right {
 	float: right;
+	margin-right: 15px;
 
 	@media (min-width: @grid-float-breakpoint) {
 		display: none;
@@ -46,7 +38,6 @@
 }
 
 .navbar-nav {
-	font-weight: 500;
 
 	@media (max-width: @grid-float-breakpoint-max) {
 		margin-left: 0;
@@ -76,77 +67,48 @@
 		font-weight: 600;
 
 		.logo {
-			height: @navbar-height*0.6;
-			width: @navbar-height*0.6;
+			height: @navbar-height*0.5;
+			width: @navbar-height*0.5;
 			fill: @brand-primary;
-			margin-right: @navbar-height*0.2;
+			margin-right: @navbar-height*0.1;
 		}
 	}
 
-	.lsb-search-form  {
-		display: none;
-		max-width: @screen-sm-min;
-
-		.input-group {
-			padding-left: 10px; // TODO Make dynamic
-		}
+	.lsb-search-form .input-group {
+		padding-left: 15px;
 	}
 
-	.lsb-navbar-btn-toggle {
-		> :last-child {
-			display: none;
-		}
-	}
-
-	&.search {
-		.lsb-search-form {
-			display: block;
-		}
-
-		.navbar-nav {
-			display: none;
-		}
-
-		.lsb-navbar-btn-toggle {
-			> :first-child {
-				display: none;
-			}
-
-			> :last-child {
-				display: block;
-			}
-		}
-	}
 
 	@media (max-width: @grid-float-breakpoint-max) {
-		.lsb-navbar-btn-toggle {
-			display: none;
-		}
 
 		.lsb-search-form {
 			display: none !important;
-		}
-
-		.navbar-nav {
-			display: block !important;
 		}
 	}
 }
 
 .lsb-navbar-search {
+
+	.lsb-search-form {
+		margin: 0 auto;
+	}
+
 	@media (min-width: @grid-float-breakpoint) {
 		display: none !important;
 	}
 }
 
 .lsb-navbar-page {
+	background: @navbar-page-bg;
+
 	.nav {
 		width: 100%;
-		padding: @navbar-padding-vertical 0;
+		padding: 20px 0;
 		margin: 0;
 
 		> li {
 			width: 100%;
+			font-weight: 500;
 			display: inline-block;
 			vertical-align: top;
 
@@ -158,23 +120,20 @@
 				width: 32.9%;
 			}
 
-			a {
-				padding: @nav-link-padding;
-				text-decoration: underline;
-			}
-
 			.nav-item-description {
 				padding-top: @padding-small-vertical;
 				width: 100%;
+				font-size: 0.9em;
+				font-weight: normal;
 				display: inline-block;
-				font-weight: 300;
 				text-decoration: none;
 			}
 
 			.glyphicon {
-				font-size: 80%;
+				font-size: 0.8em;
 				margin-left: 1em;
 				color: @lsb-brand;
+				transition: margin 0.2s ease-in-out;
 			}
 
 			&.lsb-purple .glyphicon{
@@ -199,6 +158,22 @@
 
 			&.lsb-blue .glyphicon{
 				color: @lsb-blue;
+			}
+
+			a {
+				padding: @nav-link-padding;
+				text-decoration: underline;
+				border-radius: @border-radius-base;
+
+				&:hover,
+				&:focus {
+					text-decoration: none;
+					background-color: @navbar-page-link-hover-bg;
+
+					.glyphicon {
+						margin-left: 1.5em;
+					}
+				}
 			}
 		}
 	}
