@@ -23,32 +23,6 @@ var Roots = {
 	common: {
 		init: function() {
 			// JavaScript to be fired on all pages
-			// Toggle archive description visibility
-
-			$('.lsb-navbar-btn-action').click(function () {
-				$(this).blur();
-			});
-
-			$('.lsb-navbar-btn-toggle').click(function () {
-				$(this).blur();
-			});
-
-			$('.lsb-navbar-btn-toggle[data-target="#main-collapse"]').click(function () {
-				$navbar = $(this).closest('.lsb-navbar-site');
-				$navbar.toggleClass('search');
-
-				if($navbar.hasClass('search')) {
-					$navbar.find('.lsb-search-form input').focus();
-				} else {
-					$navbar.find('.lsb-search-form input').val('').keyup();
-					console.log($navbar.find('.lsb-search-form input'));
-				}
-			});
-
-			$('.page-header button').click(function () {
-				$(this).closest('.page-header').find('.description')
-					.toggleClass('sr-only');
-			});
 
 			// Hide scroll arrows when not needed
 			var toggleScrollButtons = function($bookSectionScroll) {

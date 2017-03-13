@@ -1,5 +1,14 @@
-<div id="search-page" class="hidden container-fluid">
+<div id="search-page" class="container-fluid" style="display: none">
 	<div class="content row">
+		<div class="col-sm-12">
+			<div class="page-header">
+				<h1><?php esc_html_e( 'Søkeresultat', 'lsb' ); ?></h1>
+
+				<?php if(is_singular('post')) : ?>
+					<?php get_template_part('templates/entry-meta'); ?>
+				<?php endif; ?>
+			</div>
+		</div>
 		<div id="algolia-hits" class="col-sm-12">
 		</div>
 		<nav class="post-nav text-xs-center lsb-page-row">

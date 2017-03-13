@@ -1,6 +1,5 @@
 
 (function($) {
-	console.log("test");
 
 	function addRelevantMetaAndContent(book) {
 		var relevant_content = null;
@@ -60,7 +59,7 @@
 		indexName: algolia.indices.posts_lsb_book.name,
 		urlSync: {
 			mapping: {
-				'q': 'sok'
+				'q': 's'
 			},
 			trackedParameters: ['query']
 		},
@@ -74,18 +73,24 @@
 		searchFunction: function(helper) {
 			console.log("Søk", search.helper.state.query)
 			var savedPage = helper.state.page;
-			var mainSections = $('main:not(#search-results)');
-			var searchResults = $('main#search-results');
+			var mainSections = $('main');
+			var searchResults = $('#search-page');
+			var pageNav = $('.lsb-navbar-page');
+
 			if (search.helper.state.query === '') {
 				mainSections.show();
+				pageNav.show();
 				searchResults.hide();
 				return;
 			}
+
 			search.helper.setQueryParameter('distinct', true);
 			search.helper.setQueryParameter('filters', '');
 			search.helper.setPage(savedPage);
 			helper.search();
+
 			mainSections.hide();
+			pageNav.hide();
 			searchResults.show();
 		}
 	});
@@ -96,6 +101,7 @@
 			container: '#algolia-form input',
 			placeholder: $('#algolia-form input').attr('placeholder'),
 			wrapInput: false,
+			autofocus: false
 		})
 	);
 
@@ -141,47 +147,10 @@
 	// Start
 	search.start();
 
-	$searchPage = $('#search-page');
-	$searchInput = $('#algolia-form input').attr('type', 'search');
-	$searchButton = $('#algolia-form button').attr('type', 'submit');
-
-	$searchInput.bind('keyup',function(e) {
-		if(search.helper.state.query !== '') {
-			$searchPage.removeClass('hidden');
-		} else {
-			$searchPage.addClass('hidden');
-		}
+	$searchInput = $('#algolia-form').bind('submit', function(e) {
+		e.preventDefault();
+		$(this).find('input').blur();
+		$(this).find('button').blur();
 	});
-
-	// if(search.helper.state.query !== '') {
-	// 	$searchPage.collapse('show');
-	// }
-	//
-	// $searchPage.on('shown.bs.collapse', function () {
-	// 	$searchPageToggleButton.addClass('active');
-	// 	$searchPageToggleButton.blur();
-	// 	$searchInput.attr('type', 'search').select();
-	// 	if(search.helper.state.query !== '') {
-	// 		$('main:not(#search-results)').hide();
-	// 	}
-	// })
-
-	// $searchPage.on('hide.bs.collapse', function () {
-	// 	$searchPageToggleButton.removeClass('active');
-	// 	$searchPageToggleButton.blur();
-	// 	$('main:not(#search-results)').show();
-	// })
-	//
-	// $searchButton.bind('keyup',function(e) {
-	// 	if (e.key == 'Enter') {
-	// 		$(this).blur();
-	// 	}
-	// });
-	//
-	// $searchInput.bind('keyup',function(e) {
-	// 	if (e.key == 'Enter') {
-	// 		$(this).blur();
-	// 	}
-	// });
 
 })(jQuery); // Fully reference jQuery after this point.
