@@ -94,14 +94,16 @@
 	});
 
 	// Search box widget
-	search.addWidget(
-		instantsearch.widgets.searchBox({
-			container: '#algolia-form input',
-			placeholder: $('#algolia-form input').attr('placeholder'),
-			wrapInput: false,
-			autofocus: false
-		})
-	);
+	$('#algolia-form input').each(function() {
+		search.addWidget(
+			instantsearch.widgets.searchBox({
+				container: this,
+				placeholder: $(this).attr('placeholder'),
+				wrapInput: false,
+				autofocus: false
+			})
+		);
+	});
 
 	// Hits widget
 	search.addWidget(
@@ -115,11 +117,7 @@
 							book.taxonomies_permalinks[tax_key][term_index] = book.taxonomies_permalinks[tax_key][term_index] + "<?= $url_addon ?>";
 						}
 					}
-
 					addRelevantMetaAndContent(book);
-
-					console.log(book);
-
 					return book;
 				},
 			},
@@ -147,10 +145,12 @@
 	// Start
 	search.start();
 
-	$searchInput = $('#algolia-form').bind('submit', function(e) {
-		e.preventDefault();
-		$(this).find('input').blur();
-		$(this).find('button').blur();
+	$searchInput = $('#algolia-form').each(function() {
+		$(this).bind('submit', function(e) {
+			e.preventDefault();
+			$(this).find('input').blur();
+			$(this).find('button').blur();
+		});
 	});
 
 })(jQuery); // Fully reference jQuery after this point.
