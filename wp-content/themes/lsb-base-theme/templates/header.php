@@ -68,7 +68,7 @@
 	<?php endif; ?>
 
 	<?php if(is_front_page() && has_nav_menu('main_navigation')) : ?>
-		<div class="navbar navbar-default navbar-static-top lsb-navbar-page in" id="main-collapse">
+		<div class="navbar navbar-default navbar-static-top lsb-navbar-page">
 			<div class="container-fluid">
 				<?php
 						wp_nav_menu(array(
@@ -81,4 +81,14 @@
 			</div><!-- /.container-fluid -->
 		</div>
 	<?php endif; ?>
+
+
+	<?php if(!is_front_page() && function_exists('yoast_breadcrumb')) : ?>
+		<div class="navbar navbar-default navbar-static-top lsb-navbar-breadcrumbs">
+			<div class="container-fluid">
+				<?php yoast_breadcrumb('<div id="breadcrumbs" class="navbar-text">','</div>'); ?>
+			</div>
+		</div>
+	<?php endif; ?>
+
 </header>

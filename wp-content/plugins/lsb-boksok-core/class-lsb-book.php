@@ -41,7 +41,7 @@ class LsbBook {
         'hierarchical' => false,
         'rewrite' => array('slug' => _x('bok', 'lsb_book slug', 'lsb_boksok'), 'with_front' => 1),
         'query_var' => true,
-        'has_archive' => true,
+        'has_archive' => false,
         'menu_position' => '5',
         'supports' => array('title','excerpt','comments','revisions','author','thumbnail'),
         'labels' => array (

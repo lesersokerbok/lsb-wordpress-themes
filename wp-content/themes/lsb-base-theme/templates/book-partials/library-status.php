@@ -11,7 +11,7 @@ $counties = get_post_meta($post->ID, 'lsb_library_status', true);
 			<tr>
 				<th colspan="2">
 					<form class="form-inline">
-					 <label for="countySelect"><?php _e( 'Lån boka på ditt bibliotek:', 'lsb' ); ?></label>
+						<label for="countySelect"><?php _e( 'Lån boka på ditt bibliotek:', 'lsb' ); ?></label>
 						<select class="form-control" id="countySelect">
 							<option><?php _e('Velg fylke', 'lsb') ?></option>
 							<?php foreach( $counties as $key => $county_libraries ) : ?>
@@ -20,6 +20,9 @@ $counties = get_post_meta($post->ID, 'lsb_library_status', true);
 								<?php endif; ?>
 							<?php endforeach; ?>
 						</select>
+						<a href="/bibintegrasjon" title='<?php _e('Informasjon om "Lån boka på ditt bibliotek"', 'lsb') ?>'>
+							<span class="glyphicon glyphicon-question-sign"></span>
+						</a>
 					</form>
 				</th>
 			</tr>
