@@ -1,0 +1,62 @@
+.book-shelf {
+
+	.book-shelf-body {
+		position: relative;
+		transform-style: preserve-3d;
+
+		.book-shelf-left-scroll,
+		.book-shelf-right-scroll  {
+			color: @link-color;
+			position: absolute;
+			font-size: @font-size-h1;
+			background: @body-bg;
+			height: 100%;
+			top: 0;
+			z-index: 10;
+
+			.glyphicon {
+				cursor: pointer;
+				top: 40%;
+				opacity: 0.6;
+
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+
+		.book-shelf-left-scroll {
+			left: -@line-height-computed;
+		}
+
+		.book-shelf-right-scroll {
+			right: -@line-height-computed;
+		}
+
+		.book-shelf-scroll {
+			overflow-x: scroll;
+			overflow-y: hidden;
+			margin-top: -@line-height-computed/2;
+			flex-wrap: nowrap;
+
+			.summary.lsb_book {
+				display: inline-block;
+				padding: @line-height-computed/2;
+				flex: 0 0 auto;
+
+				&:last-child {
+					padding-right: 0;
+				}
+
+				@media (max-width: @screen-sm-max) {
+					max-width: 180px;
+
+					a.thumbnail {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+
+	}
+}
