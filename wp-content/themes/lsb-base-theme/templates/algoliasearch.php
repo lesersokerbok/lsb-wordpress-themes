@@ -22,6 +22,8 @@
 			<a class="thumbnail" href="{{ data.permalink }}">
 				<# if (data.images.medium) { #>
 					<img src="{{ data.images.medium.url }}"></img>
+				<# } else { #>
+					<img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/book-cover.jpg"></img>
 				<# } #>
 			</a>
 		</div>
