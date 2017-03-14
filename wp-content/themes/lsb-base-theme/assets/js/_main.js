@@ -25,11 +25,11 @@ var Roots = {
 			// JavaScript to be fired on all pages
 
 			// Hide scroll arrows when not needed
-			var toggleScrollButtons = function($bookSectionScroll) {
+			function toggleScrollButtons($bookSectionScroll) {
 
-				var scrollLeftPos = $bookSectionScroll.scrollLeft(),
-						scrollWidth = $bookSectionScroll.get(0).scrollWidth,
-						width = $bookSectionScroll.width();
+				var scrollLeftPos = $bookSectionScroll.scrollLeft();
+				var scrollWidth = $bookSectionScroll.get(0).scrollWidth;
+				var width = $bookSectionScroll.width();
 
 				if(scrollLeftPos > 0) {
 					$bookSectionScroll.siblings('.book-shelf-left-scroll').show();
@@ -45,9 +45,10 @@ var Roots = {
 
 			};
 
-			$('.book-shelf-scroll').each(function() {
-				toggleScrollButtons($(this));
-			});
+			function scrollStep($bookSectionScroll) {
+				var scrollWidth = $bookSectionScroll.width();
+				return Math.min(scrollWidth*0.8, 500);
+			}
 
 			$('.book-shelf-scroll').scroll(function() {
 				toggleScrollButtons($(this));
@@ -56,14 +57,14 @@ var Roots = {
 			// Respond to left scroll button click
 			$('.book-shelf .book-shelf-left-scroll').click(function () {
 				$(this).siblings('.book-shelf-scroll').animate({
-					scrollLeft: "-=500px"
+					scrollLeft: "-=" + scrollStep($(this).siblings('.book-shelf-scroll')) + "px"
 				}, 500);
 			});
 
 			// Respond to right scroll button click
 			$('.book-shelf .book-shelf-right-scroll').click(function () {
 				$(this).siblings('.book-shelf-scroll').animate({
-					scrollLeft: "+=500px"
+					scrollLeft: "+=" + scrollStep($(this).siblings('.book-shelf-scroll')) + "px"
 				}, 500);
 			});
 		}

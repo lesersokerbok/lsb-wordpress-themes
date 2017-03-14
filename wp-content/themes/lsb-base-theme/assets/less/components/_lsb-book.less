@@ -2,68 +2,6 @@
 	 LSB Book specific styling
 	 ========================================================================== */
 
-.book-shelf {
-
-	.book-shelf-body {
-		white-space: nowrap;
-		position: relative;
-		transform-style: preserve-3d;
-
-		.book-shelf-left-scroll,
-		.book-shelf-right-scroll  {
-			color: @link-color;
-			position: absolute;
-			top: 30%;
-			font-size: @font-size-h1;
-			opacity: 0.5;
-			cursor: pointer;
-
-			display: none;
-
-			&:hover {
-				opacity: 0.9;
-			}
-		}
-
-		.book-shelf-left-scroll {
-			transform: translateX(-110%);
-			left: 0;
-		}
-
-		.book-shelf-right-scroll {
-			transform: translateX(110%);
-			right: 0;
-		}
-
-		.book-shelf-scroll {
-			overflow-x: scroll;
-			overflow-y: hidden;
-			margin-left: -@line-height-computed/2;
-			margin-top: -@line-height-computed/2;
-
-			.summary.lsb_book {
-				display: inline-block;
-				white-space: normal;
-				vertical-align: top;
-				max-width: 400px;
-
-				&:last-child {
-					padding-right: 0;
-				}
-
-				@media (max-width: @screen-sm-max) {
-					max-width: 180px;
-
-					a.thumbnail {
-						margin-bottom: 0;
-					}
-				}
-			}
-		}
-
-	}
-}
-
 .lsb_book {
 
 	.lsb-supported {
