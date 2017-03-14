@@ -70,11 +70,12 @@
 		searchFunction: function(helper) {
 			console.log("Søk", search.helper.state.query)
 			var savedPage = helper.state.page;
+			var isSearchPage = $('body').hasClass('search');
 			var mainSections = $('main');
 			var searchResults = $('#search-page');
 			var pageNav = $('.lsb-navbar-page');
 
-			if (search.helper.state.query === '') {
+			if ( search.helper.state.query === '' && !isSearchPage ) {
 				mainSections.show();
 				pageNav.show();
 				searchResults.hide();
