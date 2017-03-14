@@ -23,10 +23,14 @@ $rss = fetch_feed( $feed_url );
 
 		<div class="book-shelf-body">
 
-			<span aria-hidden="true" class="book-shelf-left-scroll hidden-xs glyphicon glyphicon-chevron-left"></span>
-			<span aria-hidden="true" class="book-shelf-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
+			<div aria-hidden="true" class="book-shelf-left-scroll" style="display: none">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</div>
+			<div aria-hidden="true" class="book-shelf-right-scroll">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</div>
 
-			<div class="book-shelf-scroll">
+			<div class="book-shelf-scroll loop">
 
 				<?php foreach ( $rss->get_items() as $item ) : ?>
 
