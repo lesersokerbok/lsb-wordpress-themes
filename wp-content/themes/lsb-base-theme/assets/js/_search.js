@@ -112,11 +112,6 @@
 			hitsPerPage: 30,
 			transformData: {
 				item: function(book) {
-					for ( var tax_key in book.taxonomies_permalinks ) {
-						for ( var term_index in book.taxonomies_permalinks[tax_key] ) {
-							book.taxonomies_permalinks[tax_key][term_index] = book.taxonomies_permalinks[tax_key][term_index] + "<?= $url_addon ?>";
-						}
-					}
 					addRelevantMetaAndContent(book);
 					return book;
 				},
