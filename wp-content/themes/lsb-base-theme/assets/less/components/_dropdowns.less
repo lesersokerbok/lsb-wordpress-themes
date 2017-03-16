@@ -3,13 +3,15 @@
 	text-decoration: none !important;
 }
 
-.dropdown-menu > li > a {
-	&:focus,
-	&:hover {
-		text-decoration: underline;
+.dropdown-menu > li {
+	>a {
+		&:focus,
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 
-	&.active {
+	&.active a {
 		color: inherit;
 		background-color: inherit;
 	}
