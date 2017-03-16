@@ -22,7 +22,7 @@
 			<span class="glyphicon glyphicon-chevron-right"></span>
 		</div>
 
-		<div class="book-shelf-scroll loop bla">
+		<div class="book-shelf-scroll loop">
 			<?php while ( $books->have_posts() ) : $books->the_post(); ?>
 				<?php get_template_part('templates/content-summary', 'lsb_book'); ?>
 			<?php endwhile; ?>
