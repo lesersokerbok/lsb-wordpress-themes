@@ -40,19 +40,46 @@
 			flex-wrap: nowrap;
 
 			.summary.lsb_book {
-				display: inline-block;
-				padding: @line-height-computed/2;
 				flex: 0 0 auto;
 
 				&:last-child {
 					padding-right: 0;
 				}
 
-				@media (max-width: @screen-sm-max) {
-					max-width: 180px;
+				display: none;
 
-					a.thumbnail {
-						margin-bottom: 0;
+				@media (max-width: (@screen-xs - 1)) {
+					&:nth-child(1),
+					&:nth-child(2) {
+						display: inline-block;
+					}
+				}
+
+				@media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+					&:nth-child(1),
+					&:nth-child(2),
+					&:nth-child(3) {
+						display: inline-block;
+					}
+				}
+
+				@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+					&:nth-child(1),
+					&:nth-child(2),
+					&:nth-child(3),
+					&:nth-child(4) {
+						display: inline-block;
+					}
+				}
+
+				@media (min-width: @screen-md-min) {
+					width: 19.7%;
+					&:nth-child(1),
+					&:nth-child(2),
+					&:nth-child(3),
+					&:nth-child(4),
+					&:nth-child(5) {
+						display: inline-block;
 					}
 				}
 			}
