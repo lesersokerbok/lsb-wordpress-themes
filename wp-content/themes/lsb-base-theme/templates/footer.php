@@ -2,39 +2,16 @@
 	<div class="widget-area">
 		<div class="wrap container-fluid">
 			<div class="row">
-				<div class="col-sm-6">
-					<div class="row">
-						<div class="col-md-6">
-							<?php dynamic_sidebar('sidebar-footer-1'); ?>
-						</div>
-						<div class="col-md-6">
-							<?php dynamic_sidebar('sidebar-footer-2'); ?>
-						</div>
-					</div>
+				<div class="col-sm-4">
+					<?php dynamic_sidebar('sidebar-footer-1'); ?>
 				</div>
-				<div class="col-sm-6">
-					<div class="row">
-						<div class="col-md-6">
-							<?php dynamic_sidebar('sidebar-footer-3'); ?>
-						</div>
-						<div class="col-md-6">
-							<?php dynamic_sidebar('sidebar-footer-4'); ?>
-						</div>
-					</div>
+				<div class="col-sm-4 text-center">
+					<?php dynamic_sidebar('sidebar-footer-2'); ?>
+				</div>
+				<div class="col-sm-4 text-right">
+					<?php dynamic_sidebar('sidebar-footer-3'); ?>
 				</div>
 			</div>
-		</div>
-	</div>
-
-	<div class="navbar navbar-default navbar-static-top">
-		<div class="container">
-			<nav role="navigation">
-			<?php
-				if (has_nav_menu('social_links_menu')) :
-					wp_nav_menu(array('theme_location' => 'social_links_menu', 'menu_class' => 'icon-nav nav navbar-nav nav-centered', 'link_before' => '<span>', 'link_after' => '</span>'));
-				endif;
-			?>
-			</nav>
 		</div>
 	</div>
 
