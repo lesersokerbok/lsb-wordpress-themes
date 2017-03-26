@@ -108,3 +108,17 @@ function my_wp_nav_menu_objects_sub_menu( $sorted_menu_items, $args ) {
     return $sorted_menu_items;
   }
 }
+
+
+/** Force URLs in srcset attributes into HTTPS scheme.
+	* This is particularly useful when you're running a Flexible SSL frontend like Cloudflare
+	*/
+function ssl_srcset( $sources ) {
+	foreach ( $sources as &$source ) {
+		if(strpos($source['url'], 'boksokbeta.lesersokerbok.no') !== false) {
+			$source['url'] = set_url_scheme( $source['url'], 'https' );
+		}
+	}
+	return $sources;
+}
+add_filter( 'wp_calculate_image_srcset', 'ssl_srcset' );
