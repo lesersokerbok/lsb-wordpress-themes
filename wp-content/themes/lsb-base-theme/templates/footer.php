@@ -15,10 +15,6 @@
 		</div>
 	</div>
 
-	<div class="content-info container" role="contentinfo">
-		<p><?php if (get_bloginfo('description')): ?><?php echo get_bloginfo('description') ?><br/><?php endif; ?> © <?php echo date("Y"); ?> <a href="http://lesersøkerbok.no">Leser søker bok</a></p>
-	</div>
-
 </footer>
 
 <?php wp_footer(); ?>
