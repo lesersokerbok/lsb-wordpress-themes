@@ -40,3 +40,4 @@ wp-content/themes/lsb-*/**/*.temp.*
 # Global ignores
 node_modules
 .DS_Store
+*.log.*

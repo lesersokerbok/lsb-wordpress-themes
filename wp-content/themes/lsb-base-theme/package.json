@@ -21,9 +21,12 @@
     "build:js": "uglifyjs $npm_package_config_boostrapJs ./assets/js/_*.js --output ./assets/js/bundle.min.js",
     "build:less": "lessc ./assets/less/_main.less ./assets/css/bundle.min.css --clean-css",
     "build:cacheBust": "hashsum ./assets/ -pr -f json > ./assets/manifest.json",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:js": "uglifyjs $npm_package_config_boostrapJs ./assets/js/_*.js --output ./assets/js/bundle.temp.js",
+    "dev:less": "lessc ./assets/less/_main.less ./assets/css/bundle.temp.css --source-map",
     "watch": "npm-run-all --parallel watch:*",
-    "watch:js": "uglifyjs $npm_package_config_boostrapJs ./assets/js/_*.js --output ./assets/js/bundle.temp.js",
-    "watch:less": "lessc ./assets/less/_main.less ./assets/css/bundle.temp.css --source-map"
+    "watch:js": "nodemon -e less -x \"npm run dev:js\"",
+    "watch:less": "nodemon -e less -x \"npm run dev:less\""
   },
   "engines": {
     "node": ">= 0.10.0"
@@ -33,6 +36,8 @@
     "cpy-cli": "^1.0.1",
     "less": "^2.7.2",
     "less-plugin-clean-css": "^1.5.1",
+    "node-sass": "^4.5.2",
+    "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.1",
     "rimraf": "^2.6.0",
     "uglifyjs": "^2.4.10"
