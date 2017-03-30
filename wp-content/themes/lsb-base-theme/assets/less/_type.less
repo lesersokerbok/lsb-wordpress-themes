@@ -14,22 +14,25 @@ html {
 	font-size: @font-size;
 	font-weight: @headings-font-weight;
 	line-height: @line-height;
-	margin-top: 0;
-	margin-bottom: 0.5rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 
-	&:not(:first-child) {
-		margin-top: @margin-top;
-	}
+	.page-content &, .entry-content & {
 
-	small,
-	.small {
-		font-size: @font-size-small;
+		margin-bottom: 0.5rem;
+
+		&:not(:first-child) {
+			margin-top: @margin-top;
+		}
 	}
 }
 
 h1, .h1 {
 	.header-style(@font-size-h1, @line-height-h1, @margin-top-h1);
-	margin-bottom: 1.5rem;
+
+	.page-content &, .entry-content & {
+		margin-bottom: 1.5rem;
+	}
 }
 
 h2, .h2 {

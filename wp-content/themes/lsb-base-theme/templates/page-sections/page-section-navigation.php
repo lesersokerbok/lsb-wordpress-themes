@@ -5,13 +5,13 @@
 <nav class="tax-navigation">
 	<?php if ( get_sub_field('lsb_page_section_title') ) : ?>
 		<div class="page-section-header">
-			<h1>
+			<h2>
 				<?php the_sub_field('lsb_page_section_title') ?>
 
 				<?php if ( get_sub_field('lsb_page_section_sub_title') ) : ?>
 					<small>| <?php the_sub_field('lsb_page_section_sub_title'); ?></small>
 				<?php endif; ?>
-			</h1>
+			</h2>
 		</div>
 	<?php endif; ?>
 

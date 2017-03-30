@@ -4,13 +4,13 @@
 
 <section class="book-shelf">
 	<div class="page-section-header">
-		<h1>
+		<h2>
 			<a href="<?php echo LsbPageSectionsUtil::get_link_for_book_shelf(); ?>"><?php the_sub_field('lsb_page_section_title') ?></a>
 
 			<?php if ( get_sub_field('lsb_page_section_sub_title') ) : ?>
 				<small>| <a href="<?php echo LsbPageSectionsUtil::get_link_for_book_shelf(); ?>"><?php the_sub_field('lsb_page_section_sub_title'); ?></a></small>
 			<?php endif; ?>
-		</h1>
+		</h2>
 	</div>
 
 	<div class="book-shelf-body">
