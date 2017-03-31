@@ -1,0 +1,10 @@
+{% macro term_link(term) %}
+	<a class="lsb-term" href="{{ term.link }}">{{ term.name }}</a>
+{% endmacro %}
+
+{% macro term_links(terms, sep1, sep2) %}
+	{% import _self as tax %}
+		{% for term in terms %}
+			{{ tax.term_link(term) }}
+		{% endfor %}
+{% endmacro %}
