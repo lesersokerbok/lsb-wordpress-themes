@@ -58,8 +58,7 @@ function roots_display_sidebar() {
 			'is_archive',
 			'is_search',
 			'is_home',
-			'is_singular',
-			array('is_singular', array('lsb_book'))
+			array('is_singular', array('lsb_book', 'post'))
 		),
 		/**
 		 * Page template checks (via is_page_template())
