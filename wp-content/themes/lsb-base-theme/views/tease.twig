@@ -1,0 +1,19 @@
+{% import "macros-tax.twig" as tax %}
+
+{% extends "page.twig" %}
+
+{% block entry_header %}
+	<h2 class="lsb-entry-title">
+		<a href="{{ post.link }}">{{ post.title }}</a>
+	</h2>
+{% endblock %}
+
+{% block entry_content %}
+	<p>{{ post.get_preview(50, false, '', true, '') }}</p>
+{% endblock %}
+
+{% block entry_footer %}
+	<a class="lsb-entry-read-more" href="{{ post.link }}" aria-hidden="true" role="presentation" tabindex="-1">
+		{{ __('Les hele artikkelen', 'lsb') }}<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	</a>
+{% endblock %}

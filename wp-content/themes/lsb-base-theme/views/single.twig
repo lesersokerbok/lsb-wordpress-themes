@@ -2,20 +2,10 @@
 
 {% extends "page.twig" %}
 
-{% block entry_header %}
-	{{ parent() }}
-	<p class="lsb-entry-meta">
-		{{ tax.term_links(post.categories) }}
-	</p>
-{% endblock %}
-
 {% block entry_footer %}
 	{{ parent() }}
 	<hr/>
-	<p class="lsb-entry-meta">
-		<span>{{ __('Skrevet av', 'lsb') }}
-		{{ post.author }}</span>
-		den
-		<time>{{ post.post_date | date }}</time>
+	<p>
+		{{ __('Skrevet av %s den %s.', 'lsb') | format(post.author, post.date) }}
 	</p>
 {% endblock %}
