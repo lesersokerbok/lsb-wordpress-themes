@@ -3,3 +3,9 @@
 {% block content %}
 	{% include ['entry-'~post.post_type~'.twig', 'entry.twig'] %}
 {% endblock %}
+
+{% block pagination %}
+	{% if post.post_type == 'post' %}
+		{% include 'pagination.twig' with {'prev': post.next, 'next': post.prev } %}
+	{% endif %}
+{% endblock %}

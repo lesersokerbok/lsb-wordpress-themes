@@ -1,0 +1,61 @@
+.lsb-main-footer {
+	max-width: 768px;
+	margin: 5rem auto;
+	margin-bottom: 0;
+
+	nav {
+		text-align: center;
+
+		.glyphicon {
+			font-size: 0.8em;
+			color: #356584;
+			transition: margin 0.2s ease-in-out;
+		 }
+	}
+
+	.lsb-pager {
+		margin: -0.5rem;
+
+		.lsb-pager-item {
+			margin: 0.5rem 0;
+		}
+	}
+
+	.lsb-pager-item {
+		.btn;
+		.btn-default;
+		white-space: normal;
+		text-decoration: none;
+		margin: 0.5rem 0;
+		transition: margin 0.2s ease-in-out;
+
+		.glyphicon {
+			transition: margin 0.2s ease-in-out;
+		}
+
+		&.lsb-pager-item-prev .glyphicon {
+			margin-right: 1rem;
+		}
+
+		&.lsb-pager-item-next .glyphicon {
+			margin-left: 1rem;
+		}
+	}
+
+	.lsb-pager-item:hover {
+
+		&.lsb-pager-item-prev {
+			margin-left: -0.5rem;
+			.glyphicon {
+				margin-right: 1.5rem;
+			}
+		}
+
+		&.lsb-pager-item-next {
+			margin-right: -0.5rem;
+			.glyphicon {
+				margin-left: 1.5rem;
+			}
+		}
+	}
+}
