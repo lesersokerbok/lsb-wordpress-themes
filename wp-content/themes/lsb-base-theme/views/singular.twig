@@ -1,5 +1,9 @@
 {% extends "base.twig" %}
 
+{% block header %}
+	<a href="/nyheter" class="lsb-main-title text-muted">{{ title }}</a>
+{% endblock %}
+
 {% block content %}
 	{% include ['entry-'~post.post_type~'.twig', 'entry.twig'] %}
 {% endblock %}

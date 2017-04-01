@@ -12,5 +12,6 @@
 $context = Timber::get_context();
 $post = Timber::query_post();
 $context['post'] = $post;
+$context['title'] = get_the_title( get_option('page_for_posts', true));
 
 Timber::render( array( 'singular-' . $post->ID . '.twig', 'singular-' . $post->post_type . '.twig', 'singular.twig' ), $context );
