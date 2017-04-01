@@ -14,28 +14,28 @@
  * @since   Timber 0.2
  */
 
-$templates = array( 'archive.twig', 'index.twig' );
+$templates = array( 'archive.twig', 'base.twig' );
 
 $context = Timber::get_context();
 
-$context['archive']['title'] = 'Archive';
-$context['archive']['posts'] = Timber::get_posts();
+$context['title'] = 'Archive';
+$context['posts'] = Timber::get_posts();
 
 if ( is_home() ) {
-	$context['archive']['title'] = get_the_title( get_option('page_for_posts', true));
+	$context['title'] = get_the_title( get_option('page_for_posts', true));
 } else if ( is_day() ) {
-	$context['archive']['title'] = sprintf(__('Daglig arkiv: %s', 'lsb'), get_the_date());
+	$context['title'] = sprintf(__('Daglig arkiv: %s', 'lsb'), get_the_date());
 } else if ( is_month() ) {
-	$context['archive']['title'] = sprintf(__('Månedlig arkiv: %s', 'lsb'), get_the_date('F Y'));
+	$context['title'] = sprintf(__('Månedlig arkiv: %s', 'lsb'), get_the_date('F Y'));
 } else if ( is_year() ) {
-	$context['archive']['title'] = sprintf(__('Årlig arkiv: %s', 'lsb'), get_the_date('Y'));
+	$context['title'] = sprintf(__('Årlig arkiv: %s', 'lsb'), get_the_date('Y'));
 } else if ( is_tag() ) {
-	$context['archive']['title'] = single_tag_title( '', false );
+	$context['title'] = single_tag_title( '', false );
 } else if ( is_category() ) {
-	$context['archive']['title'] = single_cat_title( '', false );
+	$context['title'] = single_cat_title( '', false );
 	array_unshift( $templates, 'archive-' . get_query_var( 'cat' ) . '.twig' );
 } else if ( is_post_type_archive() ) {
-	$context['archive']['title'] = post_type_archive_title( '', false );
+	$context['title'] = post_type_archive_title( '', false );
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 

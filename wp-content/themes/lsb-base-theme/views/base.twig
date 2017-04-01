@@ -1,3 +1,6 @@
 {% block content %}
-	Sorry, no content
+	<section class="lsb-entry-list">
+	{% for post in posts %}
+		{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+	{% endfor %}
 {% endblock %}
