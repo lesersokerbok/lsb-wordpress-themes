@@ -83,7 +83,7 @@
 	<?php endif; ?>
 
 
-	<?php if(!is_front_page() && !is_home() && !is_single() && function_exists('yoast_breadcrumb')) : ?>
+	<?php if(!is_front_page() && !is_home() && !is_single() && !is_archive('lsb_reading_guide') && function_exists('yoast_breadcrumb')) : ?>
 		<div class="navbar navbar-default navbar-static-top lsb-navbar-breadcrumbs">
 			<div class="container-fluid">
 				<?php yoast_breadcrumb('<div id="breadcrumbs" class="navbar-text">','</div>'); ?>
