@@ -42,6 +42,137 @@ class CPT_Reading_Guide {
 		register_post_type( 'lsb_reading_guide', $args );
 	}
 
+	static public function add_custom_fields() {
+
+		if( !function_exists('acf_add_local_field_group') ) {
+			return;
+		}
+
+		acf_add_local_field_group(array (
+			'key' => 'lsb_acf_group_reading_guide_book',
+			'title' => __( 'Boken', 'lsb_reading_guides' ),
+			'fields' => array (
+				array (
+					'key' => 'lsb_acf_reading_guide_intro',
+					'label' => __( 'Introduksjon', 'lsb_reading_guides' ),
+					'name' => 'lsb_intro',
+					'type' => 'wysiwyg',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array (
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => '',
+					'tabs' => 'all',
+					'toolbar' => 'basic',
+					'media_upload' => 0,
+					'delay' => 0,
+				),
+			),
+			'location' => array (
+				array (
+					array (
+						'param' => 'post_type',
+						'operator' => '==',
+						'value' => 'lsb_reading_guide',
+					),
+				),
+			),
+			'menu_order' => 0,
+			'position' => 'acf_after_title',
+			'style' => 'default',
+			'label_placement' => 'top',
+			'instruction_placement' => 'label',
+			'hide_on_screen' => '',
+			'active' => 1,
+			'description' => '',
+		));
+
+		acf_add_local_field_group(array (
+			'key' => 'lsb_acf_group_reading_guide_steps',
+			'title' => __( 'Lesesteg', 'lsb_reading_guides' ),
+			'fields' => array (
+				array (
+					'key' => 'lsb_acf_reading_guide_pre_reading',
+					'label' => __( 'Førlesing', 'lsb_reading_guides' ),
+					'name' => 'lsb_pre_reading',
+					'type' => 'wysiwyg',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array (
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => '',
+					'tabs' => 'all',
+					'toolbar' => 'basic',
+					'media_upload' => 0,
+					'delay' => 0,
+				),
+				array (
+					'key' => 'lsb_acf_reading_guide_reading',
+					'label' => __( 'Leseoppdrag', 'lsb_reading_guides' ),
+					'name' => 'lsb_reading',
+					'type' => 'wysiwyg',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array (
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => '',
+					'tabs' => 'all',
+					'toolbar' => 'basic',
+					'media_upload' => 0,
+					'delay' => 0,
+				),
+				array (
+					'key' => 'lsb_acf_reading_guide_post_reading',
+					'label' => __( 'Etterlesing', 'lsb_reading_guides' ),
+					'name' => 'lsb_post_reading',
+					'type' => 'wysiwyg',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array (
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => '',
+					'tabs' => 'all',
+					'toolbar' => 'basic',
+					'media_upload' => 0,
+					'delay' => 0,
+				),
+			),
+			'location' => array (
+				array (
+					array (
+						'param' => 'post_type',
+						'operator' => '==',
+						'value' => 'lsb_reading_guide',
+					),
+				),
+			),
+			'menu_order' => 1,
+			'position' => 'acf_after_title',
+			'style' => 'default',
+			'label_placement' => 'top',
+			'instruction_placement' => 'label',
+			'hide_on_screen' => '',
+			'active' => 1,
+			'description' => '',
+		));
+	}
+
 	static public function rewrite_flush() {
 		self::register_post_type();
 		flush_rewrite_rules();
