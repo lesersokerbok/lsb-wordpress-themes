@@ -1,4 +1,5 @@
 .lsb-entry-list {
+	.clearfix;
 
 	.lsb-entry {
 		margin-bottom: 3rem;
@@ -8,6 +9,7 @@
 // LSB Entry
 
 .lsb-entry {
+	.clearfix;
 	max-width: 768px;
 	margin: 0 auto;
 }
@@ -16,6 +18,13 @@
 	padding-bottom: 1rem;
 	margin-bottom: 1.5rem;
 	border-bottom: 1px solid @page-header-border-color;
+}
+
+.lsb-entry-featured-image {
+	.thumbnail;
+	max-width: 40%;
+	float: right;
+	margin-left: 2rem;
 }
 
 .lsb-entry-title {
@@ -91,12 +100,15 @@
 // LSB Entry - Reading Guide
 
 .lsb-entry--lsb_reading_guide {
-	h2 {
-		font-size: 1.25rem;
-		line-height: 1.5rem;
-	}
 
-	p + ul {
-		margin-top: -0.5rem;
+	.lsb-entry-content {
+		h2 {
+			font-size: 1.25rem;
+			line-height: 1.5rem;
+		}
+
+		p + ul {
+			margin-top: -0.5rem;
+		}
 	}
 }

@@ -1,7 +1,7 @@
 {% extends "tease.twig" %}
 
 {% block entry_content %}
-	<p>{{ post.lsb_intro }}</p>
+	{{ post.lsb_intro | wpautop }}
 {% endblock %}
 
 {% block entry_footer %}

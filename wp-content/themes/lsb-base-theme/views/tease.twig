@@ -1,5 +1,11 @@
 {% extends "entry.twig" %}
 
+{% block entry_thumbnail %}
+	<a href="{{ post.link }}" aria-hidden="true" class="lsb-entry-featured-image">
+		<img src="{{ post.thumbnail.src | resize(false, 200) }}" alt="Image for {{ post.title }}" />
+	</a>
+{% endblock %}
+
 {% block entry_header %}
 	<h2 class="lsb-entry-title">
 		<a href="{{ post.link }}">{{ post.title }}</a>
