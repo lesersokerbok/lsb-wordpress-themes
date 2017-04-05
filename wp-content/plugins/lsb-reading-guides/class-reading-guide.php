@@ -24,7 +24,7 @@ class CPT_Reading_Guide {
 			'label'							=> __( 'lsb_reading_guide', 'lsb_reading_guides' ),
 			'description'				=> __( 'Leseopplegg', 'lsb_reading_guides' ),
 			'labels'						=> $labels,
-			'supports'					=> array( 'title' ),
+			'supports'					=> false,
 			'hierarchical'			=> false,
 			'public'						=> true,
 			'show_ui'						=> true,
@@ -52,6 +52,29 @@ class CPT_Reading_Guide {
 			'key' => 'lsb_acf_group_reading_guide_book',
 			'title' => __( 'Boken', 'lsb_reading_guides' ),
 			'fields' => array (
+				array (
+					'key' => 'lsb_acf_reading_guide_book',
+					'label' => 'Book',
+					'name' => 'lsb_book',
+					'type' => 'post_object',
+					'instructions' => '',
+					'required' => 1,
+					'conditional_logic' => 0,
+					'wrapper' => array (
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'post_type' => array (
+						0 => 'lsb_book',
+					),
+					'taxonomy' => array (
+					),
+					'allow_null' => 0,
+					'multiple' => 0,
+					'return_format' => 'object',
+					'ui' => 1,
+				),
 				array (
 					'key' => 'lsb_acf_reading_guide_intro',
 					'label' => __( 'Introduksjon', 'lsb_reading_guides' ),
