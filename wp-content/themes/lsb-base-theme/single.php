@@ -10,7 +10,6 @@
  */
 
 $context = Timber::get_context();
-//$post = Timber::query_post();
 $context['post'] = new LSB_Post();
 
 if (is_singular('page')) {

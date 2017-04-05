@@ -19,12 +19,13 @@ class CPT_Reading_Guide {
 			'search_items'			=> __( 'Søk i leseopplegger', 'lsb_reading_guides' ),
 			'not_found'					=> __( 'Ikke funnet', 'lsb_reading_guides' ),
 			'not_found_in_trash'=> __( 'Ikke funnet i søppelkurven', 'lsb_reading_guides' ),
+			'lsb_read_more'			=> __( 'Gå til leseopplegg', 'lsb_reading_guides' )
 		);
 		$args = array(
 			'label'							=> __( 'lsb_reading_guide', 'lsb_reading_guides' ),
 			'description'				=> __( 'Leseopplegg', 'lsb_reading_guides' ),
 			'labels'						=> $labels,
-			'supports'					=> false,
+			'supports'					=> array( 'title', 'editor', 'thumbnail', 'excerpt'),
 			'hierarchical'			=> false,
 			'public'						=> true,
 			'show_ui'						=> true,
@@ -39,6 +40,12 @@ class CPT_Reading_Guide {
 			'capability_type'			=> 'page',
 			'rewrite'							=> array('slug' => _x('leseopplegg', 'The slug for lsb_reading_guide', 'lsb_reading_guides'), 'with_front' => 0),
 		);
+
+		if( class_exists('acf') ) {
+			// Remove 'title', 'editor', 'thumbnail' as they will be populated using adf.
+			$args['supports'] = array('excerpt');
+		}
+
 		register_post_type( 'lsb_reading_guide', $args );
 	}
 
