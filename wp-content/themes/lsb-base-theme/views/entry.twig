@@ -12,11 +12,14 @@
 	<div class="lsb-entry-content">
 		{% block entry_content %}
 			{{post.content}}
-			{% for section in post.get_field('lsb_post_sections') %}
-				{% include ['section-'~section.acf_fc_layout~'.twig', 'section.twig'] %}
-			{% endfor %}
 		{% endblock %}
 	</div>
+	{% block entry_sections %}
+		{% for section in post.lsb_sections %}
+			{% include ['section-'~section.acf_fc_layout~'.twig', 'section.twig'] with {'h_size': 'h3'} %}
+		{% endfor %}
+	{% endblock %}
+
 	<footer class="lsb-entry-footer">
 		{% block entry_footer %}
 		{% endblock %}

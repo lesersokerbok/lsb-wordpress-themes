@@ -7,13 +7,16 @@
 {% endblock %}
 
 {% block entry_header %}
-	<h2 class="lsb-entry-title">
+	<{{ h_size | default('h2') }} class="lsb-entry-title">
 		<a href="{{ post.link }}">{{ post.title }}</a>
-	</h2>
+	</{{ h_size | default('h2') }}>
 {% endblock %}
 
 {% block entry_content %}
 	<p>{{ post.get_preview(50, false, '', true, '') }}</p>
+{% endblock %}
+
+{% block entry_sections %}
 {% endblock %}
 
 {% block entry_footer %}

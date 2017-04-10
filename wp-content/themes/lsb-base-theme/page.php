@@ -10,7 +10,6 @@
  */
 
 $context = Timber::get_context();
-$post = Timber::query_post();
-$context['post'] = $post;
+$context['post'] = new LSB_Post();
 
 Timber::render( array( 'singular-' . $post->ID . '.twig', 'singular-' . $post->post_type . '.twig', 'singular.twig' ), $context );

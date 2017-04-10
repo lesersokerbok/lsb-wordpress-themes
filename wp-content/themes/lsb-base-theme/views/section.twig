@@ -1,10 +1,12 @@
-<section class="lsb-entry-section lsb-section-{{ section.acf_fc_layout }}">
-	{% block section_header %}
-		<h2>{{ section.lsb_title }} <small>{{ section.lsb_subtitle }}</small></h2>
-	{% endblock %}
 
-	{% block section_content %}
-		Her kommer det innhold
-	{% endblock %}
+{% block section_header %}
+	<h2>{{ section.lsb_title }} <small>{{ section.lsb_subtitle }}</small></h2>
+{% endblock %}
 
-</section>
+{% block section_content %}
+	<div class="lsb-entry-list">
+		{% for post in section.lsb_posts %}
+			{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+		{% endfor %}
+	</div>
+{% endblock %}
