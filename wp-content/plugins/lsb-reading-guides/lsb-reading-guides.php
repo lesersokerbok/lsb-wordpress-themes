@@ -90,6 +90,6 @@ add_action( 'acf/save_post', __NAMESPACE__ .'\save_lsb_reading_guide_action', 20
 add_action( 'acf/save_post', __NAMESPACE__ .'\save_lsb_book_action', 20 );
 add_action( 'before_delete_post', __NAMESPACE__ .'\before_delete_lsb_reading_guide_action' );
 
-add_action( 'init', __NAMESPACE__ . '\\CPT_Reading_Guide::register_post_type' );
+add_action( 'init', __NAMESPACE__ . '\\CPT_Reading_Guide::register_post_type', 0 );
 add_action( 'acf/init', __NAMESPACE__ . '\\CPT_Reading_Guide::add_custom_fields' );
 register_activation_hook( __FILE__, __NAMESPACE__ .'\\CPT_Reading_Guide::rewrite_flush' );

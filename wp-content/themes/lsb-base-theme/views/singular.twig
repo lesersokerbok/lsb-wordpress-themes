@@ -4,6 +4,7 @@
 	<a href="{{ title.link }}" class="lsb-main-title text-muted">{{ title.text }}</a>
 {% endblock %}
 
+
 {% block content %}
 	{% include ['entry-'~post.post_type~'.twig', 'entry.twig'] %}
 {% endblock %}
