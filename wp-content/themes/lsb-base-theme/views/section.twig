@@ -4,7 +4,7 @@
 	</div>
 	<div class="lsb_section__body">
 		{% for post in section.lsb_posts %}
-			{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+			{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] with {'h_size': 'h3'} %}
 		{% endfor %}
 	</div>
 </section>

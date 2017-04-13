@@ -5,9 +5,9 @@
 				<img src="{{ post.thumbnail.src | resize(false, 200) }}" alt="Image for {{ post.title }}" />
 			</a>
 		{% endif %}
-		<h2 class="lsb_entry__title">
+		<{{ h_size | default('h2') }} class="lsb_entry__title">
 			<a href="{{ post.link }}">{{ post.title }}</a>
-		</h2>
+		</{{ h_size | default('h2') }}>
 	</div>
 	<div class="lsb_entry__body is-content">
 		<p>{{ post.get_preview(50, false, '', true, '') }}</p>
