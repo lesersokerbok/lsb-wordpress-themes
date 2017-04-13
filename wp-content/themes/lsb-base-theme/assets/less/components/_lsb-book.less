@@ -46,10 +46,9 @@
 .summary.lsb_book {
 
 	h2 {
-		.h4;
+		font-size: @font-size-base;
 		margin-top: 1rem;
 		margin-bottom: 0.5rem;
-		line-height: 1.25rem;
 	}
 
 	em {
@@ -83,5 +82,14 @@
 	.meta {
 		font-size: @font-size-small;
 		text-align: left;
+		.text-muted;
+
+		a {
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 }
