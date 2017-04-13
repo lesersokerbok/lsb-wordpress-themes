@@ -1,21 +1,11 @@
-<article class="lsb-entry lsb-entry--{{post.post_type}}" id="post-{{post.ID}}">
-	{% if post.thumbnail.src %}
-		{% block entry_thumbnail %}
-				<img src="{{ post.thumbnail.src | resize(384) }}" class="lsb-entry-featured-image" alt="Image for {{ post.title }}" />
-		{% endblock %}
-	{% endif %}
-	<header class="lsb-entry-header">
-		{% block entry_header %}
-			<h1 class="lsb-entry-title">{{post.title}}</h1>
-		{% endblock %}
-	</header>
-	<div class="lsb-entry-content">
-		{% block entry_content %}
-			{{post.content}}
-		{% endblock %}
+<article class="lsb_entry is-{{ post.post_type }}" id="post-{{post.ID}}">
+	<div class="lsb_entry__header">
+		{% if post.thumbnail.src %}
+			<img src="{{ post.thumbnail.src | resize(384) }}" class="lsb_entry__thumbail" aria-hidden="true" alt="Image for {{ post.title }}" />
+		{% endif %}
+		<h1 class="lsb_entry__title">{{ post.title }}</h1>
 	</div>
-	<footer class="lsb-entry-footer">
-		{% block entry_footer %}
-		{% endblock %}
-	</footer>
+	<div class="lsb_entry__body is-content">
+		{{ post.content }}
+	</div>
 </article>

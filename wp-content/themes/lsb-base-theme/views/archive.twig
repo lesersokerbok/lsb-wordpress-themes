@@ -1,0 +1,11 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	{% include 'entry-archive.twig' %}
+
+	{% if pagination %}
+		{% include 'pagination.twig' with {'prev': pagination.prev, 'next': pagination.next } %}
+	{% endif %}
+
+{% endblock %}

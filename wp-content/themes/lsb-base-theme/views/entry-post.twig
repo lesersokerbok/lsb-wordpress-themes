@@ -1,9 +1,16 @@
-{% extends "entry.twig" %}
-
-{% block entry_footer %}
-	{{ parent() }}
-	<hr/>
-	<p>
-		{{ __('Skrevet av %s den %s.', 'lsb') | format(post.author, post.date) }}
-	</p>
-{% endblock %}
+<article class="lsb_entry is-{{ post.post_type }}" id="post-{{post.ID}}">
+	<div class="lsb_entry__header">
+		{% if post.thumbnail.src %}
+			<img src="{{ post.thumbnail.src | resize(384) }}" class="lsb_entry__thumbail" aria-hidden="true" alt="Image for {{ post.title }}" />
+		{% endif %}
+		<h1 class="lsb_entry__title">{{ post.title }}</h1>
+	</div>
+	<div class="lsb_entry__body is-content">
+		{{ post.content }}
+	</div>
+	<footer class="lsb_entry__footer is-content">
+		<p>
+			{{ __('Skrevet av %s den %s.', 'lsb') | format(post.author, post.date) }}
+		</p>
+	</footer>
+</article>

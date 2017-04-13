@@ -1,17 +1,14 @@
-<nav class="lsb-pager">
+<nav class="lsb_pagination">
 	{% if prev %}
-		<a class="lsb-pager-item lsb-pager-item-prev" href="{{ prev.link }}">
-			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		<a class="lsb_pagination__item is-prev" href="{{ prev.link }}">
 			<span>{{ prev.title | default(__('Nyere innlegg', 'lsb')) }}</span>
 		</a>
 	{% endif %}
 	{% if next and prev and next.title and prev.title %}
-	<br/>
 	{% endif %}
 	{% if next %}
-		<a class="lsb-pager-item lsb-pager-item-next" href="{{ next.link }}">
+		<a class="lsb_pagination__item is-next" href="{{ next.link }}">
 			<span>{{ next.title | default(__('Eldre innlegg', 'lsb')) }}</span>
-			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 		</a>
 	{% endif %}
 </nav>

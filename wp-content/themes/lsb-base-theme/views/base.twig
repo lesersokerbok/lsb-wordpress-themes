@@ -1,23 +1,13 @@
-<header class="lsb-main-header">
-{% block header %}
-	<h1 class="lsb-main-title">{{ title }}<h1>
+{% block subheader %}
+	<nav class="lsb_breadcrumbs">
+		{% if title.link %}
+			<a href="{{ title.link }}" class="lsb_breadcrumbs__item">{{ title.text }}</a>
+		{% else %}
+			<span class="lsb_breadcrumbs__item">{{ title }}</span>
+		{% endif %}
+	</nav>
 {% endblock %}
-</header>
 
-<div class="lsb-main-content">
 {% block content %}
-	<section class="lsb-entry-list">
-	{% for post in posts %}
-		{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
-	{% endfor %}
-	</section>
+	CONTENT
 {% endblock %}
-</div>
-
-<footer class="lsb-main-footer">
-{% block pagination %}
-	{% if pagination %}
-		{% include 'pagination.twig' with {'prev': pagination.prev, 'next': pagination.next } %}
-	{% endif %}
-{% endblock %}
-</footer>

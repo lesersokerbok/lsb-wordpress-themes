@@ -1,0 +1,23 @@
+.lsb_pagination {
+	.clearfix;
+	max-width: 768px;
+	margin: -0.5rem auto;
+	margin-top: @line-height-computed*2;
+	margin-bottom: -@line-height-computed;
+}
+
+.lsb_pagination__item {
+	.is-button;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+
+	&.is-next {
+		float: right;
+		.has-right-arrow;
+	}
+
+	&.is-prev {
+		float: left;
+		.has-left-arrow;
+	}
+}
