@@ -3,7 +3,7 @@
 		{% if title.link %}
 			<a href="{{ title.link }}" class="lsb_breadcrumbs__item">{{ title.text }}</a>
 		{% else %}
-			<span class="lsb_breadcrumbs__item">{{ title }}</span>
+			<span class="lsb_breadcrumbs__item is-active">{{ title }}</span>
 		{% endif %}
 	</nav>
 {% endblock %}

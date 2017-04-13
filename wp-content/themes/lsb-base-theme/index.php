@@ -19,6 +19,7 @@ $templates = array( 'archive.twig', 'base.twig' );
 $context = Timber::get_context();
 
 $context['title'] = __('Arkiv', 'lsb');
+$context['description'] = term_description();
 $context['post_type'] = 'post';
 $context['posts'] = Timber::get_posts(false, LSB_Post::class);
 $context['pagination'] = Timber::get_pagination();
