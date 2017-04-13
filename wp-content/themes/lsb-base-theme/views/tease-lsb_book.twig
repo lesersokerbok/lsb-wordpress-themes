@@ -8,7 +8,7 @@
 		<a href="{{ post.link }}">{{ post.title }}</a>
 	</{{ h_size | default('h2') }}>
 
-	<div class="lsb_book__body is-content">
-		<p>{{ post.get_preview(50, false, '', true, '') }}</p>
+	<div class="lsb_book__body">
+		{{ post.get_preview(50, false, '', false, '') }}
 	</div>
 </article>
