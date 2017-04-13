@@ -1,0 +1,23 @@
+.lsb_book__thumbail {
+	.thumbnail;
+	margin: 0;
+}
+
+.lsb_book__title,
+.lsb_book__body {
+	padding: 0 10px; // compensate for .thumbail padding
+}
+
+.lsb_book__title {
+	font-size: @font-size-base;
+	margin-top: 1.5rem;
+	margin-bottom: 1rem;
+
+	a {
+		color: currentColor !important;
+	}
+
+	a:hover {
+		border-bottom: 1px solid currentColor;
+	}
+}

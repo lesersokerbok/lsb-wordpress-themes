@@ -7,12 +7,30 @@
 
 .lsb_section__title {
 	text-transform: uppercase;
-	font-size: @font-size-h4;
-	margin: 0;
+	font-size: @font-size-large;
+	margin-bottom: @line-height-computed;
 
 	span {
 		text-transform: none;
 		font-weight: normal;
 		.text-muted;
+	}
+}
+
+.lsb_section.is-lsb_reading_guide .lsb_section__body {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	margin: -1rem;
+
+	> * {
+		display: inline-block;
+		vertical-align: top;
+		width: 200px;
+
+		flex-grow: 0;
+		flex-shrink: 1;
+		flex-basis: 200px;
+		padding: 1rem;
 	}
 }

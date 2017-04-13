@@ -1,11 +1,5 @@
 .lsb_entry {
 	.clearfix;
-
-	&.is-archive {
-		> .lsb_entry__header {
-			display: none;
-		}
-	}
 }
 
 .lsb_entry__header,
@@ -23,17 +17,6 @@
 .lsb_entry__title {
 	.h1;
 	margin: 0;
-
-	a {
-		color: currentColor !important;
-	}
-
-	a:hover {
-		border-bottom: 2px solid currentColor;
-	}
-	a:focus {
-		text-decoration: none;
-	}
 }
 
 .lsb_entry__footer {
@@ -58,6 +41,10 @@
 	max-width: 40%;
 }
 
-.lsb_entry__read-more {
-	.has-right-arrow;
+.lsb_entry {
+	&.is-archive {
+		> .lsb_entry__header {
+			display: none;
+		}
+	}
 }

@@ -18,6 +18,7 @@ class LSB_Post extends TimberPost {
 		}
 		foreach ($post_sections as $key => &$section) {
 			$layout = $section['acf_fc_layout'];
+			$section['lsb_layout'] = $layout;
 			if(post_type_exists($layout)) {
 				$section['lsb_posts'] = Timber::get_posts(array('post_type' => $layout), LSB_Post::class);
 			}

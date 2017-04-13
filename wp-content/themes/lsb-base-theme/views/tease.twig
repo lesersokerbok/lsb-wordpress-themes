@@ -1,16 +1,16 @@
-<article class="lsb_entry is-teaser is-{{ post.post_type }}" id="post-{{post.ID}}">
-	<div class="lsb_entry__header">
+<article class="lsb_teaser is-{{ post.post_type }}" id="post-{{post.ID}}">
+	<div class="lsb_teaser__header">
 		{% if post.thumbnail.src %}
-			<a href="{{ post.link }}" class="lsb_entry__thumbail" aria-hidden="true" tabindex="-1">
+			<a href="{{ post.link }}" class="lsb_teaser__thumbail" aria-hidden="true" tabindex="-1">
 				<img src="{{ post.thumbnail.src | resize(false, 200) }}" alt="Image for {{ post.title }}" />
 			</a>
 		{% endif %}
-		<{{ h_size | default('h2') }} class="lsb_entry__title">
+		<{{ h_size | default('h2') }} class="lsb_teaser__title">
 			<a href="{{ post.link }}">{{ post.title }}</a>
 		</{{ h_size | default('h2') }}>
 	</div>
-	<div class="lsb_entry__body is-content">
+	<div class="lsb_teaser__body is-content">
 		<p>{{ post.get_preview(50, false, '', true, '') }}</p>
-		<a class="lsb_entry__read-more" href="{{ post.link }}" aria-hidden="true" tabindex="-1">{{ post.lsb_read_more }}</a>
+		<a class="lsb_teaser__read-more" href="{{ post.link }}" aria-hidden="true" tabindex="-1">{{ post.lsb_read_more }}</a>
 	</div>
 </article>
