@@ -10,7 +10,7 @@
 	</div>
 
 	{% block entry_sections %}
-		{% for section in post.lsb_sections %}
+		{% for section in post.sections %}
 			{% include ['section-'~section.acf_fc_layout~'.twig', 'section.twig'] %}
 		{% endfor %}
 	{% endblock %}
