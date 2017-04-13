@@ -1,12 +1,10 @@
-
-{% block section_header %}
-	<h2>{{ section.lsb_title }} <small>{{ section.lsb_subtitle }}</small></h2>
-{% endblock %}
-
-{% block section_content %}
-	<div class="lsb-entry-list">
+<section class="lsb_section">
+	<div class="lsb_section__header">
+		<h2 class="lsb_section__title">{{ section.lsb_title }} <span>{{ section.lsb_subtitle }}</span></h2>
+	</div>
+	<div class="lsb_section__body">
 		{% for post in section.lsb_posts %}
 			{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
 		{% endfor %}
 	</div>
-{% endblock %}
+</section>

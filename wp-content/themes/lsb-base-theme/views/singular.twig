@@ -1,16 +1,11 @@
 {% extends "base.twig" %}
 
-{% block header %}
-	<a href="{{ title.link }}" class="lsb-main-title text-muted">{{ title.text }}</a>
-{% endblock %}
-
-
 {% block content %}
-	{% include ['entry-'~post.post_type~'.twig', 'entry.twig'] %}
-{% endblock %}
 
-{% block pagination %}
+	{% include ['entry-'~post.post_type~'.twig', 'entry.twig'] %}
+
 	{% if post.post_type == 'post' %}
 		{% include 'pagination.twig' with {'prev': post.next, 'next': post.prev } %}
 	{% endif %}
+
 {% endblock %}

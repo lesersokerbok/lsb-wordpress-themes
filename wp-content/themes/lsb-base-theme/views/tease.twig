@@ -1,26 +1,16 @@
-{% extends "entry.twig" %}
-
-{% block entry_thumbnail %}
-	<a href="{{ post.link }}" aria-hidden="true" class="lsb-entry-featured-image">
-		<img src="{{ post.thumbnail.src | resize(false, 200) }}" alt="Image for {{ post.title }}" />
-	</a>
-{% endblock %}
-
-{% block entry_header %}
-	<{{ h_size | default('h2') }} class="lsb-entry-title">
-		<a href="{{ post.link }}">{{ post.title }}</a>
-	</{{ h_size | default('h2') }}>
-{% endblock %}
-
-{% block entry_content %}
-	<p>{{ post.get_preview(50, false, '', true, '') }}</p>
-{% endblock %}
-
-{% block entry_sections %}
-{% endblock %}
-
-{% block entry_footer %}
-	<a class="lsb-entry-read-more" href="{{ post.link }}" aria-hidden="true" tabindex="-1">
-		{{ post.lsb_read_more }}<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-	</a>
-{% endblock %}
+<article class="lsb_entry is-teaser is-{{ post.post_type }}" id="post-{{post.ID}}">
+	<div class="lsb_entry__header">
+		{% if post.thumbnail.src %}
+			<a href="{{ post.link }}" class="lsb_entry__thumbail" aria-hidden="true" tabindex="-1">
+				<img src="{{ post.thumbnail.src | resize(false, 200) }}" alt="Image for {{ post.title }}" />
+			</a>
+		{% endif %}
+		<h2 class="lsb_entry__title">
+			<a href="{{ post.link }}">{{ post.title }}</a>
+		</h2>
+	</div>
+	<div class="lsb_entry__body is-content">
+		<p>{{ post.get_preview(50, false, '', true, '') }}</p>
+		<a class="lsb_entry__read-more" href="{{ post.link }}" aria-hidden="true" tabindex="-1">{{ post.lsb_read_more }}</a>
+	</div>
+</article>
