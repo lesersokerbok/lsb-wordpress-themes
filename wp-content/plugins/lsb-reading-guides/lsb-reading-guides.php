@@ -39,7 +39,7 @@ function save_lsb_reading_guide_action($post_id) {
 		$post_content .= sprintf("<h2>%s</h2>%s", $lsb_post_reading['label'], $lsb_post_reading['value']);
 	}
 
-	$post_excerpt = get_the_term_list( $lsb_book->ID, 'lsb_tax_author', '<ul><li>', ',</li><li>', '</li></ul>' );
+	$post_excerpt = get_the_term_list( $lsb_book->ID, 'lsb_tax_author', '<ul><li>', ', </li><li>', '</li></ul>' );
 
 	$updated_reading_guide = array(
 		'ID' => $post_id,

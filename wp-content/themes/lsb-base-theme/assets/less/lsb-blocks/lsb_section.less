@@ -10,22 +10,30 @@
 	font-size: @font-size-large;
 	margin-bottom: @line-height-computed;
 
-	span {
-		text-transform: none;
-		font-weight: normal;
-		.text-muted;
-	}
-
 	a {
-		color: currentColor !important;
+		text-decoration: none !important;
+		.has-right-arrow;
+
+		* {
+			display: inline-block;
+		}
+
+		:first-child {
+			transition: border .2s ease-in-out;
+			border-bottom: 2px solid transparent;
+		}
+
+		:nth-child(2) {
+			text-transform: none;
+			font-weight: normal;
+			.text-muted;
+		}
 	}
 
 	a:hover {
-		border-bottom: 2px solid currentColor;
-	}
-
-	a:focus {
-		text-decoration: none;
+		span:first-child {
+			border-color: currentColor;
+		}
 	}
 }
 

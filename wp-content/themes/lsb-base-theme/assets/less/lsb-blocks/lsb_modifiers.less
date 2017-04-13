@@ -12,6 +12,7 @@
 	&:after,
 	&:before {
 		.glyphicon;
+		display: inline-block;
 		color: @brand-primary;
 		font-size: .8em;
 		transition: margin .2s ease-in-out;
@@ -29,7 +30,7 @@
 		margin-right: -0.5rem;
 	}
 
-	&:hover&:after {
+	&:hover:after {
 		margin-left: 1rem;
 	}
 }
@@ -45,7 +46,7 @@
 		margin-left: -0.5rem;
 	}
 
-	&:hover&:before {
+	&:hover:before {
 		margin-right: 1rem;
 	}
 }
