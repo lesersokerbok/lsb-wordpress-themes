@@ -7,7 +7,7 @@
 			{{ description }}
 		</div>
 	{% endif %}
-	<section class="lsb_section">
+	<section class="lsb_section is-{{ post_type }}">
 		<div class="lsb_section__body">
 			{% for post in posts %}
 				{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}

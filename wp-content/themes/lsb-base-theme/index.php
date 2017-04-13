@@ -19,6 +19,7 @@ $templates = array( 'archive.twig', 'base.twig' );
 $context = Timber::get_context();
 
 $context['title'] = __('Arkiv', 'lsb');
+$context['post_type'] = 'post';
 $context['posts'] = Timber::get_posts(false, LSB_Post::class);
 $context['pagination'] = Timber::get_pagination();
 
@@ -37,6 +38,7 @@ if ( is_home() ) {
 	array_unshift( $templates, 'archive-' . get_query_var( 'cat' ) . '.twig' );
 } else if ( is_post_type_archive() ) {
 	$context['title'] = post_type_archive_title( '', false );
+	$context['post_type'] = get_post_type();
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
