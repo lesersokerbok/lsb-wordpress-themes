@@ -20,7 +20,7 @@ class LSB_Post extends TimberPost {
 
 	public function sections() {
 		if( !$this->_sections ) {
-			$this->_sections = get_field('lsb_post_sections');
+			$this->_sections = get_field('lsb_sections');
 			if( !$this->_sections) {
 				$this->_sections = array();
 			}

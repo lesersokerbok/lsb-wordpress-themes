@@ -7,7 +7,7 @@
  * Author URI: http://lillylabs.no
  */
 
-namespace LSB\PostSection;
+namespace LSB\Section;
 include('lib/add-custom-fields.php');
 
 add_action( 'acf/init', __NAMESPACE__ . '\\add_custom_fields' );
