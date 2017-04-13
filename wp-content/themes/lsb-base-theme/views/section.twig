@@ -1,6 +1,10 @@
-<section class="lsb_section is-{{ section.lsb_layout }}">
+<section class="lsb_section is-{{ section.post_type }}">
 	<div class="lsb_section__header">
-		<h2 class="lsb_section__title">{{ section.lsb_title }} <span>{{ section.lsb_subtitle }}</span></h2>
+		<h2 class="lsb_section__title">
+			{% if section.title.link %}
+				<a href="{{ section.title.link }}">{{ section.title.text }}</a>
+			{% endif %}
+			<span>{{ section.subtitle }}</span></h2>
 	</div>
 	<div class="lsb_section__body">
 		{% for post in section.lsb_posts %}

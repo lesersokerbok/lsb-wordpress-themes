@@ -16,11 +16,18 @@ class LSB_Post extends TimberPost {
 		if(!$post_sections) {
 			$post_sections = array();
 		}
+
 		foreach ($post_sections as $key => &$section) {
-			$layout = $section['acf_fc_layout'];
-			$section['lsb_layout'] = $layout;
-			if(post_type_exists($layout)) {
-				$section['lsb_posts'] = Timber::get_posts(array('post_type' => $layout), LSB_Post::class);
+			$post_type = $section['acf_fc_layout'];
+			$section['post_type'] = $post_type;
+			$section['title'] = $section['lsb_title'];
+			$section['subtitle'] = $section['lsb_subtitle'];
+
+			if(post_type_exists($post_type)) {
+				$section['title'] = [];
+				$section['title']['text'] = $section['lsb_title'];
+				$section['title']['link'] = get_post_type_archive_link($post_type);
+				$section['lsb_posts'] = Timber::get_posts(array('post_type' => $post_type), LSB_Post::class);
 			}
 		}
 		return $post_sections;
