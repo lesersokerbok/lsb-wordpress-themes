@@ -13,6 +13,10 @@ function  get_lsb_cat_filter_term() {
 	return get_term_by('slug', get_lsb_cat_filter(), 'lsb_tax_lsb_cat');
 }
 
+function  get_lsb_cat_filter_name() {
+	return get_taxonomy('lsb_tax_lsb_cat')->rewrite['slug'];
+}
+
 function lsb_add_lsb_cat_filter( $public_query_vars ) {
 	$public_query_vars[] = 'filter';
 	return $public_query_vars;
@@ -22,7 +26,7 @@ function lsb_append_lsb_cat_filter( $object ) {
 	$lsb_cat_filter = get_lsb_cat_filter();
 	if(is_array($object)) {
 		$object[] = 'filter-' . $lsb_cat_filter;
-	} else if(is_string($object) && $lsb_cat_filter !== 'none' && strpos($object, 'hovedkategori') === false) {
+	} else if(is_string($object) && $lsb_cat_filter !== 'none' && strpos($object, get_lsb_cat_filter_name()) === false ) {
 		$object = add_query_arg( array('filter' => $lsb_cat_filter), $object );
 	}
 	return $object;
