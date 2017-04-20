@@ -1,4 +1,17 @@
 {% block subheader %}
+	{% for item in breadcrumbs_menu.items %}
+		{{ item.title }} <br/>
+		Current: {{ item.current }} <br/>
+		Parent: {{ item.current_item_parent }} <br/>
+		Ancestor: {{ item.current_item_ancestor }} <br/><br/>
+		{% for child in item.children %}
+			- {{ child.title }} <br/>
+			- Current: {{ child.current }} <br/>
+			- Parent: {{ child.current_item_parent }} <br/>
+			- Ancestor: {{ child.current_item_ancestor }} <br/><br/>
+		{% endfor %}
+	{% endfor %}
+
 	<nav class="lsb_breadcrumbs">
 		{% if title.link %}
 			<a href="{{ title.link }}" class="lsb_breadcrumbs__item">{{ title.text }}</a>

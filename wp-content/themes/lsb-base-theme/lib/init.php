@@ -21,6 +21,10 @@ function roots_setup() {
 		'main_navigation' => __('Hovedmeny', 'roots')
 	));
 
+	register_nav_menus(array(
+		'breadcrumbs_navigation' => __('Brødsmuler', 'roots')
+	));
+
 	// Add post thumbnails
 	// http://codex.wordpress.org/Post_Thumbnails
 	// http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size

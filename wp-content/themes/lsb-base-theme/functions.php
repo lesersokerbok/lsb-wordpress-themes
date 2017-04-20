@@ -27,6 +27,7 @@ $roots_includes = array(
 	'lib/lsb-mime-types.php', // Custom upload mime types
 	'lib/rewrite.php',        // Custom rewrite rules
 	'lib/feed-util.php',      // Custom rss rules
+	'lib/lsb-menu.php',       // Extends Timber post
 	'lib/lsb-post.php',       // Extends Timber post
 	'lib/filter.php'          // Filter on selected category
 );
@@ -124,3 +125,10 @@ function ssl_srcset( $sources ) {
 	return $sources;
 }
 add_filter( 'wp_calculate_image_srcset', 'ssl_srcset' );
+
+function lsb_add_to_context( $data ){
+		$data['breadcrumbs_menu'] = new LSBMenu('breadcrumbs_navigation');
+		// $data['breadcrumbs_menu'] = wp_nav_menu( array('menu' => 'breadcrumbs_navigation' ));;
+		return $data;
+}
+add_filter('timber/context', 'lsb_add_to_context');
