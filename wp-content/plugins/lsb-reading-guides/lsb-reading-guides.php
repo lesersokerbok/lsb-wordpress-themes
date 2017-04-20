@@ -84,8 +84,11 @@ function save_lsb_book_action($post_id) {
 		return;
 	}
 
-	foreach( get_post_meta( $post_id, 'lsb_reading_guides', true ) as $lsb_reading_guide_id ) {
-		save_lsb_reading_guide_action($lsb_reading_guide_id);
+	$reading_guides = get_post_meta( $post_id, 'lsb_reading_guides', true );
+	if(is_array($reading_guides)) {
+		foreach( get_post_meta( $post_id, 'lsb_reading_guides', true ) as $lsb_reading_guide_id ) {
+			save_lsb_reading_guide_action($lsb_reading_guide_id);
+		}
 	}
 }
 
