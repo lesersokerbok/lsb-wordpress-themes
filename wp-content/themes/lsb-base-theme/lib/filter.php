@@ -22,7 +22,7 @@ function lsb_append_lsb_cat_filter( $object ) {
 	$lsb_cat_filter = get_lsb_cat_filter();
 	if(is_array($object)) {
 		$object[] = 'filter-' . $lsb_cat_filter;
-	} else if(is_string($object) && $lsb_cat_filter !== 'none' && strpos($object, $lsb_cat_filter) === false) {
+	} else if(is_string($object) && $lsb_cat_filter !== 'none' && strpos($object, 'hovedkategori') === false) {
 		$object = add_query_arg( array('filter' => $lsb_cat_filter), $object );
 	}
 	return $object;
