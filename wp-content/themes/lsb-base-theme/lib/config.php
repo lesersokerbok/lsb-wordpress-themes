@@ -58,14 +58,15 @@ function roots_display_sidebar() {
 			'is_archive',
 			'is_search',
 			'is_home',
-			array('is_singular', array('lsb_book', 'lsb_reading_guide','post', 'page'))
+			array('is_singular', array('lsb_book', 'lsb_reading_guide','post'))
 		),
 		/**
 		 * Page template checks (via is_page_template())
 		 * Any of these page templates that return true won't show the sidebar
 		 */
 		array(
-			'template-frontpage.php'
+			'template-frontpage.php',
+			'template-fullpage.php'
 		)
 	);
 
