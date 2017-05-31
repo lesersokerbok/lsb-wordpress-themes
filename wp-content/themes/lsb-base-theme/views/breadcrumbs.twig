@@ -2,10 +2,13 @@
 	{% if item.current_item_ancestor or item.current %}
 		<div class="lsb_breadcrumbs__section">
 		{% if item.current_item_ancestor %}
-			<a href="{{ item.link }}" class="lsb_breadcrumbs__item {{ item.class }}"><span>{{ item.title }}</span></a>
+			<a href="{{ item.link }}" class="lsb_breadcrumbs__item"><span>{{ item.title }}</span></a>
 			{% include 'breadcrumbs.twig' with {'items': item.children } %}
 		{% else %}
-			<span class="lsb_breadcrumbs__item {{ item.class }}"><span>{{ item.title }}</span></span>
+			<span class="lsb_breadcrumbs__item {{ item.current ? 'active' : '' }}"><span>{{ item.title }}</span></span>
+		{% endif %}	
+		{% if item.current_item_archive %}
+			<span class="lsb_breadcrumbs__item active"><span>{{ post.title }}</span></span>
 		{% endif %}	
 		</div>
 	{% endif %}
