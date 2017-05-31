@@ -49,7 +49,7 @@ if ( is_home() ) {
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
-if($context['breadcrumbs_menu']->is_root_item()) {
+if($context['site_map']->is_root_item()) {
 	$context['title'] = null;
 }
 

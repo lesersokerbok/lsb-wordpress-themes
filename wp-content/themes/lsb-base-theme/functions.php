@@ -127,8 +127,7 @@ function ssl_srcset( $sources ) {
 add_filter( 'wp_calculate_image_srcset', 'ssl_srcset' );
 
 function lsb_add_to_context( $data ){
-		$data['breadcrumbs_menu'] = new LSBMenu('breadcrumbs_navigation');
-		// $data['breadcrumbs_menu'] = wp_nav_menu( array('menu' => 'breadcrumbs_navigation' ));;
+		$data['site_map'] = new LSBMenu('site_map');
 		return $data;
 }
 add_filter('timber/context', 'lsb_add_to_context');

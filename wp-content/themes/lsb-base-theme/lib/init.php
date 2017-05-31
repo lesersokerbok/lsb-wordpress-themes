@@ -22,7 +22,7 @@ function roots_setup() {
 	));
 
 	register_nav_menus(array(
-		'breadcrumbs_navigation' => __('Brødsmuler', 'roots')
+		'site_map' => __('Site Map', 'roots')
 	));
 
 	// Add post thumbnails
