@@ -1,11 +1,15 @@
 <article class="lsb_entry is-archive {{ description ? 'has-description' : ''}}">
-	<div class="lsb_entry__header">
-		<h1 class="lsb_entry__title">{{ title }}</h1>
-	</div>
-	{% if description %}
-		<div class="lsb_entry__body is-content">
-			{{ description }}
+	{% if title or description %}
+		{% if title %}
+		<div class="lsb_entry__header">
+			<h1 class="lsb_entry__title">{{ title }}</h1>
 		</div>
+		{% endif %}
+		{% if description %}
+			<div class="lsb_entry__body is-content">
+				{{ description }}
+			</div>
+		{% endif %}
 	{% endif %}
 	<section class="lsb_section is-{{ post_type }}">
 		<div class="lsb_section__body">

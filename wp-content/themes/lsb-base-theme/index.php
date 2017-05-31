@@ -49,4 +49,8 @@ if ( is_home() ) {
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
+if($context['breadcrumbs_menu']->is_root_item()) {
+	$context['title'] = null;
+}
+
 Timber::render( $templates, $context );

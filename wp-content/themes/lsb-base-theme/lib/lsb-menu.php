@@ -2,18 +2,34 @@
 
 class LSBMenu extends TimberMenu {
 
-	var $_current_post_type;
+	var $_current_post;
+	var $_current_post_id;
+	var $_page_for_posts;
 
 	public function __construct( $slug ) {
 		parent::__construct($slug);
 		$post = get_post();
+		$this->_current_post_id = get_the_ID($post);
+		$this->_current_post_type = get_post_type(get_post());
+		$this->_page_for_posts = get_option('page_for_posts');
+
 		if(is_single($post)) {
-			$this->_current_post_type = get_post_type(get_post());
-			$this->_page_for_posts = get_option('page_for_posts');
+			$this->archive_hack($this->items);
+		}
+		$this->parent_ancestor_hack($this->items);
+	}
+
+	function is_root_item() {
+		$post_id = $this->_current_post_id;
+		if(is_home()) {
+			$post_id = $this->_page_for_posts;
 		}
 
-		$this->archive_hack($this->items);
-		$this->parent_ancestor_hack($this->items);
+		foreach ($this->items as $key => $item) {
+			if($item->object_id === $post_id) {
+				return true;
+			}
+		}
 	}
 
 	private function archive_hack($items) {
