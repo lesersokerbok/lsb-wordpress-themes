@@ -9,6 +9,7 @@ class LSBMenu extends TimberMenu {
 		$post = get_post();
 		if(is_single($post)) {
 			$this->_current_post_type = get_post_type(get_post());
+			$this->_page_for_posts = get_option('page_for_posts');
 		}
 
 		$this->archive_hack($this->items);
@@ -23,7 +24,8 @@ class LSBMenu extends TimberMenu {
 
 		foreach ($items as $key => $item) {
 			$is_current_item_archive = $item->type === 'post_type_archive' && $item->object === $this->_current_post_type;
-			$item->current_item_archive = $is_current_item_archive;
+			$is_current_item_post_page = $item->object_id === $this->_page_for_posts && 'post' == $this->_current_post_type;
+			$item->current_item_archive = $is_current_item_archive || $is_current_item_post_page;
 			$this->archive_hack($item->children);
 		}
 	}

@@ -8,7 +8,9 @@
 			<span class="lsb_breadcrumbs__item {{ item.current ? 'active' : '' }}"><span>{{ item.title }}</span></span>
 		{% endif %}	
 		{% if item.current_item_archive %}
-			<span class="lsb_breadcrumbs__item active"><span>{{ post.title }}</span></span>
+			<div class="lsb_breadcrumbs__section">
+				<span class="lsb_breadcrumbs__item active"><span>{{ post.title }}</span></span>
+			</div>
 		{% endif %}	
 		</div>
 	{% endif %}
