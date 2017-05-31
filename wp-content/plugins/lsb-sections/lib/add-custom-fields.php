@@ -2,12 +2,11 @@
 
 namespace LSB\Section;
 
-function create_layout_field($post_type, $label) {
-	$key = "lsb_acf_section_layout_{$post_type}";
+function create_layout_field($key, $name, $label) {
 
 	return array (
 		'key' => $key,
-		'name' => $post_type,
+		'name' => $name,
 		'label' => $label,
 		'display' => 'row',
 		'sub_fields' => array (
@@ -60,7 +59,13 @@ function add_custom_fields() {
 	$layouts = array();
 
 	foreach (get_post_types(array( '_builtin' => false ), 'objects') as $key => $post_type) {
-		$layouts[] = create_layout_field($post_type->name, $post_type->labels->name);
+		$key = "lsb_acf_section_layout_{$post_type->name}";
+		$name = $post_type->name;
+		$label = $post_type->labels->name;
+
+		$layout = create_layout_field($key, $name, $label);
+
+		$layouts[] = $layout;
 	}
 
 	if( function_exists('acf_add_local_field_group') && count($layouts) > 0) {
