@@ -3,6 +3,7 @@
 class LSBMenu extends TimberMenu {
 	public function __construct( $slug ) {
 		parent::__construct($slug);
+		$this->archive_hack($this->items);
 		$this->parent_ancestor_hack($this->items);
 
 	}
@@ -14,8 +15,8 @@ class LSBMenu extends TimberMenu {
 		}
 
 		foreach ($items as $key => $item) {
-			$item->current_item_ancestor = $this->is_ancestor($item->children);
-			$item->current_item_parent = $this->is_parent($item->children);
+			$item->current_item_ancestor = $item->current_item_ancestor || $this->is_ancestor($item->children);
+			$item->current_item_parent = $item->current_item_parent || $this->is_parent($item->children);
 			$this->parent_ancestor_hack($item->children);
 		}
 	}
