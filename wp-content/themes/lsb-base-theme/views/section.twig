@@ -9,4 +9,8 @@
 			{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] with {'h_size': 'h3'} %}
 		{% endfor %}
 	</div>
+	<button aria-hidden="true" tabindex="-1" data-scroll="left" class="lsb_section__scroll is-left">
+	</button>
+	<button aria-hidden="true" tabindex="-1" data-scroll="right" class="lsb_section__scroll is-right">
+	</button>
 </section>

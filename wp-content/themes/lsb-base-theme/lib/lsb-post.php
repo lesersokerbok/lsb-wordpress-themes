@@ -46,7 +46,10 @@ class LSB_Post extends TimberPost {
 					$section['subtitle'] = $section['lsb_subtitle'];
 
 					$slug = $post_type.$modified;
-					$query = array('post_type' => $post_type);
+					$query = array(
+						'post_type' => $post_type,
+						'posts_per_page' => 12
+					);
 
 					if($section['lsb_filter']) {
 						$filter = $section['lsb_filter'];

@@ -41,19 +41,49 @@
 .lsb_section.is-lsb_reading_guide,
 .lsb_section.is-lsb_book {
 	margin-top: @line-height-computed*3;
+	position: relative;
+
+	.lsb_section__scroll {
+		.btn-link;
+		position: absolute;
+		font-size: 3rem;
+		top: 40%;
+		
+		&.is-left {
+			left: 0;
+			transform: translateX(-100%);
+			.has-left-arrow;
+		}
+
+		&.is-right {
+			right: 0;
+			transform: translateX(100%);
+			.has-right-arrow;
+		}
+	}
 
 	.lsb_section__body {
 		display: flex;
 		align-items: baseline;
 		flex-wrap: wrap;
 		margin: -1rem;
+		overflow: hidden;
 
-		> * {
+		@media (min-width: 768px ) {
+			flex-wrap: nowrap;
+		}
+
+		> article {
 			display: inline-block;
 			vertical-align: top;
 			width: 49%;
 			flex: 0 0 50%;
 			padding: 1rem;
+			text-align: center;
+
+			img {
+				max-height: 250px;
+			}
 
 			@media (min-width: 576px ) {
 				width: 32%;
