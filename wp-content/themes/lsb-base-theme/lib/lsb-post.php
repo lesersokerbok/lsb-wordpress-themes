@@ -2,6 +2,7 @@
 
 class LSB_Post extends TimberPost {
 
+	var $_authors;
 	var $_read_more;
 	var $_sections;
 
@@ -16,6 +17,18 @@ class LSB_Post extends TimberPost {
 		}
 
 		return $this->_read_more;
+	}
+
+	public function authors() {
+		if( !$this->_authors ) {
+			if($this->post_type == 'lsb_book') {
+				$this->_authors = get_the_term_list( $this->ID, 'lsb_tax_author', '<ul><li>', ', </li><li>', '</li></ul>' );
+			} elseif($this->post_type == 'lsb_reading_guide') {
+				$this->_authors = $this->post_excerpt;
+			}
+		}
+
+		return $this->_authors;
 	}
 
 	public function sections() {
