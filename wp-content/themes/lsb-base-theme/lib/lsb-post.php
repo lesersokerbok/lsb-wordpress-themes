@@ -20,10 +20,7 @@ class LSB_Post extends TimberPost {
 
 	public function sections() {
 		if( !$this->_sections ) {
-			$this->_sections = get_field('lsb_sections');
-			if( !$this->_sections) {
-				$this->_sections = array();
-			}
+			$this->_sections = get_field('lsb_sections') ? get_field('lsb_sections') : array ();
 
 			$modified = get_the_modified_date( 'U', $this );
 
