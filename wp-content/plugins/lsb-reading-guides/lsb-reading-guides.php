@@ -99,3 +99,8 @@ add_action( 'before_delete_post', __NAMESPACE__ .'\before_delete_lsb_reading_gui
 add_action( 'init', __NAMESPACE__ . '\\CPT_Reading_Guide::register_post_type', 4 );
 add_action( 'acf/init', __NAMESPACE__ . '\\CPT_Reading_Guide::add_custom_fields' );
 register_activation_hook( __FILE__, __NAMESPACE__ .'\\CPT_Reading_Guide::rewrite_flush' );
+
+function remove_excerpt_field() {
+	remove_meta_box( 'postexcerpt' , 'lsb_reading_guide', 'normal'); 
+}
+add_action( 'admin_menu' , __NAMESPACE__ .'\remove_excerpt_field' );
