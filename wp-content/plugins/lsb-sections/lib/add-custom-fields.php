@@ -54,18 +54,70 @@ function create_layout_field($key, $name, $label) {
 	);
 }
 
+function create_select_field($key, $name, $label, $choices) {
+	return array (
+			'key' => $key,
+			'name' => $name,
+			'label' => $label,
+			'type' => 'radio',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => $choices,
+			'allow_null' => 1,
+			'other_choice' => 0,
+			'save_other_choice' => 0,
+			'default_value' => '',
+			'layout' => 'horizontal',
+			'return_format' => 'value',
+		);
+}
+
+function create_taxonomy_field($key, $name, $label, $is_multi_select) {
+	return array (
+		'key' => $key,
+		'label' => $label,
+		'name' => $name,
+		'type' => 'taxonomy',
+		'taxonomy' => $name,
+		'field_type' => $is_multi_select ? 'multi_select' : 'select',
+		'return_format' => 'object',
+		'multiple' => 0,
+		'add_term' => 0
+	);
+}
+
 function add_custom_fields() {
 
-	$layouts = array();
+	$layouts = array ();
 
 	foreach (get_post_types(array( '_builtin' => false ), 'objects') as $key => $post_type) {
-		$key = "lsb_acf_section_layout_{$post_type->name}";
-		$name = $post_type->name;
-		$label = $post_type->labels->name;
+		$filters = array_map( function($taxonomy) { return $taxonomy->label; }, get_object_taxonomies( $post_type->name, 'objects' ));
+		$layout_key = "lsb_acf_section_layout_{$post_type->name}";
 
-		$layout = create_layout_field($key, $name, $label);
+		$layout_field = create_layout_field($layout_key, $post_type->name, $post_type->labels->name);
+		$layout_field['sub_fields'][] = create_select_field($layout_key.'filter', 'lsb_filter', __('Filtrer', 'lsb_sections'), $filters);
 
-		$layouts[] = $layout;
+		foreach ($filters as $name => $label) {
+			$taxonomy = create_taxonomy_field($layout_key.'filter'.$name, $name, $label, false);
+			$taxonomy['conditional_logic'] =  array (
+				array (
+					array (
+						'field' => $layout_key.'filter',
+						'operator' => '==',
+						'value' => $name,
+					),
+				),
+			);
+			$layout_field['sub_fields'][] = $taxonomy;
+		}
+
+		$layouts[] = $layout_field;
 	}
 
 	if( function_exists('acf_add_local_field_group') && count($layouts) > 0) {
