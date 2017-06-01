@@ -34,8 +34,27 @@ class LSB_Post extends TimberPost {
 					$section['title'] = $section['lsb_title'];
 					$section['link'] = get_post_type_archive_link($post_type);
 					$section['subtitle'] = $section['lsb_subtitle'];
-					$section['posts'] = TimberHelper::transient($post_type.$modified, function()  use ($post_type, $modified) {
-						return Timber::get_posts(array('post_type' => $post_type), LSB_Post::class);
+
+					$slug = $post_type.$modified;
+					$query = array('post_type' => $post_type);
+
+					if($section['lsb_filter']) {
+						$filter = $section['lsb_filter'];
+						$term_id = $section[$filter];
+						$query['tax_query'][] = array ( 
+							array ( 
+								'taxonomy' => $section['lsb_filter'],
+								'field' => 'id', 
+								'terms' => $term_id
+							)
+						);
+
+						$slug .= $term_id;
+						$section['link'] = get_term_link($term_id);
+					}
+
+					$section['posts'] = TimberHelper::transient($slug, function()  use ($query) {
+						return Timber::get_posts($query, LSB_Post::class);
 					}, 600);
 				}
 			}

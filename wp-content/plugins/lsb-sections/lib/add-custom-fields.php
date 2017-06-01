@@ -86,7 +86,7 @@ function create_taxonomy_field($key, $name, $label, $is_multi_select) {
 		'type' => 'taxonomy',
 		'taxonomy' => $name,
 		'field_type' => $is_multi_select ? 'multi_select' : 'select',
-		'return_format' => 'object',
+		'return_format' => 'id',
 		'multiple' => 0,
 		'add_term' => 0
 	);
