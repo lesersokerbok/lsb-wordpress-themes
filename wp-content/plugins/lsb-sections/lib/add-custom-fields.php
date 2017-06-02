@@ -143,7 +143,7 @@ function add_custom_fields() {
 
 		acf_add_local_field_group(array (
 			'key' => 'lsb_acf_group_sections',
-			'title' => __('Seksjoner', 'lsb_sections'),
+			'title' => __('Nye Seksjoner', 'lsb_sections'),
 			'fields' => array (
 				array (
 					'key' => 'lsb_acf_sections',
@@ -177,6 +177,13 @@ function add_custom_fields() {
 						'param' => 'post_type',
 						'operator' => '==',
 						'value' => 'page',
+					),
+				),
+				array (
+					array (
+						'param' => 'taxonomy',
+						'operator' => '==',
+						'value' => 'lsb_tax_lsb_cat',
 					),
 				),
 			),
