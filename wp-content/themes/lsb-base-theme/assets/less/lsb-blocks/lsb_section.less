@@ -43,40 +43,35 @@
 	position: relative;
 }
 
+.lsb_section__scroll {
+	.btn;
+	.btn-primary;
+	border-radius: 50%;
+	position: absolute;
+	top: 275px;
+	outline: none !important;
+	font-size: 2rem;
+	display: none;
+		
+	&.is-left {
+		left: 0;
+		transform: translateX(-80%);
+	}
+
+	&.is-right {
+		right: 0;
+		transform: translateX(80%);
+	}
+}
+
 .lsb_section.is-lsb_reading_guide,
 .lsb_section.is-lsb_book {
-
-	.lsb_section__scroll {
-		.btn;
-		.btn-primary;
-		border-radius: 50%;
-		position: absolute;
-		top: 275px;
-		outline: none !important;
-		font-size: 2rem;
-		display: none;
-		
-		&.is-left {
-			left: 0;
-			transform: translateX(-80%);
-		}
-
-		&.is-right {
-			right: 0;
-			transform: translateX(80%);
-		}
-	}
 
 	.lsb_section__body {
 		display: flex;
 		align-items: baseline;
 		flex-wrap: wrap;
 		margin: -1rem;
-		overflow: scroll;
-
-		@media (min-width: 768px ) {
-			flex-wrap: nowrap;
-		}
 
 		> article {
 			display: inline-block;
@@ -107,3 +102,15 @@
 		}
 	}
 }
+
+.lsb_section.is-scroll,
+.lsb_section.is-scroll {
+	.lsb_section__body {
+		overflow: scroll;
+
+		@media (min-width: 768px ) {
+			flex-wrap: nowrap;
+		}
+	}
+}
+
