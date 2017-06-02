@@ -44,21 +44,23 @@
 	position: relative;
 
 	.lsb_section__scroll {
-		.btn-link;
+		.btn;
+		.btn-primary;
+		border-radius: 50%;
 		position: absolute;
-		font-size: 3rem;
-		top: 40%;
+		top: 275px;
+		outline: none !important;
+		font-size: 2rem;
+		display: none;
 		
 		&.is-left {
 			left: 0;
-			transform: translateX(-100%);
-			.has-left-arrow;
+			transform: translateX(-80%);
 		}
 
 		&.is-right {
 			right: 0;
-			transform: translateX(100%);
-			.has-right-arrow;
+			transform: translateX(80%);
 		}
 	}
 
@@ -67,7 +69,7 @@
 		align-items: baseline;
 		flex-wrap: wrap;
 		margin: -1rem;
-		overflow: hidden;
+		overflow: scroll;
 
 		@media (min-width: 768px ) {
 			flex-wrap: nowrap;
