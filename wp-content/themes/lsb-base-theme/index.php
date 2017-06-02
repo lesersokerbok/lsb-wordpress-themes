@@ -32,20 +32,15 @@ if ( is_home() ) {
 	$context['title'] = sprintf(__('Månedlig arkiv: %s', 'lsb'), get_the_date('F Y'));
 } else if ( is_year() ) {
 	$context['title'] = sprintf(__('Årlig arkiv: %s', 'lsb'), get_the_date('Y'));
-} else if ( is_tag() ) {
-	$context['title'] = single_tag_title( '', false );
-} else if ( is_category() ) {
-	$context['title'] = single_cat_title( '', false );
-	array_unshift( $templates, 'archive-' . get_query_var( 'cat' ) . '.twig' );
+} else if ( is_tag() || is_category() || is_tax() ) {
+		$queried_object = get_queried_object();
+		$context['post_type'] = get_post_type();
+		$context['title'] = $queried_object->name;
+		array_unshift( $templates, 'archive-' . $queried_object->taxonomy . '.twig' );
+		array_unshift( $templates, 'archive-' . $queried_object->taxonomy . '-' . $queried_object->slug . '.twig' );
 } else if ( is_post_type_archive() ) {
 	$context['title'] = post_type_archive_title( '', false );
 	$context['post_type'] = get_post_type();
-	if($context['pagination']['prev']) {
-		$context['pagination']['prev']['title'] = __('Forrige side', 'lsb');
-	}
-	if($context['pagination']['next']) {
-		$context['pagination']['next']['title'] = __('Neste side', 'lsb');
-	}
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
