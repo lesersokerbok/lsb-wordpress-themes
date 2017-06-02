@@ -38,12 +38,14 @@ class LSB_Post extends TimberPost {
 			$modified = get_the_modified_date( 'U', $this );
 
 			foreach ($this->_sections as $key => &$section) {
-				$post_type = $section['acf_fc_layout'];
-				if(post_type_exists($post_type)) {
+				$section['title'] = $section['lsb_title'];
+				$section['subtitle'] = $section['lsb_subtitle'];
+				$section['layout'] = $section['acf_fc_layout'];
+
+				if(post_type_exists($section['layout'])) {
+					$post_type = $section['layout'];
 					$section['post_type'] = $post_type;
-					$section['title'] = $section['lsb_title'] ? $section['lsb_title'] : get_post_type_object($post_type)->labels->name;
 					$section['link'] = get_post_type_archive_link($post_type);
-					$section['subtitle'] = $section['lsb_subtitle'];
 
 					$slug = $post_type.$modified;
 					$query = array(
@@ -73,7 +75,30 @@ class LSB_Post extends TimberPost {
 					$section['posts'] = TimberHelper::transient($slug, function()  use ($query) {
 						return Timber::get_posts($query, LSB_Post::class);
 					}, 600);
-				}
+
+				} elseif($section['layout'] == 'lsb_menu_nav') {
+					$section['layout'] = 'menu';
+					$menu_term = $section['nav_menu'];
+					$menu = new TimberMenu($menu_term->slug);
+					$section['items'] = array_map(function($menu_item) {
+						$item = [
+							'label' => $menu_item->name,
+							'link' => $menu_item->link,
+						];
+
+						$term = get_term($menu_item->object_id, $menu_item->object);
+
+						if(!is_wp_error($term)) {
+							$icon_id = get_field('lsb_tax_topic_icon', $term, false);
+							if($icon_id) {
+								$item['icon'] = new TimberImage($icon_id);
+							}
+						}
+
+						return $item;
+					}, $menu->get_items());
+					$section['title'] = $section['title'] ? $section['title'] : $menu_term->name;
+				}				
 			}
 		}
 

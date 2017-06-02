@@ -11,7 +11,7 @@
 
 	{% block entry_sections %}
 		{% for section in post.sections %}
-			{% include ['section-'~section.acf_fc_layout~'.twig', 'section.twig'] %}
+			{% include ['section-'~section.layout~'.twig', 'section.twig'] %}
 		{% endfor %}
 	{% endblock %}
 </article>

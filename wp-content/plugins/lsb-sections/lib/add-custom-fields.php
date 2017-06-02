@@ -121,11 +121,23 @@ function create_custom_post_type_layouts() {
 	return $layouts;
 }
 
+function create_menu_layout() {
+	$layout_key = 'lsb_acf_section_layout_menu_navigation';
+	$name = 'nav_menu';
+	$label = __('Meny(er)', 'lsb_sections');
+	
+	$layout_field = create_layout_field($layout_key, 'lsb_menu_nav', __('Navigasjon', 'lsb_sections'));
+	$layout_field['sub_fields'][] = create_taxonomy_field($layout_key.'_'.$name, $name, $label, false );
+
+	return $layout_field;
+}
+
 function add_custom_fields() {
 
 	$custom_post_type_layouts = create_custom_post_type_layouts();
+	$menu_layouts = [create_menu_layout()];
 
-	$layouts = array_merge($custom_post_type_layouts);
+	$layouts = array_merge($custom_post_type_layouts, $menu_layouts);
 
 	if( function_exists('acf_add_local_field_group') && count($layouts) > 0) {
 
