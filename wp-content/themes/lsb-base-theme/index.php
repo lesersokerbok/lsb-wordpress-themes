@@ -18,8 +18,11 @@ $templates = array( 'archive.twig', 'base.twig' );
 
 $context = Timber::get_context();
 
+// echo '<pre>';
+// var_dump($context);
+// echo '</pre>';
+
 $context['title'] = __('Arkiv', 'lsb');
-$context['description'] = term_description();
 $context['post_type'] = 'post';
 $context['posts'] = Timber::get_posts(false, LSB_Post::class);
 $context['pagination'] = Timber::get_pagination();
@@ -34,8 +37,12 @@ if ( is_home() ) {
 	$context['title'] = sprintf(__('Årlig arkiv: %s', 'lsb'), get_the_date('Y'));
 } else if ( is_tag() || is_category() || is_tax() ) {
 		$queried_object = get_queried_object();
-		$context['post_type'] = get_post_type();
 		$context['title'] = $queried_object->name;
+		$context['post_type'] = get_post_type();
+		if(!is_paged()) {
+			$context['description'] = term_description();
+			$context['sections'] = transform_acf_sections(get_field('lsb_sections', $queried_object));
+		}
 		array_unshift( $templates, 'archive-' . $queried_object->taxonomy . '.twig' );
 		array_unshift( $templates, 'archive-' . $queried_object->taxonomy . '-' . $queried_object->slug . '.twig' );
 } else if ( is_post_type_archive() ) {
