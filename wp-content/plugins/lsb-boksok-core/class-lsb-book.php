@@ -5,22 +5,22 @@ namespace LSB\Boksok\Core;
 class LsbBook {
   public function __construct() {
     // Custom post types
-    add_action('init', array($this, 'register_post_type_lsb_book'));
+    add_action('init', array($this, 'register_post_type_lsb_book'), 4);
 
     // Custom tax types
-    add_action('init', array($this, 'register_tax_lsb_cat'));
-    add_action('init', array($this, 'register_tax_lsb_audience'));
-    add_action('init', array($this, 'register_tax_lsb_age'));
-    add_action('init', array($this, 'register_tax_lsb_author'));
-    add_action('init', array($this, 'register_tax_lsb_illustrator'));
-    add_action('init', array($this, 'register_tax_lsb_translator'));
-    add_action('init', array($this, 'register_tax_lsb_publisher'));
-    add_action('init', array($this, 'register_tax_lsb_genre'));
-    add_action('init', array($this, 'register_tax_lsb_customization'));
-    add_action('init', array($this, 'register_tax_lsb_topic'));
-    add_action('init', array($this, 'register_tax_lsb_language'));
-    add_action('init', array($this, 'register_lsb_tax_list'));
-    add_action('init', array($this, 'register_lsb_tax_series'));
+    add_action('init', array($this, 'register_tax_lsb_cat'), 4);
+    add_action('init', array($this, 'register_tax_lsb_audience'), 4);
+    add_action('init', array($this, 'register_tax_lsb_age'), 4);
+    add_action('init', array($this, 'register_tax_lsb_author'), 4);
+    add_action('init', array($this, 'register_tax_lsb_illustrator'), 4);
+    add_action('init', array($this, 'register_tax_lsb_translator'), 4);
+    add_action('init', array($this, 'register_tax_lsb_publisher'), 4);
+    add_action('init', array($this, 'register_tax_lsb_genre'), 4);
+    add_action('init', array($this, 'register_tax_lsb_customization'), 4);
+    add_action('init', array($this, 'register_tax_lsb_topic'), 4);
+    add_action('init', array($this, 'register_tax_lsb_language'), 4);
+    add_action('init', array($this, 'register_lsb_tax_list'), 4);
+    add_action('init', array($this, 'register_lsb_tax_series'), 4);
 
     // Added fields with acf
     add_action('acf/init', array($this, 'register_lsb_acf_book_meta'));

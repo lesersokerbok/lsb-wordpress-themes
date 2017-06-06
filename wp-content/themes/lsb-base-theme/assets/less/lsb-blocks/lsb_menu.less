@@ -1,0 +1,38 @@
+.lsb_menu {
+  .nav;
+}
+
+.lsb_menu__item {
+  img {
+    display: inline-block;
+    height: 2.5em;
+    &:first-child {
+      margin-right: 0.5em;
+    }
+  }
+}
+
+.lsb_menu.is-pills {
+
+  margin: -0.5em -0.3em;
+
+  .lsb_menu__item {
+    margin: 0.5em 0.3em;
+    display: inline-block;
+  }
+
+  a {
+    text-decoration: none !important;
+    border: 1px solid @btn-default-border;
+    border-radius: @btn-border-radius-base;
+    line-height: 3em;
+    padding: 0.25em 1em !important;
+  }
+
+  span {
+    display: inline-block;
+    &:first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

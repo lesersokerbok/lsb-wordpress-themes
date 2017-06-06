@@ -1,21 +1,26 @@
-<article class="lsb_entry is-archive">
-	{% if title or description %}
-		{% if title %}
-		<div class="lsb_entry__header">
-			<h1 class="lsb_entry__title">{{ title }}</h1>
+<article class="lsb_entry is-archive {{ description ? 'has-description' : ''}}">
+	<div class="lsb_entry__header">
+		<h1 class="lsb_entry__title">{{ title }}</h1>
+	</div>
+
+	{% if description %}
+		<div class="lsb_entry__body is-content">
+			{{ description }}
 		</div>
-		{% endif %}
-		{% if description %}
-			<div class="lsb_entry__body is-content">
-				{{ description }}
-			</div>
-		{% endif %}
 	{% endif %}
-	<section class="lsb_section is-{{ post_type }}">
-		<div class="lsb_section__body">
-			{% for post in posts %}
-				{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
-			{% endfor %}
-		</div>
-	</section>
+
+	{% if sections %}
+		{% for section in sections %}
+			{% include ['section-'~section.layout~'.twig', 'section.twig'] %}
+		{% endfor %}
+	{% else %}
+		<section class="lsb_section is-{{ post_type }}">
+			<div class="lsb_section__body">
+				{% for post in posts %}
+					{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+				{% endfor %}
+			</div>
+		</section>
+	{% endif %}
+	
 </article>

@@ -1,0 +1,12 @@
+<ul class="lsb_menu is-{{ style }}">
+  {% for item in items %}
+		<li class="lsb_menu__item">
+			<a href="{{item.link}}">
+				{% if item.icon %}
+					<img src="{{ item.icon.src}}" aria-hidden="true">
+				{% endif %}
+				<span>{{item.label}}</span>
+			</a>
+		</li>
+  {% endfor %}
+</ul>

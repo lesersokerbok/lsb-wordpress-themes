@@ -1,4 +1,4 @@
-<section class="lsb_section is-{{ section.post_type }}">
+<section class="lsb_section is-{{ section.post_type }} is-scroll">
 	<div class="lsb_section__header">
 		<h2 class="lsb_section__title">
 			<a href="{{ section.link }}"><span>{{ section.title }}</span> <span>{{ section.subtitle }}</span></a>
@@ -9,4 +9,10 @@
 			{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] with {'h_size': 'h3'} %}
 		{% endfor %}
 	</div>
+	<button aria-hidden="true" tabindex="-1" data-scroll="left" class="lsb_section__scroll is-left">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</button>
+	<button aria-hidden="true" tabindex="-1" data-scroll="right" class="lsb_section__scroll is-right">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+	</button>
 </section>

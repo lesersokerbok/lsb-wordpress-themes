@@ -29,6 +29,8 @@ $roots_includes = array(
 	'lib/feed-util.php',      // Custom rss rules
 	'lib/lsb-menu.php',       // Extends Timber post
 	'lib/lsb-post.php',       // Extends Timber post
+	'lib/lsb_pagination.php', // Changes to offsets and pagination
+	'lib/lsb_sections.php',   // Transform acf sections
 	'lib/filter.php'          // Filter on selected category
 );
 
