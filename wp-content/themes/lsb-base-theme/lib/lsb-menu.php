@@ -4,12 +4,14 @@ class LSBMenu extends TimberMenu {
 
 	var $_current_id;
 	var $_page_for_posts;
+	var $_filter;
 
 	public function __construct( $slug ) {
 		parent::__construct($slug);
 
 		$this->_page_for_posts = get_option('page_for_posts');
-
+		$this->_filter = get_lsb_cat_filter_term();
+		
 		if(is_single()) {
 			$post = get_post();
 			$this->_current_id = get_the_ID($post);
@@ -22,6 +24,7 @@ class LSBMenu extends TimberMenu {
 			}
 		}
 		$this->parent_ancestor_hack($this->items);
+		$this->taxonomy_root_filter($this->items);
 	}
 
 	function is_root_item() {
@@ -35,6 +38,25 @@ class LSBMenu extends TimberMenu {
 		foreach ($this->items as $key => $item) {
 			if($item->object_id == $current_id) {
 				return true;
+			}
+		}
+	}
+
+	private function taxonomy_root_filter($items) {
+		if(!is_array($items) || count($items) == 0) {
+			return;
+		}
+
+		foreach ($items as $key => $item) {
+			// echo '<pre>';
+			// var_dump($this->_filter->term_id);
+			// var_dump($item->menu_object->object_id);
+			// echo '</pre>';
+			if($this->_filter) {
+				$is_filter_tax = $this->_filter->term_id == $item->menu_object->object_id;
+				$item->current = $item->current && $is_filter_tax;
+				$item->current_item_ancestor = !$item->current && $is_filter_tax;
+				$item->current_item_parent = $item->current_item_parent && $is_filter_tax;
 			}
 		}
 	}
