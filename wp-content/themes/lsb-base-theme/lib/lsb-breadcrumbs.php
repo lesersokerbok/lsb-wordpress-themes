@@ -7,8 +7,9 @@ class LSBBreadcrumbs {
 	private $_menu_items = array();
 	private $_trail = array();
 	private $_taxonomy = false;
-	private $_blog_home_key = false;
 	private $_front_page_key = false;
+	private $_blog_home_key = false;
+	private $_books_home_key = false;
 
   public $items = [];
 
@@ -24,7 +25,14 @@ class LSBBreadcrumbs {
 
 		// Convinience
 		$this->_blog_home_key = (int) get_option( 'page_for_posts' );
-		$this->_front_page_key = (int) get_option( 'page_on_front' );
+		$this->_front_page_key = (int) get_option( 'page_on_front' );		
+
+		if($filter = get_lsb_cat_filter_term() ) {
+			$this->_books_home_key = $filter->term_id;
+			$this->filter_menu_items( $filter );
+		} else {
+			$this->_books_home_key = $this->_front_page_key;
+		}
 
 		if( is_category() || is_tag() || is_tax() ) {
 			$this->_taxonomy = get_queried_object()->taxonomy;
@@ -56,7 +64,7 @@ class LSBBreadcrumbs {
 			
 			$this->_trail = array_merge( 
 				[ get_the_ID() ],
-				[ $this->_front_page_key ]
+				[ $this->_books_home_key ]
 			);
 
 		} else if( is_singular() ) { // custom post type single
@@ -80,10 +88,10 @@ class LSBBreadcrumbs {
 			);
 
 		} else if( is_tax() && get_post_type() === 'lsb_book' ) {
-
+			
 			$this->_trail = array( 
 				get_queried_object_id(),
-				$this->_front_page_key
+				$this->_books_home_key
 			);
 
 		} else if( is_post_type_archive() ) {
@@ -94,6 +102,46 @@ class LSBBreadcrumbs {
 		}
 
     $this->items = $this->generate_trail();
+	}
+
+	private function filter_menu_items( $current_filter ) {
+		
+		if( !$current_filter ) {
+			return;
+		}
+
+		// Find all possible terms in filter taxonomy (lsb_tax_lsb_cat)
+		$filters = get_terms( $current_filter->taxonomy );
+		$keys = [];
+
+		foreach ( $filters as $filter ) {
+			$menu_item = false; 
+
+			if( $filter->term_id !== $current_filter ) {
+				$menu_item = LSBBreadcrumbs::get_menu_item_object( $filter->term_id, $this->_menu_items );
+			}
+
+			if( $menu_item ) {
+				$keys[] = $menu_item->ID;
+			}
+		}
+		
+		// Removed all menu items that also are filter terms (exept current filter)
+		while( $keys = LSBBreadcrumbs::keys_with_parent( $keys, $this->_menu_items ) ) {
+			$this->_menu_items = array_filter($this->_menu_items, function($menu_item) use ($keys) {
+				return !in_array( $menu_item->ID, $keys );
+			});
+		}
+	}
+
+	private static function keys_with_parent($keys, $menu_items) {
+		$menu_items = array_filter( $menu_items, function( $menu_item ) use ($keys) {
+			return in_array( $menu_item->menu_item_parent, $keys );
+		});
+
+		return array_map( function( $menu_item ) {
+			return $menu_item->ID;
+		}, $menu_items);
 	}
 
 	private function generate_trail() {
