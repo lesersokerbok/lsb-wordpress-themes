@@ -16,7 +16,7 @@
 		content: "/ ";
 	}
 
-	&:not(.active) {
+	&:not(.is-active) {
 		span {
 			transition: border .2s ease-in-out;
 			border-bottom: 2px solid transparent;
@@ -27,23 +27,16 @@
 		}
 	}
 
-	&.active {
+	&.is-active {
 		.text-muted;
 	}
-}
 
-*:not(.lsb_breadcrumbs__section) > .lsb_breadcrumbs__section {
-
-	> .lsb_breadcrumbs__item {
+	&:first-child {
 		text-transform: uppercase;
 		font-weight: @headings-font-weight;
 
 		&:before {
 			content: "";
 		}
-	}
-
-	.lsb_breadcrumbs__section {
-		display: inline;
 	}
 }
