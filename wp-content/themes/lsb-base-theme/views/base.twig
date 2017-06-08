@@ -1,7 +1,5 @@
 {% block subheader %}
-	<nav class="lsb_breadcrumbs">
-		{% include 'breadcrumbs.twig' with {'items': site_map.items } %}
-	</nav>
+	{% include 'breadcrumbs.twig' with {'items': breadcrumbs.items } %}
 {% endblock %}
 
 {% block content %}
