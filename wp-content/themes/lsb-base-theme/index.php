@@ -51,4 +51,8 @@ if ( is_home() ) {
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
+if( count($context['breadcrumbs']->items) == 1 ) {
+	$context['hide_title'] = true;
+} 
+
 Timber::render( $templates, $context );
