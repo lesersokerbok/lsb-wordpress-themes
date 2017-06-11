@@ -3,13 +3,26 @@
   right: 0;
   bottom: 0;
   z-index: 1030;
+  width: 100%;
   
   padding: 0.5em;
+  text-align: right;
 
   background: @navbar-default-bg;
   border-top: 1px solid @navbar-default-border;
   border-left: 1px solid @navbar-default-border;
   border-top-left-radius: @border-radius-base;
+
+  button {
+    .btn-sm;
+  }
+
+  @media (min-width: 576px ) {
+    width: auto;
+    button {
+      .btn-xs;
+    }
+  }
 }
 
 .lsb_voice__title {
