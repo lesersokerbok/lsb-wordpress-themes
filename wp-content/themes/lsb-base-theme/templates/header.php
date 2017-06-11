@@ -1,21 +1,21 @@
 <header role="banner">
-			<aside class="lsb_voice vFact_DoNotReadAloud">
-				<h1 class="lsb_voice__title"><?php _e('Lytt til teksten: ', 'lsb') ?></h1>
-				<div class="btn-group" role="group">
-					<button type="button" class="lsb_voice__play btn btn-default btn-xs" aria-label="<?php _e('Start opplesing', 'lsb') ?>">
-						<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="lsb_voice__stop btn btn-default btn-xs" aria-label="<?php _e('Stopp opplesing', 'lsb') ?>">
-						<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="lsb_voice__settings btn btn-default btn-xs" aria-label="<?php _e('Innstillinger', 'lsb') ?>">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-					</button>
-				</div>
-				<a type="button" class="lsb_voice__help btn btn-link btn-xs" aria-label="<?php _e('Hjelpetekst', 'lsb') ?>">
-					<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-				</a>
-			</aside>
+	<aside class="lsb_voice vFact_DoNotReadAloud">
+		<h1 class="lsb_voice__title"><?php _e('Lytt til teksten: ', 'lsb') ?></h1>
+		<div class="btn-group" role="group">
+			<button type="button" class="lsb_voice__play btn btn-default btn-xs" aria-label="<?php _e('Start opplesing', 'lsb') ?>">
+				<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="lsb_voice__stop btn btn-default btn-xs" aria-label="<?php _e('Stopp opplesing', 'lsb') ?>">
+				<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="lsb_voice__settings btn btn-default btn-xs" aria-label="<?php _e('Innstillinger', 'lsb') ?>">
+				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+			</button>
+		</div>
+		<a type="button" class="lsb_voice__help btn btn-link btn-xs" aria-label="<?php _e('Hjelpetekst', 'lsb') ?>">
+			<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+		</a>
+	</aside>
 	<div class="navbar navbar-default navbar-static-top lsb-navbar-site">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
