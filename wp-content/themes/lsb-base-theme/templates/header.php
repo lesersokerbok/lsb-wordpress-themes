@@ -1,4 +1,20 @@
 <header role="banner">
+			<div class="lsb_voice">
+				<div class="btn-group" role="group" aria-label="Avspilling">
+					<button type="button" class="lsb_voice__play btn btn-default btn-xs" aria-label="Start opplesing">
+						<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="lsb_voice__stop btn btn-default btn-xs" aria-label="Stopp opplesing">
+						<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="lsb_voice__settings btn btn-default btn-xs" aria-label="Stopp opplesing">
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+					</button>
+				</div>
+				<a type="button" class="lsb_voice__help btn btn-link btn-xs" aria-label="Hjelp">
+					<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+				</a>
+			</div>
 	<div class="navbar navbar-default navbar-static-top lsb-navbar-site">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
