@@ -26,7 +26,47 @@
 		{{ post.content }}
 	</div>
 
+	{% if post.terms(['lsb_tax_list', 'lsb_tax_series']) or post.lsb_support_cat %}
+		<div class="lsb_entry__meta">
+			<ul>
+				{% if post.terms(['lsb_tax_list', 'lsb_tax_series']) %}
+					<li>{{ __('Boka er en del av ', 'lsb') }}  {{ post.terms(['lsb_tax_list', 'lsb_tax_series']) | terms_list(', ', __(' og ', 'lsb')) }}.</li>
+				{% endif %}
+				{% if post.lsb_support_cat %}
+					<li>{{ __('Boken er støttet av Leser søker bok.', 'lsb') }}</li>
+				{% endif %}
+			</ul>
+		</div>
+	{% endif %}
+
+	<div class="lsb_entry__meta">
+		{% set taxonomies = [ 
+				{ key: 'lsb_tax_genre', label: 'Sjanger' }, 
+				{ key: 'lsb_tax_publisher', label: 'Forlag' },
+				{ key: 'lsb_tax_translator', label: 'Oversetter' },
+				{ key: 'lsb_tax_audience', label: 'Målgruppe' },
+				{ key: 'lsb_tax_lsb_cat', label: 'Hovedkategori' }
+			]
+		%}
+		<ul>
+			{% for tax in taxonomies %}
+				{% if post.terms(tax.key) %}
+        <li>{{ __(tax.label, 'lsb') }}: {{ post.terms(tax.key) | terms_list(', ', ', ') }}</li>
+				{% endif %}
+      {% endfor %}
+		</ul>
+	</div>
+
+	{% if post.lsb_support_cat %}
+	<div class="lsb_entry__meta">
+		
+	</div>
+	{% endif %}
+
+
+
 	{% for section in post.sections %}
 		{% include ['section-'~section.layout~'.twig', 'section.twig'] %}
 	{% endfor %}
+
 </article>
