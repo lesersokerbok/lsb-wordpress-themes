@@ -132,15 +132,15 @@
 			init: function () {
 				// JavaScript to be fired on a book page
 
-				$('.library-status select').change(function () {
+				$('.lsb_library select').change(function () {
 					var selectedCounty = $(this).val();
 
-					$('.library-status .county').addClass('hidden');
-					$('.library-status .county').removeClass('show');
+					$('.lsb_library table').addClass('hidden');
+					$('.lsb_library table').removeClass('show');
 
 					if (selectedCounty) {
-						$('.library-status .county.' + selectedCounty).removeClass('hidden');
-						$('.library-status .county.' + selectedCounty).addClass('show');
+						$('.lsb_library table.' + selectedCounty).removeClass('hidden');
+						$('.lsb_library table.' + selectedCounty).addClass('show');
 					}
 				});
 			}

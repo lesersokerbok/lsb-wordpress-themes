@@ -1,0 +1,35 @@
+<div class="lsb_library">
+  <form class="form-inline">
+    <label for="countySelect">{{ __( 'Lån boka på ditt bibliotek:', 'lsb' ) }}</label>
+    <select class="form-control" id="countySelect">
+      <option><{{ __('Velg fylke', 'lsb') }}></option>
+      {% for county in counties | keys if county %}
+        <option value="{{ county | sanitize }}">{{ county }}</option>
+      {% endfor %}
+    </select>
+    <a href="/bibintegrasjon" aria-label='{{ __('Informasjon om "Lån boka på ditt bibliotek"', 'lsb') }}'>
+      <span class="glyphicon glyphicon-question-sign"></span>
+    </a>
+  </form>
+
+  {% for county, libraries in counties %}
+	  <table class="table hidden {{ county | sanitize }}">
+      <tbody>
+      {% for library in libraries %}
+        <tr>
+          <td>
+            <a href="{{ library.url }}">
+              {{ library.name }}
+            </a>
+          </td>
+          <td>
+            <a class="btn btn-default" target="_blank" href="{{ library.book_url }}">
+              {{ __('Lån boka', 'lsb') }}
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+	{% endfor %}
+</div>

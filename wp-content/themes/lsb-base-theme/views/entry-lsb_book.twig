@@ -64,6 +64,12 @@
 		</ul>
 	</div>
 
+	{% if post.lsb_library_status %}
+		<div class="lsb_entry__meta" >
+			{% include ['library.twig'] with { 'counties': post.lsb_library_status } %}
+		</div>
+	{% endif %}
+
 	{% if post.get_field('lsb_oembeds') %}
 		<section class="lsb_section is-embed is-scroll">
 			<div class="lsb_section__body">
