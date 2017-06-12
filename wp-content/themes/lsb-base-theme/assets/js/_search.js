@@ -1,7 +1,7 @@
 
 (function ($) {
 
-	if (!algolia || !algolia.posts_lsb_book) {
+	if (typeof algolia === 'undefined' || !algolia.hasOwnProperty('posts_lsb_book')) {
 		return;
 	}
 

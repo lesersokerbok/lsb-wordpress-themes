@@ -47,7 +47,6 @@
 
 				function scrollStep($bookSectionScroll) {
 					$bookSectionScroll.find('.lsb_book.summary').show();
-					console.log($bookSectionScroll);
 					var scrollWidth = $bookSectionScroll.width();
 					return Math.min(scrollWidth * 0.8, 500);
 				}
@@ -76,8 +75,6 @@
 					var scrollLeftPos = $scrollArea.scrollLeft();
 					var scrollWidth = $scrollArea.get(0).scrollWidth;
 					var width = $scrollArea.width();
-
-					console.log(scrollLeftPos, scrollWidth, width);
 
 					if (scrollLeftPos > 0) {
 						$leftButton.show();
