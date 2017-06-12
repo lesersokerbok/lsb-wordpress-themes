@@ -1,7 +1,8 @@
 
 (function ($) {
 
-	if (typeof algolia === 'undefined' || !algolia.hasOwnProperty('posts_lsb_book')) {
+	if (typeof algolia === 'undefined' || !algolia.indices.posts_lsb_book) {
+		console.log("No Algolia");
 		return;
 	}
 
@@ -102,7 +103,7 @@
 		search.addWidget(
 			instantsearch.widgets.searchBox({
 				container: this,
-				placeholder: $(this).attr('placeholder'),
+				placeholder: "wefkweflk",
 				wrapInput: false,
 				autofocus: false
 			})
