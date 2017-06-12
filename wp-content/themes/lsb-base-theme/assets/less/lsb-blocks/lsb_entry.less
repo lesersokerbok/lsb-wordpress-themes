@@ -41,15 +41,18 @@
 	max-width: 40%;
 }
 
-.lsb_entry.is-lsb_reading_guide {
-	h2 {
-		text-transform: uppercase;
-		font-size: 100%;
-	}
+.lsb_entry {
+	&.is-lsb_reading_guide,
+	&.is-lsb_book {
+		h2 {
+			text-transform: uppercase;
+			font-size: 100%;
+		}
 
-	p a:first-child:last-child {
-		.has-right-arrow;
-		margin: 0.5em 0;
-		display: inline-block;
+		p a:first-child:last-child {
+			.has-right-arrow;
+			margin: 0.5em 0;
+			display: inline-block;
+		}
 	}
 }
