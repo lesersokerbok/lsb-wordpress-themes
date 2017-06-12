@@ -10,22 +10,10 @@
 }
 
 .lsb_section__title {
-	text-transform: uppercase;
 	font-size: @font-size-large;
 	line-height:1.3;
 	margin-top: 0;
 	margin-bottom: @line-height-computed;
-
-	span:first-child {
-		transition: border .2s ease-in-out;
-		border-bottom: 2px solid transparent;
-	}
-
-	span:last-child {
-		text-transform: none;
-		font-weight: normal;
-		.text-muted;
-	}
 
 	a {
 		text-decoration: none !important;
@@ -36,6 +24,20 @@
 		span:first-child {
 			border-color: currentColor;
 		}
+	}
+
+	// Must be this specific to make sure VoiceASP does not mess it up
+	> span:first-child,
+	a > span:first-child {
+		text-transform: uppercase;
+		transition: border .2s ease-in-out;
+		border-bottom: 2px solid transparent;
+	}
+
+	> span:last-child,
+	a > span:last-child {
+		.text-muted;
+		font-weight: normal;
 	}
 }
 
