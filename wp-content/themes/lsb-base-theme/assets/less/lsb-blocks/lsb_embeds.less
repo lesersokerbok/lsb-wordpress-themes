@@ -1,0 +1,26 @@
+.lsb_embed {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	max-width: 100%;
+	height: auto;
+	background: @gray-lighter;
+
+	iframe,
+	.issuuembed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100% !important;
+		height: 100% !important;
+
+		>div div:first-child {
+			height: 100% !important;
+		}
+
+		>div div:last-child {
+			display: none;
+		}
+	}
+}
