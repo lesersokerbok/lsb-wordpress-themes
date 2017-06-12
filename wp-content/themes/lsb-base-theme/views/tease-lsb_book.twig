@@ -9,6 +9,6 @@
 	</{{ h_size | default('h2') }}>
 
 	<div class="lsb_book__body">
-		{{ post.authors }}
+	{{ post.terms('lsb_tax_author') | terms_list(', ', ', ') }}
 	</div>
 </article>
