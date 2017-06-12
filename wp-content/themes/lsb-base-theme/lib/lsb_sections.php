@@ -5,7 +5,7 @@ function transform_menu_section($acf_section) {
 	$menu = new TimberMenu($menu_term->slug);
 	$items = array_map(function($menu_item) {
 		$item = [
-			'label' => $menu_item->name,
+			'name' => $menu_item->name,
 			'link' => $menu_item->link,
 		];
 

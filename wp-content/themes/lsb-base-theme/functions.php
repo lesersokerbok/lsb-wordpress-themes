@@ -135,6 +135,10 @@ function lsb_add_to_context( $data ){
 add_filter('timber/context', 'lsb_add_to_context');
 
 function lsb_add_list_separators( $arr, $first_delimiter = ', ', $second_delimiter = ' & ' ) {
+	if( !is_array( $arr) ) {
+		return $arr;
+	}
+
 	$length = count($arr);
 	$list = '';
 	foreach ( $arr as $index => $item ) {
@@ -149,10 +153,31 @@ function lsb_add_list_separators( $arr, $first_delimiter = ', ', $second_delimit
 	}
 	return $list;
 }
+
+function lsb_filter_icon_terms( $arr ) {
+	if( !is_array( $arr) ) {
+		return $arr;
+	}
+	return array_filter($arr, function($term) {
+		return !!$term->icon;
+	});
+}
+
+function lsb_filter_visible_terms( $arr ) {
+	if( !is_array( $arr) ) {
+		return $arr;
+	}
+	return array_filter($arr, function($term) {
+		return !$term->hidden;
+	});
+}
+
 function lsb_add_to_twig($twig) {
 	/* this is where you can add your own fuctions to twig */
 	$twig->addExtension(new Twig_Extension_StringLoader());
 	$twig->addFilter(new Twig_SimpleFilter('terms_list', 'lsb_add_list_separators'));
+	$twig->addFilter(new Twig_SimpleFilter('icon_terms', 'lsb_filter_icon_terms'));
+	$twig->addFilter(new Twig_SimpleFilter('visible_terms', 'lsb_filter_visible_terms'));
 	return $twig;
 }
 add_filter('timber/twig', 'lsb_add_to_twig');

@@ -16,8 +16,8 @@
 		%}
 		<ul>
 			{% for tax in taxonomies %}
-				{% if post.terms(tax.key) %}
-        <li>{{ __(tax.label, 'lsb') }}: {{ post.terms(tax.key) | terms_list(', ', ', ') }}</li>
+				{% if post.terms(tax.key) | visible_terms  %}
+        <li>{{ __(tax.label, 'lsb') }}: {{ post.terms(tax.key) | visible_terms | terms_list(', ', ', ') }}</li>
 				{% endif %}
       {% endfor %}
 		</ul>
@@ -39,6 +39,13 @@
 		</div>
 	{% endif %}
 
+	{% set terms = post.terms(['lsb_tax_genre', 'lsb_tax_topic']) | icon_terms %}
+	{% if  terms %}
+		<div class="lsb_entry__meta">
+			{% include ['menu.twig'] with { 'items': terms, 'style': 'pills' } %}
+		</div>
+	{% endif %}
+
 	<div class="lsb_entry__meta">
 		{% set taxonomies = [ 
 				{ key: 'lsb_tax_genre', label: 'Sjanger' }, 
@@ -50,37 +57,31 @@
 		%}
 		<ul>
 			{% for tax in taxonomies %}
-				{% if post.terms(tax.key) %}
-        <li>{{ __(tax.label, 'lsb') }}: {{ post.terms(tax.key) | terms_list(', ', ', ') }}</li>
+				{% if post.terms(tax.key) | visible_terms %}
+        <li>{{ __(tax.label, 'lsb') }}: {{ post.terms(tax.key) | visible_terms | terms_list(', ', ', ') }}</li>
 				{% endif %}
       {% endfor %}
 		</ul>
 	</div>
 
-	{% if post.lsb_support_cat %}
-	<div class="lsb_entry__meta">
-		
-	</div>
-	{% endif %}
-
 	{% if post.get_field('lsb_oembeds') %}
-	<section class="lsb_section is-embed is-scroll">
-		<div class="lsb_section__body">
-			{% for oembed in post.get_field('lsb_oembeds') %}
-				<article>
-					<div class="lsb_embed">
-						{{ oembed.lsb_oembed }}
-					</div>
-				</article>
-			{% endfor %}
-		</div>
-		<button aria-hidden="true" tabindex="-1" data-scroll="left" class="lsb_section__scroll is-left">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-		</button>
-		<button aria-hidden="true" tabindex="-1" data-scroll="right" class="lsb_section__scroll is-right">
-			<span class="glyphicon glyphicon-chevron-right"></span>
-		</button>
-	</section>
+		<section class="lsb_section is-embed is-scroll">
+			<div class="lsb_section__body">
+				{% for oembed in post.get_field('lsb_oembeds') %}
+					<article>
+						<div class="lsb_embed">
+							{{ oembed.lsb_oembed }}
+						</div>
+					</article>
+				{% endfor %}
+			</div>
+			<button aria-hidden="true" tabindex="-1" data-scroll="left" class="lsb_section__scroll is-left">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</button>
+			<button aria-hidden="true" tabindex="-1" data-scroll="right" class="lsb_section__scroll is-right">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</button>
+		</section>
 	{% endif %}
 
 	{% for section in post.sections %}

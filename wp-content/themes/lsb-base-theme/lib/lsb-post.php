@@ -1,5 +1,30 @@
 <?php
 
+class LSB_Term extends TimberTerm {
+
+  var $_icon;
+	var $_hidden;
+
+  public function icon() {
+    if( !isset( $this->_icon ) ) {
+      $icon_id = get_field(  'lsb_tax_topic_icon', $this, false);
+			if($icon_id) {
+				$this->_icon = new TimberImage( $icon_id );
+			} 
+    }
+
+    return $this->_icon;
+  }
+
+	public function hidden() {
+		if( !isset( $this->_hidden ) ) {
+      $this->_hidden = get_field(  'lsb_tax_topic_hide_term', $this, false);
+    }
+
+		return $this->_hidden;
+	}
+}
+
 class LSB_Post extends TimberPost {
 
 	var $_authors;
@@ -7,7 +32,6 @@ class LSB_Post extends TimberPost {
 	var $_sections;
 
 	public function content($page = 0, $len = -1) {
-		// var_dump($this);
 
 		if($this->post_type !== 'lsb_book') {
 			return parent::content($page, $len);
@@ -23,6 +47,10 @@ class LSB_Post extends TimberPost {
 		}
 
 		return $this->_content;
+	}
+
+	public function terms($tax = "", $merge = true, $TermClass = "LSB_Term") {
+		return parent::terms($tax, true, $TermClass);
 	}
 
 	public function read_more() {
