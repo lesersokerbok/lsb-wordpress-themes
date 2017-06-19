@@ -580,7 +580,7 @@ class LsbBook {
 				),
 				array (
 					'key' => 'lsb_acf_quote',
-					'label' => __('Utdrag fra boken', 'lsb_boksok'),
+					'label' => __('Utdrag fra boka', 'lsb_boksok'),
 					'name' => 'lsb_quote',
 					'type' => 'wysiwyg',
 					'default_value' => '',
