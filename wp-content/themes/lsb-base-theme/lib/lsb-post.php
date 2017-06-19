@@ -42,8 +42,12 @@ class LSB_Post extends TimberPost {
 			$lsb_quote = $lsb_pre_reading = get_field_object( 'lsb_quote' );
 
 			$this->_content = "";
-			$this->_content .= sprintf("<h2>%s</h2>%s", $lsb_review['label'], $lsb_review['value']);
-			$this->_content .= sprintf("<h2>%s</h2>%s", $lsb_quote['label'], $lsb_quote['value']);
+			if( !empty($lsb_review['value']) ) {
+				$this->_content .= sprintf("<h2>%s</h2>%s", $lsb_review['label'], $lsb_review['value']);
+			}
+			if( !empty($lsb_quote['value']) ) {
+				$this->_content .= sprintf("<h2>%s</h2>%s", $lsb_quote['label'], $lsb_quote['value']);
+			}
 		}
 
 		return $this->_content;
