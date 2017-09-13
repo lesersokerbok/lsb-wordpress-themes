@@ -1,9 +1,16 @@
 <article class="lsb_book is-{{ post.post_type }}" id="post-{{post.ID}}">
-	{% if post.thumbnail.src %}
-		<a href="{{ post.link }}" class="lsb_book__thumbail" aria-hidden="true" tabindex="-1">
+	<a href="{{ post.link }}" class="lsb_book__thumbail" aria-hidden="true" tabindex="-1">
+		{% if post.thumbnail.src %}
 			<img src="{{ post.thumbnail.src | resize(250) }}" alt="Image for {{ post.title }}" />
-		</a>
-	{% endif %}
+		{% else %}
+			<img src="{{theme.link}}/assets/img/book-cover.jpg" alt="Image for {{ post.title }}" />
+		{% endif %}
+		{% if post.lsb_support_cat %}
+			<div class="lsb_logo is-{{ post.lsb_support_cat }}">
+				{{ source('assets/img/logo.svg') }}
+			</div>
+		{% endif %}
+	</a>
 	<{{ h_size | default('h2') }} class="lsb_book__title">
 		<a href="{{ post.link }}">{{ post.title }}</a>
 	</{{ h_size | default('h2') }}>
