@@ -176,7 +176,7 @@ class LSBBreadcrumbs {
 
 	static private function custom_paged_item( ) {
 		return (object) [
-			'title' => 'Side '.get_query_var('paged')
+			'title' => sprintf(__('Side %s', 'lsb'), get_query_var('paged'))
 		];
 	}
 
