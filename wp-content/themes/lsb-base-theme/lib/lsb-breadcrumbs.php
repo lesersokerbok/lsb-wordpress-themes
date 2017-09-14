@@ -11,7 +11,7 @@ class LSBBreadcrumbs {
 	private $_front_page_key = false;
 	private $_blog_home_key = false;
 
-  public $items = [];
+	public $items = [];
 
 	public function __construct( $menu_location = '' ) {
 
@@ -148,7 +148,11 @@ class LSBBreadcrumbs {
 			}
 		}
 
-		if( !empty( $trail) ) {
+		if( is_paged() ){
+			array_unshift($trail, LSBBreadcrumbs::custom_paged_item());
+		}
+
+		if( !empty( $trail)) {
 			$trail[0]->active = true;
 		}
 
@@ -156,7 +160,7 @@ class LSBBreadcrumbs {
 	}
 
 	private function custom_menu_item( $key ) {
-
+		
 		if( !is_int($key) ) {
 			return LSBBreadcrumbs::custom_post_type_item( $key );
 		} else if ( $key === $this->_blog_home_key || $key === $this->_front_page_key ) {
@@ -168,6 +172,12 @@ class LSBBreadcrumbs {
 		} else {
 			return LSBBreadcrumbs::custom_singular_item( $key );
 		}
+	}
+
+	static private function custom_paged_item( ) {
+		return (object) [
+			'title' => sprintf(__('Side %s', 'lsb'), get_query_var('paged'))
+		];
 	}
 
 	static private function custom_term_item( $key, $taxonomy ) {

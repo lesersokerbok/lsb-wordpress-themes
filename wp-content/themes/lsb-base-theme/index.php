@@ -51,7 +51,10 @@ if ( is_home() ) {
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
-if( count($context['breadcrumbs']->items) == 1 ) {
+if( 
+	count($context['breadcrumbs']->items) == 1 || 
+	is_paged() && count($context['breadcrumbs']->items) == 2  
+) {
 	$context['hide_title'] = true;
 } 
 
