@@ -7,6 +7,12 @@ function mb_blacklist_custom_post_type( array $blacklist ) {
 }
 add_filter( 'algolia_post_types_blacklist', 'mb_blacklist_custom_post_type' );
 
+function lsb_post_images($sizes) {
+    $sizes[] = 'medium';
+    return $sizes;
+}
+add_filter( 'algolia_post_images_sizes', 'lsb_post_images', 10, 2 );
+
 function lsb_book_post_attributes( array $attributes, WP_Post $post ) {
     // Add the ACF fields as attributes
     $attributes['lsb_review'] = get_field( 'lsb_acf_review', $post->ID );
