@@ -3,6 +3,9 @@ function mb_blacklist_custom_post_type( array $blacklist ) {
     // ACF should not be indexed
     $blacklist[] = 'acf-field-group';
     $blacklist[] = 'acf-field';
+    $blacklist[] = 'custom_css';
+    $blacklist[] = 'customize_changeset';
+    $blacklist[] = 'wpephpcompat_jobs';
     return $blacklist;
 }
 add_filter( 'algolia_post_types_blacklist', 'mb_blacklist_custom_post_type' );
