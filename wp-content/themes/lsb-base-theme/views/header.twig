@@ -1,0 +1,87 @@
+<header role="banner">
+	<aside class="lsb_voice vFact_DoNotReadAloud">
+		<h1 class="lsb_voice__title">{{ __('Lytt til teksten: ', 'lsb') }}</h1>
+		<div class="btn-group" role="group">
+			<button type="button" class="lsb_voice__play btn btn-default" aria-label="{{ __('Start opplesing', 'lsb') }}">
+				<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="lsb_voice__stop btn btn-default" aria-label="{{ __('Stopp opplesing', 'lsb') }}">
+				<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+			</button>
+			<button type="button" class="lsb_voice__settings btn btn-default" aria-label="{{ __('Innstillinger', 'lsb') }}">
+				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+			</button>
+		</div>
+		<a type="button" class="lsb_voice__help btn btn-link" aria-label="<?php {{ __('Hjelpetekst', 'lsb') }}">
+			<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+		</a>
+	</aside>
+	<div class="navbar navbar-default navbar-static-top lsb-navbar-site">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+
+				<a class="navbar-brand" href="/">
+					{% include ['logo.twig'] %}
+					<span>{{ site.name }}</span>
+				</a>
+
+				<div class="navbar-right">
+					{% if primary_menu %}
+						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#primary-collapse" aria-expanded="false">
+							<span class="sr-only">{{ __( 'Meny', 'lsb' ) }}</span>
+							<span class="glyphicon glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+						</button>
+					{% else %}
+						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#search-collapse" aria-expanded="false">
+							<span class="sr-only">{{ __( 'Søk', 'lsb' ) }}</span>
+							<span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#primary-collapse" aria-expanded="false">
+							<span class="sr-only">{{ __( 'Meny', 'lsb' ) }}</span>
+							<span class="glyphicon glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+						</button>
+					{% endif %}
+				</div>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="primary-collapse">
+				{% if primary_menu %}
+					<div class="navbar-left">
+						{% include ['menu.twig'] with { 'items': primary_menu.get_items, 'style': 'navbar' } %}
+					</div>
+				{% endif %}
+
+				{% if secondary_menu %}
+					<div class="navbar-right">
+						{% include ['menu.twig'] with { 'items': secondary_menu.get_items, 'style': 'navbar' } %}
+					</div>
+				{% endif %}
+
+				{% if not primary_menu %}
+					{{ function('get_search_form') }}
+				{% endif %}
+
+			</div><!-- /.navbar-collapse -->
+
+		</div><!-- /.container-fluid -->
+	</div>
+
+	{% if not primary_menu %}
+		<div class="navbar navbar-default navbar-static-top lsb-navbar-search collapse" id="search-collapse">
+			<div class="container-fluid">
+				{{ function('get_search_form') }}
+			</div><!-- /.container-fluid -->
+		</div>
+	{% endif %}
+
+	{% if is_front_page and main_menu %}
+		<div class="navbar navbar-default navbar-static-top lsb-navbar-page">
+			<div class="container-fluid">
+				{% include ['menu.twig'] with { 'items': main_menu.get_items, 'style': 'main' } %}
+			</div><!-- /.container-fluid -->
+		</div>
+	{% endif %}
+
+</header>

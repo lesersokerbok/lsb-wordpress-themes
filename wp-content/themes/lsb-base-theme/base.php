@@ -3,7 +3,8 @@
 
 	<?php
 		do_action('get_header');
-		get_template_part('templates/header');
+		$context = Timber::get_context();
+		Timber::render( 'header.twig', $context );
 	?>
 
 	<?php

@@ -1,12 +1,46 @@
-<ul class="lsb_menu is-{{ style }}">
-  {% for item in items %}
-		<li class="lsb_menu__item">
-			<a href="{{item.link}}">
-				{% if item.icon %}
-					<img src="{{ item.icon.src}}" aria-hidden="true">
-				{% endif %}
-				<span>{{item.name}}</span>
-			</a>
-		</li>
-  {% endfor %}
-</ul>
+{% if 'navbar' == style %}
+	<ul class="nav navbar-nav">
+		{% for item in items %}
+			{% if item.get_children %}
+			<li class="{{ item.classes | join(' ') }} dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="{{ item.link }}">{{ item.title }} <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					{% for child in item.get_children %}
+						<li class="{{ child.classes | join(' ') }}">
+							<a href="{{ child.link }}">{{ child.title }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+			{% else %}
+				<li class="{{ item.classes | join(' ') }}">
+					<a href="{{ item.link }}">{{ item.title }}</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+{% elseif 'main' == style %}
+	<ul id="menu-hovedkategorier" class="nav navbar-nav">
+		{% for item in items %}
+			<li class="{{ item.classes | join(' ') }}">
+				<a href="{{ item.link }}">
+					<!-- No space between title and glyphicon, otherwise underline is sticking out -->
+					{{ item.title }}<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="nav-item-description">{{ item.description }}</span>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<ul class="lsb_menu is-{{  style  }}">
+		{% for item in items %}
+			<li class="lsb_menu__item">
+				<a href="{{ item.link }}">
+					{% if item.icon %}
+						<img src="{{  item.icon.src }}" aria-hidden="true">
+					{% endif %}
+					<span>{{ item.name }}</span>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}

@@ -17,7 +17,6 @@ $roots_includes = array(
 	'lib/config.php',         // Configuration
 	'lib/activation.php',     // Theme activation
 	'lib/titles.php',         // Page titles
-	'lib/nav.php',            // Custom nav modifications
 	'lib/gallery.php',        // Custom [gallery] modifications
 	'lib/comments.php',       // Custom comments modifications
 	'lib/scripts.php',        // Scripts and stylesheets
@@ -128,8 +127,21 @@ function ssl_srcset( $sources ) {
 add_filter( 'wp_calculate_image_srcset', 'ssl_srcset' );
 
 function lsb_add_to_context( $data ){
+	if (has_nav_menu('primary_navigation')) {
+		$data['primary_menu'] = new TimberMenu('primary_navigation');
+	}
+	if (has_nav_menu('secondary_navigation')) {
+		$data['secondary_menu'] = new TimberMenu('secondary_navigation');
+	}
+	if (has_nav_menu('main_navigation')) {
+		$data['main_menu'] = new TimberMenu('main_navigation');
+	}
+	if (has_nav_menu('site_map')) {
 		$data['breadcrumbs'] = new LSBBreadcrumbs('site_map');
-		return $data;
+	}
+	
+	$data['is_front_page'] = is_front_page();
+	return $data;
 }
 add_filter('timber/context', 'lsb_add_to_context');
 
