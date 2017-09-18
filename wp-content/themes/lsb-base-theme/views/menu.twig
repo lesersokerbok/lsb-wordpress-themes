@@ -20,12 +20,14 @@
 		{% endfor %}
 	</ul>
 {% elseif 'main' == style %}
-	<ul id="menu-hovedkategorier" class="nav navbar-nav">
+	<ul class="lsb_menu is-{{  style  }}">
 		{% for item in items %}
-			<li class="{{ item.classes | join(' ') }}">
-				<a href="{{ item.link }}">
+			<li class="lsb_menu__item {{ item.classes | join(' ') }}">
+				<a class="lsb_menu__link" href="{{ item.link }}">
 					<!-- No space between title and glyphicon, otherwise underline is sticking out -->
-					{{ item.title }}<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="nav-item-description">{{ item.description }}</span>
+					<span class="lsb_menu__title">{{ item.title }}</span>
+					<span class="lsb_menu__arrow" aria-hidden="true"></span>
+					<span class="lsb_menu__description">{{ item.description }}</span>
 				</a>
 			</li>
 		{% endfor %}
@@ -34,11 +36,11 @@
 	<ul class="lsb_menu is-{{  style  }}">
 		{% for item in items %}
 			<li class="lsb_menu__item">
-				<a href="{{ item.link }}">
+				<a class="lsb_menu__link" href="{{ item.link }}">
 					{% if item.icon %}
-						<img src="{{  item.icon.src }}" aria-hidden="true">
+						<img class="lsb_menu__icon" src="{{  item.icon.src }}" aria-hidden="true">
 					{% endif %}
-					<span>{{ item.name }}</span>
+					<span class="lsb_menu__title">{{ item.name }}</span>
 				</a>
 			</li>
 		{% endfor %}

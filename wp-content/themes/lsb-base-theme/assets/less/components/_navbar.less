@@ -139,85 +139,9 @@
 .lsb-navbar-page {
 
 	background: @navbar-page-bg;
+	padding: 20px 0;
 
-	.nav {
-		width: 100%;
-		padding: 20px 0;
-		margin: 0;
-
-		> li {
-			width: 100%;
-			font-weight: 500;
-			display: inline-block;
-			vertical-align: top;
-
-			a {
-				line-height: inherit;
-			}
-
-			@media (min-width: @screen-xs-min) {
-				width: 49.5%;
-			}
-
-			@media (min-width: @screen-sm-min) {
-				width: 32.9%;
-			}
-
-			.nav-item-description {
-				padding-top: @padding-small-vertical;
-				width: 100%;
-				font-size: 0.9em;
-				font-weight: normal;
-				display: inline-block;
-				text-decoration: none;
-			}
-
-			.glyphicon {
-				font-size: 0.8em;
-				margin-left: 1em;
-				color: @lsb-brand;
-				transition: margin 0.2s ease-in-out;
-			}
-
-			&.lsb-purple .glyphicon{
-				color: @lsb-purple;
-			}
-
-			&.lsb-green .glyphicon{
-				color: @lsb-green;
-			}
-
-			&.lsb-yellow .glyphicon{
-				color: @lsb-yellow;
-			}
-
-			&.lsb-orange .glyphicon{
-				color: @lsb-orange;
-			}
-
-			&.lsb-red .glyphicon{
-				color: @lsb-red;
-			}
-
-			&.lsb-blue .glyphicon{
-				color: @lsb-blue;
-			}
-
-			a {
-				padding: @nav-link-padding;
-				text-decoration: underline;
-				border-radius: @border-radius-base;
-
-				&:hover,
-				&:focus {
-					text-decoration: none;
-					background-color: @navbar-page-link-hover-bg;
-
-					.glyphicon {
-						margin-left: 1.5em;
-					}
-				}
-			}
-		}
+	.lsb_menu__link:hover {
+		background-color: @navbar-page-link-hover-bg;
 	}
 }
