@@ -1,14 +1,70 @@
 .lsb_menu {
-  .nav;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
 }
 
-.lsb_menu__item {
-  img {
-    display: inline-block;
-    height: 2.5em;
-    &:first-child {
-      margin-right: 0.5em;
-    }
+.lsb_menu__link {
+  display: block;
+  text-decoration: none !important;
+}
+
+.lsb_menu__icon {
+  display: inline-block;
+  height: 2.5em;
+  &:first-child {
+    margin-right: 0.5em;
+  }
+}
+
+.lsb_menu__title {
+  display: inline-block;
+  text-decoration: underline;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+
+  .lsb_menu__link:hover &,
+  .lsb_menu__link:focus & {
+    text-decoration: none !important;
+  }
+}
+
+.lsb_menu__arrow {
+  .glyphicon;
+  .glyphicon-chevron-right;
+  font-size: 0.8em;
+  margin-left: 0.5em;
+  color: @lsb-brand;
+  transition: margin 0.2s ease-in-out;
+
+  .lsb_menu__link:hover &,
+  .lsb_menu__link:focus & {
+    margin-left: 1em;
+  }
+
+  .lsb-purple & {
+    color: @lsb-purple;
+  }
+
+  .lsb-green & {
+    color: @lsb-green;
+  }
+
+  .lsb-yellow & {
+    color: @lsb-yellow;
+  }
+
+  .lsb-orange & {
+    color: @lsb-orange;
+  }
+
+  .lsb-red & {
+    color: @lsb-red;
+  }
+
+  .lsb-blue & {
+    color: @lsb-blue;
   }
 }
 
@@ -21,18 +77,46 @@
     display: inline-block;
   }
 
-  a {
-    text-decoration: none !important;
+  .lsb_menu__title {
+    text-decoration: none;
+  }
+
+  .lsb_menu__link {
     border: 1px solid @btn-default-border;
     border-radius: @btn-border-radius-base;
     line-height: 3em;
     padding: 0.25em 1em !important;
   }
+}
 
-  span {
+.lsb_menu.is-blurb {
+
+  .lsb_menu__item {
+    width: 100%;
+    font-weight: 500;
     display: inline-block;
-    &:first-letter {
-      text-transform: uppercase;
+    vertical-align: top;
+
+    @media (min-width: @screen-xs-min) {
+      width: 49.5%;
     }
+
+    @media (min-width: @screen-sm-min) {
+      width: 32.9%;
+    }
+  }
+
+  .lsb_menu__link {
+    padding: @nav-link-padding;
+    border-radius: @border-radius-base;
+  }
+
+  .lsb_menu__description {
+    padding-top: @padding-small-vertical;
+    width: 100%;
+    font-size: 0.9em;
+    font-weight: normal;
+    display: inline-block;
+    text-decoration: none;
   }
 }
