@@ -18,10 +18,6 @@ $templates = array( 'archive.twig', 'base.twig' );
 
 $context = Timber::get_context();
 
-// echo '<pre>';
-// var_dump($context);
-// echo '</pre>';
-
 $context['title'] = __('Arkiv', 'lsb');
 $context['post_type'] = 'post';
 $context['posts'] = Timber::get_posts(false, LSB_Post::class);
