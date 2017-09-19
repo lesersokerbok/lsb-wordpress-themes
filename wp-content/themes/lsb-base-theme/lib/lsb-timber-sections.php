@@ -83,51 +83,21 @@ class LSB_PostsSection extends LSB_Section {
 
 class LSB_MenuSection extends LSB_Section {
 
-	protected $_layout;
-	protected $_title;
-	protected $_subtitle;
-	protected $_items;
-
-	function __construct($acf_section) {
-		$menu_term = $acf_section['nav_menu'];
-		$menu = new TimberMenu($menu_term->slug);
-
-		$this->_layout = 'menu';
-		$this->_title = $acf_section['lsb_title'] ? $acf_section['lsb_title'] : $menu_term->name;
-		$this->_subtitle = $acf_section['lsb_subtitle'];
-		$this->items = array_map(function($menu_item) {
-			$item = [
-				'name' => $menu_item->name,
-				'link' => $menu_item->link,
-			];
-	
-			$term = get_term($menu_item->object_id, $menu_item->object);
-	
-			if(!is_wp_error($term)) {
-				$icon_id = get_field('lsb_tax_topic_icon', $term, false);
-				if($icon_id) {
-					$item['icon'] = new TimberImage($icon_id);
-				}
-			}
-	
-			return $item;
-		}, $menu->get_items());
-	}
+	protected $_menu;
 
 	public function layout() {
-		return $this->_layout;
+		return 'menu';
+	}
+
+	public function menu() {
+		if(!$this->_menu) {
+			$this->_menu = new TimberMenu($this->_acf_section['nav_menu']->slug);
+		}
+		return $this->_menu;
 	}
 
 	public function title() {
-		return $this->_title;
-	}
-
-	public function subtitle() {
-		return $this->_subtitle;
-	}
-
-	public function items() {
-		return $this->_items;
+		return parent::title() ?: $this->menu()->title;
 	}
 }
 

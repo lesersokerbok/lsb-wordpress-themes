@@ -37,8 +37,8 @@
 		{% for item in items %}
 			<li class="lsb_menu__item">
 				<a class="lsb_menu__link" href="{{ item.link }}">
-					{% if item.icon %}
-						<img class="lsb_menu__icon" src="{{  item.icon.src }}" aria-hidden="true">
+					{% if item | icon %}
+						<img class="lsb_menu__icon" src="{{ (item | icon).src }}" aria-hidden="true">
 					{% endif %}
 					<span class="lsb_menu__title">{{ item.name }}</span>
 				</a>
