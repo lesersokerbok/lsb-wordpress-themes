@@ -24,7 +24,8 @@
     text-transform: uppercase;
   }
 
-  .lsb_menu__item:hover & {
+  .lsb_menu__link:hover &,
+  .lsb_menu__link:focus & {
     text-decoration: none !important;
   }
 }
@@ -37,7 +38,8 @@
   color: @lsb-brand;
   transition: margin 0.2s ease-in-out;
 
-  .lsb_menu__item:hover & {
+  .lsb_menu__link:hover &,
+  .lsb_menu__link:focus & {
     margin-left: 1em;
   }
 
@@ -87,7 +89,7 @@
   }
 }
 
-.lsb_menu.is-main {
+.lsb_menu.is-blurb {
 
   .lsb_menu__item {
     width: 100%;
