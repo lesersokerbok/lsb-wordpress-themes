@@ -1,41 +1,34 @@
 <?php
-/**
- * Roots includes
- *
- * The $roots_includes array determines the code library included in your theme.
- * Add or remove files to the array as needed. Supports child theme overrides.
- *
- * Please note that missing files will produce a fatal error.
- *
- * @link https://github.com/roots/roots/pull/1042
- */
-$roots_includes = array(
-	'lib/twig.php',           // Twig functions
-	'lib/utils.php',          // Utility functions
-	'lib/init.php',           // Initial theme setup and constants
-	'lib/wrapper.php',        // Theme wrapper class
-	'lib/sidebar.php',        // Sidebar class
-	'lib/config.php',         // Configuration
+
+$includes = array(
 	'lib/activation.php',     // Theme activation
-	'lib/titles.php',         // Page titles
-	'lib/gallery.php',        // Custom [gallery] modifications
 	'lib/comments.php',       // Custom comments modifications
-	'lib/scripts.php',        // Scripts and stylesheets
+	'lib/config.php',         // Configuration
 	'lib/extras.php',         // Custom functions
-	'lib/pagination.php',     // Boostrap pagination
-	'lib/lsb-mime-types.php', // Custom upload mime types
-	'lib/rewrite.php',        // Custom rewrite rules
 	'lib/feed-util.php',      // Custom rss rules
-	'lib/lsb-breadcrumbs.php',// Breadcrumbs logic
-	'lib/lsb-post.php',       // Extends Timber post
+	'lib/filter.php',         // Filter on selected category
+	'lib/gallery.php',        // Custom [gallery] modifications
+	'lib/init.php',           // Initial theme setup and constants
+
 	'lib/lsb_pagination.php', // Changes to offsets and pagination
 	'lib/lsb_sections.php',   // Transform acf sections
-	'lib/filter.php'          // Filter on selected category
+	'lib/lsb-breadcrumbs.php',// Breadcrumbs logic
+	'lib/lsb-mime-types.php', // Custom upload mime types
+	'lib/lsb-post.php',       // Extends Timber post
+
+	'lib/pagination.php',     // Boostrap pagination
+	'lib/rewrite.php',        // Custom rewrite rules
+	'lib/scripts.php',        // Scripts and stylesheets
+	'lib/sidebar.php',        // Sidebar class
+	'lib/titles.php',         // Page titles
+	'lib/twig.php',           // Twig functions
+	'lib/utils.php',          // Utility functions
+	'lib/wrapper.php'       	// Theme wrapper class
 );
 
-foreach ($roots_includes as $file) {
+foreach ($includes as $file) {
 	if (!$filepath = locate_template($file)) {
-		trigger_error(sprintf(__('Error locating %s for inclusion', 'roots'), $file), E_USER_ERROR);
+		trigger_error(sprintf(__('Error locating %s for inclusion', 'lsb_admin'), $file), E_USER_ERROR);
 	}
 
 	require_once $filepath;
@@ -44,6 +37,7 @@ unset($file, $filepath);
 
 // Initialize custom functionality
 new LsbFeedUtil();
+new LsbMimeTypes();
 
 if(!function_exists('_log')){
 	function _log( $message ) {
@@ -56,8 +50,6 @@ if(!function_exists('_log')){
 		}
 	}
 }
-
-new LsbMimeTypes();
 
 function capitalize_title( $term_title ) {
 	return ucfirst($term_title);
