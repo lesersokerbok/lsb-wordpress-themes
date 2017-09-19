@@ -1,18 +1,16 @@
 <?php
 
 $includes = array(
-	'lib/activation.php',     // Theme activation
 	'lib/comments.php',       // Custom comments modifications
 	'lib/config.php',         // Configuration
-	'lib/extras.php',         // Custom functions
 	'lib/feed-util.php',      // Custom rss rules
-	'lib/filter.php',         // Filter on selected category
 	'lib/gallery.php',        // Custom [gallery] modifications
 	'lib/init.php',           // Initial theme setup and constants
 
 	'lib/lsb_pagination.php', // Changes to offsets and pagination
 	'lib/lsb_sections.php',   // Transform acf sections
 	'lib/lsb-breadcrumbs.php',// Breadcrumbs logic
+	'lib/lsb-cat-filter.php', // Filter on selected category
 	'lib/lsb-mime-types.php', // Custom upload mime types
 	'lib/lsb-post.php',       // Extends Timber post
 
@@ -28,7 +26,7 @@ $includes = array(
 
 foreach ($includes as $file) {
 	if (!$filepath = locate_template($file)) {
-		trigger_error(sprintf(__('Error locating %s for inclusion', 'lsb_admin'), $file), E_USER_ERROR);
+		trigger_error(sprintf(__('Error locating %s for inclusion', 'lsb'), $file), E_USER_ERROR);
 	}
 
 	require_once $filepath;
@@ -51,10 +49,15 @@ if(!function_exists('_log')){
 	}
 }
 
-function capitalize_title( $term_title ) {
+function lsb_excerpt_more($more) {
+	return ' &hellip; <a href="' . get_permalink() . '">' . __('Fortsett', 'lsb') . '</a>';
+}
+add_filter('excerpt_more', 'lsb_excerpt_more');
+
+function lsb_capitalize_title( $term_title ) {
 	return ucfirst($term_title);
 }
-add_filter ( 'single_term_title', 'capitalize_title', 0 );
+add_filter ( 'single_term_title', 'lsb_capitalize_title', 0 );
 
 // add hook
 add_filter( 'wp_nav_menu_objects', 'my_wp_nav_menu_objects_sub_menu', 10, 2 );
