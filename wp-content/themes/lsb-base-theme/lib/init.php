@@ -2,27 +2,26 @@
 /**
  * Roots initial setup and constants
  */
-function roots_setup() {
-	// Make theme available for translation
-	// Community translations can be found at https://github.com/roots/roots-translations
+function lsb_setup() {
+	
 	load_theme_textdomain('roots', get_template_directory() . '/lang');
 
 	// Register wp_nav_menu() menus
 	// http://codex.wordpress.org/Function_Reference/register_nav_menus
 	register_nav_menus(array(
-		'primary_navigation' => __('Toppmeny (venstre)', 'roots')
+		'primary_navigation' => __('Toppmeny (venstre)', 'lsb')
 	));
 
 	register_nav_menus(array(
-		'secondary_navigation' => __('Toppmeny (høyre)', 'roots')
+		'secondary_navigation' => __('Toppmeny (høyre)', 'lsb')
 	));
 
 	register_nav_menus(array(
-		'main_navigation' => __('Hovedmeny', 'roots')
+		'main_navigation' => __('Hovedmeny', 'lsb')
 	));
 
 	register_nav_menus(array(
-		'site_map' => __('Site Map', 'roots')
+		'site_map' => __('Site Map', 'lsb')
 	));
 
 	// Add post thumbnails
@@ -43,14 +42,14 @@ function roots_setup() {
 	// Tell the TinyMCE editor to use a custom stylesheet
 	add_editor_style('/assets/css/editor-style.css');
 }
-add_action('after_setup_theme', 'roots_setup');
+add_action('after_setup_theme', 'lsb_setup');
 
 /**
  * Register sidebars
  */
 function roots_widgets_init() {
 	register_sidebar(array(
-		'name'          => __('Primary', 'roots'),
+		'name'          => __('Primær', 'lsb'),
 		'id'            => 'sidebar-primary',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
@@ -59,7 +58,7 @@ function roots_widgets_init() {
 	));
 
 	register_sidebar(array(
-		'name'          => __('Footer One', 'roots'),
+		'name'          => __('Footer 1', 'lsb'),
 		'id'            => 'sidebar-footer-1',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
@@ -68,7 +67,7 @@ function roots_widgets_init() {
 	));
 
 	register_sidebar(array(
-		'name'          => __('Footer Two', 'roots'),
+		'name'          => __('Footer 2', 'lsb'),
 		'id'            => 'sidebar-footer-2',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
@@ -77,7 +76,7 @@ function roots_widgets_init() {
 	));
 
 	register_sidebar(array(
-		'name'          => __('Footer Three', 'roots'),
+		'name'          => __('Footer 3', 'lsb'),
 		'id'            => 'sidebar-footer-3',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
