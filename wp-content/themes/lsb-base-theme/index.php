@@ -32,15 +32,15 @@ if ( is_home() ) {
 } else if ( is_year() ) {
 	$context['title'] = sprintf(__('Årlig arkiv: %s', 'lsb'), get_the_date('Y'));
 } else if ( is_tag() || is_category() || is_tax() ) {
-		$queried_object = get_queried_object();
-		$context['title'] = $queried_object->name;
+		$term = new LSB_Term();
+		$context['title'] = $term->name;
 		$context['post_type'] = get_post_type();
 		if(!is_paged()) {
-			$context['description'] = term_description();
-			$context['sections'] = transform_acf_sections(get_field('lsb_sections', $queried_object));
+			$context['description'] = $term->description;
+			$context['sections'] = $term->sections();
 		}
-		array_unshift( $templates, 'archive-' . $queried_object->taxonomy . '.twig' );
-		array_unshift( $templates, 'archive-' . $queried_object->taxonomy . '-' . $queried_object->slug . '.twig' );
+		array_unshift( $templates, 'archive-' . $term->taxonomy . '.twig' );
+		array_unshift( $templates, 'archive-' . $term->taxonomy . '-' . $term->slug . '.twig' );
 } else if ( is_post_type_archive() ) {
 	$context['title'] = post_type_archive_title( '', false );
 	$context['post_type'] = get_post_type();
