@@ -12,6 +12,10 @@
 		</div>
 	{% endif %}
 
+	{% for section in post.sections %}
+		{% include ['section-'~section.layout~'.twig', 'section.twig'] %}
+	{% endfor %}
+
 	{% if sections %}
 		{% for section in sections %}
 			{% include ['section-'~section.layout~'.twig', 'section.twig'] %}

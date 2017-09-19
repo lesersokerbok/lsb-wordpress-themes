@@ -1,30 +1,5 @@
 <?php
 
-class LSB_Term extends TimberTerm {
-
-  var $_icon;
-	var $_hidden;
-
-  public function icon() {
-    if( !isset( $this->_icon ) ) {
-      $icon_id = get_field(  'lsb_tax_topic_icon', $this, false);
-			if($icon_id) {
-				$this->_icon = new TimberImage( $icon_id );
-			} 
-    }
-
-    return $this->_icon;
-  }
-
-	public function hidden() {
-		if( !isset( $this->_hidden ) ) {
-      $this->_hidden = get_field(  'lsb_tax_topic_hide_term', $this, false);
-    }
-
-		return $this->_hidden;
-	}
-}
-
 class LSB_Post extends TimberPost {
 
 	var $_authors;
@@ -38,8 +13,8 @@ class LSB_Post extends TimberPost {
 		}
 
 		if( !$this->_content ) {
-			$lsb_review = $lsb_pre_reading = get_field_object( 'lsb_review' );
-			$lsb_quote = $lsb_pre_reading = get_field_object( 'lsb_quote' );
+			$lsb_review = $lsb_pre_reading = get_field_object( 'lsb_review', $this );
+			$lsb_quote = $lsb_pre_reading = get_field_object( 'lsb_quote', $this );
 
 			$this->_content = "";
 			if( !empty($lsb_review['value']) ) {
@@ -72,8 +47,8 @@ class LSB_Post extends TimberPost {
 
 	public function sections() {
 		if( !$this->_sections ) {
-			$acf_sections = get_field('lsb_sections') ? get_field('lsb_sections') : array ();
-			$this->_sections = transform_acf_sections($acf_sections);
+			// $acf_sections = get_field('lsb_sections', $this) ? get_field('lsb_sections', $this) : array ();
+			$this->_sections = LSB_SectionsFactory::create_sections($this);
 		}
 		return $this->_sections;
 	}
