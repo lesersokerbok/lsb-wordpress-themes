@@ -79,7 +79,7 @@
 	{% if is_front_page and main_menu %}
 		<div class="navbar navbar-default navbar-static-top lsb-navbar-page">
 			<div class="container-fluid">
-				{% include ['menu.twig'] with { 'items': main_menu.get_items, 'style': 'main' } %}
+				{% include ['menu.twig'] with { 'items': main_menu.get_items, 'style': 'blurb' } %}
 			</div><!-- /.container-fluid -->
 		</div>
 	{% endif %}

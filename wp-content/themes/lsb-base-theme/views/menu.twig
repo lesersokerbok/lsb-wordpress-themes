@@ -19,7 +19,7 @@
 			{% endif %}
 		{% endfor %}
 	</ul>
-{% elseif 'main' == style %}
+{% elseif 'blurb' == style %}
 	<ul class="lsb_menu is-{{  style  }}">
 		{% for item in items %}
 			<li class="lsb_menu__item {{ item.classes | join(' ') }}">
