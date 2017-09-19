@@ -8,10 +8,10 @@ $includes = array(
 	'lib/init.php',           // Initial theme setup and constants
 
 	'lib/lsb_pagination.php', // Changes to offsets and pagination
-	'lib/lsb_sections.php',   // Transform acf sections
 	'lib/lsb-breadcrumbs.php',// Breadcrumbs logic
 	'lib/lsb-cat-filter.php', // Filter on selected category
 	'lib/lsb-mime-types.php', // Custom upload mime types
+	'lib/lsb-timber-sections.php', // Sections to be used with Timber classes below
 	'lib/lsb-timber-term.php',// Extends Timber term
 	'lib/lsb-timber-post.php',// Extends Timber post
 

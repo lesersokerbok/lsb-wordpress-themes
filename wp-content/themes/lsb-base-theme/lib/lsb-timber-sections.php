@@ -1,80 +1,83 @@
 <?php 
 
 class LSB_Section {
+	protected $_acf_section;
 
+	function __construct($acf_section) {
+		$this->_acf_section = $acf_section;
+	}
+
+	public function title() {
+		return $this->_acf_section['lsb_title'];
+	}
+
+	public function subtitle() {
+		return $this->_acf_section['lsb_subtitle'];
+	}
 }
 
 class LSB_PostsSection extends LSB_Section {
 
-	protected $_layout;
-	protected $_title;
-	protected $_subtitle;
-	protected $_post_type;
-	protected $_link;
 	protected $_posts;
 
-	function __construct($acf_section) {
-		$post_type = $acf_section['acf_fc_layout'];
-		$title = get_post_type_object($post_type)->labels->name;
-		$link = get_post_type_archive_link($post_type);
-		$filter = $acf_section['lsb_filter'];
-		
-		$args = array(
-			'post_type' => $post_type,
-			'posts_per_page' => 12
-		);
-	
-		if($filter && $acf_section[$filter]) {
-			$term = $acf_section[$filter];
-			$args['tax_query'][] = array ( 
-				array ( 
-					'taxonomy' => $filter,
-					'field' => 'object', 
-					'terms' => $term
-				)
-			);
-	
-			$title = $term->name;
-			$link = get_term_link($term);
-		}
-	
-		$query = new WP_Query( $args );
-	
-		$hashed = md5(serialize($query));
-		$this->_posts = TimberHelper::transient('lsb_section_'.$hashed, function()  use ($query) {
-			return Timber::get_posts($query, LSB_Post::class);
-		}, 600);
-	
-		
-		$this->_layout = $post_type;
-		$this->_title = $acf_section['lsb_title'] ? $acf_section['lsb_title'] : $title;
-		$this->_subtitle = $acf_section['lsb_subtitle'];
-		$this->_post_type = $post_type;
-		$this->_link = $link;
-	}
-
 	public function layout() {
-		return $this->_layout;
+		return $this->post_type();
 	}
 
 	public function title() {
-		return $this->_title;
+		if(parent::title()) {
+			return parent::title();
+		} else if($this->_filter_term()) {
+			return $this->_filter_term()->name;
+		} else {
+			return get_post_type_object($this->post_type())->labels->name;
+		}
 	}
 
 	public function subtitle() {
-		return $this->_subtitle;
+		return parent::subtitle();
 	}
 
 	public function post_type() {
-		return $this->_post_type;
+		return $post_type = $this->_acf_section['acf_fc_layout'];
 	}
 
 	public function link() {
-		return $this->_link;
+		return get_term_link($this->_filter_term()) || get_post_type_archive_link($post_type);
 	}
 
 	public function posts() {
+		if(!$this->_posts) {
+			$args = array(
+				'post_type' => $this->post_type(),
+				'posts_per_page' => 12
+			);
+		
+			if($this->_filter_term()) {
+				$args['tax_query'][] = array ( 
+					array ( 
+						'taxonomy' => $this->_filter_term()->taxonomy,
+						'field' => 'object', 
+						'terms' => $this->_filter_term()
+					)
+				);
+			}
+		
+			$query = new WP_Query( $args );
+			$hashed = md5(serialize($query));
+
+			$this->_posts = TimberHelper::transient('lsb_section_'.$hashed, function()  use ($query) {
+				return Timber::get_posts($query, LSB_Post::class);
+			}, 600);
+		}
 		return $this->_posts;
+	}
+
+	protected function _filter_term() {
+		$filter = $this->_acf_section['lsb_filter'];
+		if($filter && $this->_acf_section[$filter]) {
+			return $this->_acf_section[$filter];
+		}
 	}
 }
 
