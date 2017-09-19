@@ -16,7 +16,6 @@ function lsb_sections_query_offset(&$query) {
     $ppp = get_option('posts_per_page');
 
     if ( $query->is_paged ) {
-        var_dump($query->query_vars['paged']);
         // Paged start at 1, not 0.
         // On page 2 offset should be 0
         // On page 3 offset should be a full page of posts (ppp)
