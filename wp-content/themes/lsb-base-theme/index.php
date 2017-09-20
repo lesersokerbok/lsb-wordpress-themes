@@ -42,9 +42,15 @@ if ( is_home() ) {
 		array_unshift( $templates, 'archive-' . $term->taxonomy . '.twig' );
 		array_unshift( $templates, 'archive-' . $term->taxonomy . '-' . $term->slug . '.twig' );
 } else if ( is_post_type_archive() ) {
-	$context['title'] = post_type_archive_title( '', false );
 	$context['post_type'] = get_post_type();
+	$context['title'] = post_type_archive_title( '', false );
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
+} else if ( is_search() ) {
+	$context['post_type'] = get_post_type();
+	$context['title'] = sprintf(__('Søkeresultat for <strong>%s</strong>', 'lsb'), get_search_query());
+	if(!have_posts()) {
+		$context['description'] = sprintf(__('Ingen treff på <strong>%s</strong>', 'lsb'), get_search_query());
+	}
 }
 
 if( 
