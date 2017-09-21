@@ -1,9 +1,9 @@
 <article class="lsb_teaser is-{{ post.post_type }}" id="post-{{post.ID}}">
 	<div class="lsb_teaser__header">
 		{% if post.get_field('photo') %}
-			<div class="lsb_teaser__thumbail">
-				<img src="{{ TimberImage(post.get_field('photo')).src }}" />
-			</div>
+			<span class="lsb_teaser__thumbail">
+				<img src="{{ TimberImage(post.get_field('photo')).src | resize(false, 200) }}" />
+			</span>
 		{% endif %}
 		<{{ h_size | default('h2') }} class="lsb_teaser__title">
 			{{ post.title }}
