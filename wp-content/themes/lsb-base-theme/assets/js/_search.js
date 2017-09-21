@@ -1,9 +1,8 @@
 
 (function ($) {
 
-	if (typeof algolia === 'undefined' || !algolia.indices.posts_lsb_book) {
-		console.log("No Algolia");
-		return;
+	if (algolia.indices.searchable_posts === undefined && jQuery('.admin-bar').length > 0) {
+		alert('It looks like you haven\'t indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.');
 	}
 
 	function addRelevantMetaAndContent(book) {
@@ -58,7 +57,7 @@
 	var search = instantsearch({
 		appId: algolia.application_id,
 		apiKey: algolia.search_api_key,
-		indexName: algolia.indices.posts_lsb_book.name,
+		indexName: algolia.indices.searchable_posts.name,
 		urlSync: {
 			mapping: {
 				'q': 's'
