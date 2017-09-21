@@ -1,0 +1,31 @@
+<article class="lsb_teaser is-{{ post.post_type }}" id="post-{{post.ID}}">
+	<div class="lsb_teaser__header">
+		{% if post.get_field('photo') %}
+			<div class="lsb_teaser__thumbail">
+				<img src="{{ TimberImage(post.get_field('photo')).src }}" />
+			</div>
+		{% endif %}
+		<{{ h_size | default('h2') }} class="lsb_teaser__title">
+			{{ post.title }}
+		</{{ h_size | default('h2') }}>
+    <strong>{{ post.role_label }}</strong>
+	</div>
+	<div class="lsb_teaser__body is-content">
+    {% if 'boardMember' == post.role %}
+      <p><a href="{{ post.company_url }}">{{ post.company }}</a></p>
+      <p>{{ post.bio }}</p>
+    {% else %}
+      <p class="lsb_contact-info">
+				mv@lesersokerbok.no<br>
+				Tlf: 22 54 75 00
+      </p>
+    {% endif %}
+    {% if post.get_field('links') %}
+    <ul>
+      {% for link in post.get_field('links') %}
+        <li><a href="{{ link.url }}">{{ link.tag }}</a></li>
+      {% endfor %}
+    <ul>
+    {% endif %}
+	</div>
+</article>

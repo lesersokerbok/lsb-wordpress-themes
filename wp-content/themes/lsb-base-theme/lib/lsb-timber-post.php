@@ -32,6 +32,10 @@ class LSB_Post extends TimberPost {
 		return parent::terms($tax, true, $TermClass);
 	}
 
+	public function role_label() {
+		return get_field_object('role')['choices'][get_field('role')];
+	}
+
 	public function read_more() {
 		if( !$this->_read_more ) {
 			$post_type_obj = get_post_type_object( $this->post_type );
