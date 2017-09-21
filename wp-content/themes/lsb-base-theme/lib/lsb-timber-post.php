@@ -33,16 +33,16 @@ class LSB_Post extends TimberPost {
 	}
 
 	public function role_label() {
-		return get_field_object('role')['choices'][get_field('role')];
+		return get_field_object('role', $this)['choices'][get_field('role', $this)];
 	}
 
 	public function phone_numbers() {
 		$numbers = [];
-		if(get_field('phone')) {
-			$numbers[] = get_field('phone');
+		if(get_field('phone', $this)) {
+			$numbers[] = get_field('phone' ,$this);
 		}
-		if(get_field('mobile')) {
-			$numbers[] = get_field('mobile');
+		if(get_field('mobile', $this)) {
+			$numbers[] = get_field('mobile', $this);
 		}
 		return $numbers;
 	}
@@ -62,7 +62,6 @@ class LSB_Post extends TimberPost {
 
 	public function sections() {
 		if( !$this->_sections ) {
-			// $acf_sections = get_field('lsb_sections', $this) ? get_field('lsb_sections', $this) : array ();
 			$this->_sections = LSB_SectionsFactory::create_sections($this);
 		}
 		return $this->_sections;
