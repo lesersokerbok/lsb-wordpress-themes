@@ -36,6 +36,17 @@ class LSB_Post extends TimberPost {
 		return get_field_object('role')['choices'][get_field('role')];
 	}
 
+	public function phone_numbers() {
+		$numbers = [];
+		if(get_field('phone')) {
+			$numbers[] = get_field('phone');
+		}
+		if(get_field('mobile')) {
+			$numbers[] = get_field('mobile');
+		}
+		return $numbers;
+	}
+
 	public function read_more() {
 		if( !$this->_read_more ) {
 			$post_type_obj = get_post_type_object( $this->post_type );
