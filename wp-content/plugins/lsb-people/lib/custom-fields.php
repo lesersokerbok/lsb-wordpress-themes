@@ -4,10 +4,6 @@ namespace LSB\People;
 
 function register_custom_fields() {
 	
-	if( !function_exists('\acf_add_local_field_group') ) {
-		return ;
-	}
-	
 	\acf_add_local_field_group(array (
 		'key' => 'lsb_custom_field_group_person',
 		'title' => __('Person', 'lsb_people'),
@@ -31,6 +27,19 @@ function register_custom_fields() {
 				'layout' => 'vertical',
 			),
 			array (
+				'key' => 'lsb_custom_field_person_photo',
+				'label' => __('Foto', 'lsb_people'),
+				'name' => 'photo',
+				'prefix' => '',
+				'type' => 'image',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'return_format' => 'object',
+				'preview_size' => 'thumbnail',
+				'library' => 'all',
+			),
+			array (
 				'key' => 'lsb_custom_field_person_company',
 				'label' => 'Selskap',
 				'name' => 'company',
@@ -40,7 +49,7 @@ function register_custom_fields() {
 				'required' => 0,
 				'conditional_logic' => array (
 					array (
-						'rule_rule_0' => array (
+						array (
 							'field' => 'lsb_custom_field_person_role',
 							'operator' => '==',
 							'value' => 'boardMember',
@@ -65,7 +74,7 @@ function register_custom_fields() {
 				'required' => 0,
 				'conditional_logic' => array (
 					array (
-						'rule_rule_0' => array (
+						array (
 							'field' => 'lsb_custom_field_person_role',
 							'operator' => '==',
 							'value' => 'boardMember',
@@ -81,19 +90,6 @@ function register_custom_fields() {
 				'disabled' => 0,
 			),
 			array (
-				'key' => 'lsb_custom_field_person_photo',
-				'label' => __('Foto', 'lsb_people'),
-				'name' => 'photo',
-				'prefix' => '',
-				'type' => 'image',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'return_format' => 'object',
-				'preview_size' => 'thumbnail',
-				'library' => 'all',
-			),
-			array (
 				'key' => 'lsb_custom_field_person_phone',
 				'label' => __('Telefon', 'lsb_people'),
 				'name' => 'phone',
@@ -103,7 +99,7 @@ function register_custom_fields() {
 				'required' => 0,
 				'conditional_logic' => array (
 					array (
-						'rule_rule_0' => array (
+						array (
 							'field' => 'lsb_custom_field_person_role',
 							'operator' => '==',
 							'value' => 'employee',
@@ -128,7 +124,7 @@ function register_custom_fields() {
 				'required' => 0,
 				'conditional_logic' => array (
 					array (
-						'rule_rule_0' => array (
+						array (
 							'field' => 'lsb_custom_field_person_role',
 							'operator' => '==',
 							'value' => 'employee',
@@ -153,7 +149,7 @@ function register_custom_fields() {
 				'required' => 0,
 				'conditional_logic' => array (
 					array (
-						'rule_rule_0' => array (
+						array (
 							'field' => 'lsb_custom_field_person_role',
 							'operator' => '==',
 							'value' => 'employee',

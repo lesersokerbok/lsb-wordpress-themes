@@ -4,10 +4,6 @@ namespace LSB\People;
 
 function register_relationship() {
 
-	if( !function_exists('\acf_add_local_field_group') ) {
-		return ;
-	}
-
 	\acf_add_local_field_group(array (
 		'key' => 'lsb_custom_field_group_people',
 		'title' => __('Personer', 'lsb_main'),
