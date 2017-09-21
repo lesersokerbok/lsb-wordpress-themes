@@ -9,6 +9,12 @@
 
 namespace LSB\People;
 
-include('class-person.php');
+include('lib/custom-fields.php');
+include('lib/image-sizes.php');
+include('lib/post-type.php');
+include('lib/relationship.php');
 
-new PersonContentType();
+add_action( 'init', __NAMESPACE__ . '\\register_post_type' );
+add_action( 'init', __NAMESPACE__ . '\\add_image_size' );
+add_action( 'acf/init', __NAMESPACE__ . '\\register_custom_fields' );
+add_action( 'acf/init', __NAMESPACE__ . '\\register_relationship' );
