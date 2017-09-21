@@ -43,7 +43,7 @@ class LSB_PostsSection extends LSB_Section {
 	}
 
 	public function link() {
-		return get_term_link($this->_filter_term()) || get_post_type_archive_link($post_type);
+		return $this->_filter_term() ? get_term_link($this->_filter_term()) : get_post_type_archive_link($this->post_type());
 	}
 
 	public function posts() {
