@@ -148,6 +148,10 @@ class LSBBreadcrumbs {
 			}
 		}
 
+		if( is_search() ) {
+			array_unshift($trail, LSBBreadcrumbs::custom_search_root());
+		}
+
 		if( is_paged() ){
 			array_unshift($trail, LSBBreadcrumbs::custom_paged_item());
 		}
@@ -177,6 +181,13 @@ class LSBBreadcrumbs {
 	static private function custom_paged_item( ) {
 		return (object) [
 			'title' => sprintf(__('Side %s', 'lsb'), get_query_var('paged'))
+		];
+	}
+
+	static private function custom_search_root( ) {
+		return (object) [
+			'title' => sprintf(__('Søkeresultat for <strong>%s</strong>', 'lsb'), get_search_query()),
+			'url' => get_search_link()
 		];
 	}
 
