@@ -5,9 +5,9 @@ namespace LSB\Section;
 function init() {
 
 	$custom_post_type_layouts = create_post_layouts();
-	$menu_layouts = [create_menu_layout()];
+	$other_layouts = [create_menu_layout(), create_feed_layout()];
 
-	$layouts = array_merge($custom_post_type_layouts, $menu_layouts);
+	$layouts = array_merge($custom_post_type_layouts, $other_layouts);
 
 	if( count($layouts) > 0) {
 

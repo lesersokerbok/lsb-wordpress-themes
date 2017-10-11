@@ -81,13 +81,35 @@ function create_select_field($key, $name, $label, $choices) {
 function create_taxonomy_field($key, $name, $label, $is_multi_select) {
 	return array (
 		'key' => $key,
-		'label' => $label,
 		'name' => $name,
+		'label' => $label,
 		'type' => 'taxonomy',
 		'taxonomy' => $name,
 		'field_type' => $is_multi_select ? 'multi_select' : 'select',
 		'return_format' => 'object',
 		'multiple' => 0,
 		'add_term' => 0
+	);
+}
+
+function create_url_field($key, $name, $label) {
+	return array (
+		'key' => $key,
+		'name' => $name,
+		'label' => $label,
+		'type' => 'url',
+		'instructions' => '',
+		'required' => 0,
+		'conditional_logic' => 0,
+		'wrapper' => array (
+			'width' => '',
+			'class' => '',
+			'id' => '',
+		),
+		'default_value' => '',
+		'placeholder' => '',
+		'prepend' => '',
+		'append' => '',
+		'maxlength' => '',
 	);
 }
