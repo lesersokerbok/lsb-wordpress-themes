@@ -32,7 +32,7 @@ class LSB_FeedItem {
 
 	public function thumbnail() {
 		if(!$this->_thumbnail) {
-			$url = $this->_thumbnail_from_from_enclosure();
+			$url = $this->_thumbnail_from_enclosure();
 			$this->_thumbnail = new TimberImage($url);
 		}
 		return $this->_thumbnail;
@@ -42,7 +42,7 @@ class LSB_FeedItem {
 		return __('Les hele artikkelen', 'lsb');
 	}
 
-	public function _thumbnail_from_from_enclosure() {
+	public function _thumbnail_from_enclosure() {
 		$image = null;
 		foreach ($this->_item->get_enclosures() as $enclosure) {
 			// Find first image enclosure that is not gravatar
