@@ -11,9 +11,10 @@ $includes = array(
 	'lib/lsb-breadcrumbs.php',// Breadcrumbs logic
 	'lib/lsb-cat-filter.php', // Filter on selected category
 	'lib/lsb-mime-types.php', // Custom upload mime types
+	'lib/lsb-timber-feed-item.php',// Custom Feed Item for use with twig
+	'lib/lsb-timber-post.php',// Extends Timber post
 	'lib/lsb-timber-sections.php', // Sections to be used with Timber classes below
 	'lib/lsb-timber-term.php',// Extends Timber term
-	'lib/lsb-timber-post.php',// Extends Timber post
 
 	'lib/pagination.php',     // Boostrap pagination
 	'lib/rewrite.php',        // Custom rewrite rules
