@@ -64,11 +64,16 @@ class LSB_FeedBookItem extends LSB_FeedItem {
 	}
 
 	public function thumbnail() {
-		if(is_array($this->_item->get_item_tags('', 'image'))) {
+		if(!$this->_thumbnail && is_array($this->_item->get_item_tags('', 'image'))) {
 			$images = $this->_item->get_item_tags('', 'image');
 			$url = $images[0]['attribs']['']['url'];
-			return new TimberImage($url);
+			$this->_thumbnail = new TimberImage($url);
 		}
+
+		if(!$this->_thumbnail) {
+			parent::thumbnail();
+		}
+		return $this->_thumbnail;
 	}
 
 	public function terms($taxonomy) {
