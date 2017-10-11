@@ -8,6 +8,10 @@
  */
 
 namespace LSB\Section;
-include('lib/add-custom-fields.php');
 
-add_action( 'acf/init', __NAMESPACE__ . '\\add_custom_fields' );
+include('lib/common.php');
+include('lib/init.php');
+include('lib/menu.php');
+include('lib/post.php');
+
+add_action( 'acf/init', __NAMESPACE__ . '\\init' );
