@@ -63,27 +63,14 @@ class LSB_FeedBookItem extends LSB_FeedItem {
 		return 'lsb_book';
 	}
 
-	public function thumbnail() {
-		if(!$this->_thumbnail && is_array($this->_item->get_item_tags('', 'image'))) {
-			$images = $this->_item->get_item_tags('', 'image');
-			$url = $images[0]['attribs']['']['url'];
-			$this->_thumbnail = new TimberImage($url);
-		}
-
-		if(!$this->_thumbnail) {
-			parent::thumbnail();
-		}
-		return $this->_thumbnail;
-	}
-
 	public function terms($taxonomy) {
-		if('lsb_tax_author' == $taxonomy && is_array($this->_item->get_item_tags('', 'author'))) {
+		if('lsb_tax_author' == $taxonomy && is_array($this->_item->get_item_tags('', 'lsb-author'))) {
 			return array_map(function($term){
 				return (object)[
 					'name' => $term['attribs']['']['name'],
 					'link' => $term['attribs']['']['url']
 				];
-			}, $this->_item->get_item_tags('', 'author'));
+			}, $this->_item->get_item_tags('', 'lsb-author'));
 		}
 	}
 }

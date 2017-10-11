@@ -17,12 +17,3 @@ function add_featured_image_in_rss_2() {
 		echo "\n";
 	}
 }
-
-function add_featured_image_in_rss() {
-	global $post;
-	if( \has_post_thumbnail( $post->ID ) ) {
-		echo "\t";
-		echo '<image url="' . \get_the_post_thumbnail_url( $post->ID, 'medium' ) . '" />';
-		echo "\n";
-	}
-}

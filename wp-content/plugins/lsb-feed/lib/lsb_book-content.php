@@ -8,7 +8,7 @@ function add_lsb_book_meta_in_rss() {
 		$authors = \get_the_terms($post->ID, 'lsb_tax_author');
 		foreach($authors as $author) {
 			echo "\t";
-			echo '<author name="'. $author->name . '" url="' . \get_term_link($author) . '" />';
+			echo '<lsb-author name="'. $author->name . '" url="' . \get_term_link($author) . '" />';
 			echo "\n";
 		}
 	}
