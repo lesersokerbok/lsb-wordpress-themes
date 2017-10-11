@@ -1,5 +1,5 @@
 {% if section.posts | length > 0 %}
-<section class="lsb_section is-{{ section.layout }} is-scroll">
+<section class="lsb_section is-lsb_{{ section.layout }} is-scroll">
 	<div class="lsb_section__header">
 		<h2 class="lsb_section__title">
 			<a href="{{ section.link }}"><span>{{ section.title }}</span> <span>{{ section.subtitle }}</span></a>
@@ -7,7 +7,7 @@
 	</div>
 	<div class="lsb_section__body">
 		{% for post in section.posts %}
-			{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] with {'h_size': 'h3'} %}
+			{% include [''~section.layout~'-'~section.post_type~'.twig', ''~section.layout~'.twig'] with {'h_size': 'h3'} %}
 		{% endfor %}
 	</div>
 	<button aria-hidden="true" tabindex="-1" data-scroll="left" class="lsb_section__scroll is-left">

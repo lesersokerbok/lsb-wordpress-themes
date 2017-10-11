@@ -1,81 +1,81 @@
 .lsb_entry {
-	.clearfix;
+  .clearfix;
 }
 
 .lsb_entry__header,
 .lsb_entry__body,
 .lsb_entry__footer,
 .lsb_entry__meta {
-	max-width: 768px;
-	margin-left: auto !important;
-	margin-right: auto !important;
+  max-width: 768px;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .lsb_entry__header {
-	.page-header;
+  .page-header;
 }
 
 .lsb_entry__title {
-	.h1;
-	margin: 0;
-	&:first-letter {
+  .h1;
+  margin: 0;
+  &:first-letter {
     text-transform: uppercase;
   }
 }
 
 .lsb_entry__meta {
-	margin: 2em 0;
-	ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
+  margin: 2em 0;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-		a:first-child {
-			display: inline-block;
-			&:first-letter {
-    		text-transform: uppercase;
-  		}
-		}
-	}
+    a:first-child {
+      display: inline-block;
+      &:first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
 }
 
 .lsb_entry__body + .lsb_entry__meta {
-	margin-top: 3em;
+  margin-top: 3em;
 }
 
 .lsb_entry__footer {
-	margin-top: 3rem;
-	&:before {
-		content: '';
-		display: block;
-		width: 100%;
-		max-width: 5rem;
-		height: 1px; // suit your need
-		background: @gray-lighter; // suit your need
-		margin-bottom: 1rem;
-	}
+  margin-top: 3rem;
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    max-width: 5rem;
+    height: 1px; // suit your need
+    background: @gray-lighter; // suit your need
+    margin-bottom: 1rem;
+  }
 }
 
 .lsb_entry__thumbail {
-	.thumbnail;
-	float: right;
-	margin-top: @font-size-h1/2;
-	margin-left: @padding-large-vertical;
-	margin-bottom: @line-height-computed;
-	max-width: 40%;
+  .thumbnail;
+  float: right;
+  margin-top: @font-size-h1/2;
+  margin-left: @padding-large-vertical;
+  margin-bottom: @line-height-computed;
+  max-width: 40%;
 }
 
 .lsb_entry {
-	&.is-lsb_book {
-		h2 {
-			text-transform: uppercase;
-			font-size: 100%;
-		}
+  &.is-lsb_book {
+    h2 {
+      text-transform: uppercase;
+      font-size: 100%;
+    }
 
-		.lsb_entry__body a:first-child:last-child {
-			.has-right-arrow;
-			margin: 0.5em 0;
-			display: inline-block;
-		}
-	}
+    .lsb_entry__body a:first-child:last-child {
+      .has-right-arrow;
+      margin: 0.5em 0;
+      display: inline-block;
+    }
+  }
 }

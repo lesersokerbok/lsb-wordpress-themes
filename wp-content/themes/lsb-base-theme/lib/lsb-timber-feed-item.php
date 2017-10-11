@@ -3,13 +3,10 @@
 class LSB_FeedItem {
 	protected $_item;
 	protected $_thumbnail;
+	protected $_taxonomy;
 
 	function __construct($item) {
 		$this->_item = $item;
-	}
-
-	public function post_type() {
-		return 'post';
 	}
 
 	public function title() {
@@ -38,8 +35,26 @@ class LSB_FeedItem {
 		return $this->_thumbnail;
 	}
 
+	public function terms($taxonomy) {
+		if(!$this->_taxonomy[$taxonomy]) {
+			if('lsb_tax_author' == $taxonomy && is_array($this->_item->get_item_tags('', 'lsb-author'))) {
+				$this->_taxonomy[$taxonomy] = array_map(function($term){
+					return (object)[
+						'name' => $term['attribs']['']['name'],
+						'link' => $term['attribs']['']['url']
+					];
+				}, $this->_item->get_item_tags('', 'lsb-author'));
+			}
+		}
+		return $this->_taxonomy[$taxonomy];
+	}
+
 	public function read_more() {
-		return __('Les hele artikkelen', 'lsb');
+		if($this->terms('lsb_tax_author')) {
+			return __('Les hele anmeldelsen', 'lsb');
+		} else {
+			return __('Les hele artikkelen', 'lsb');
+		}
 	}
 
 	public function _thumbnail_from_enclosure() {
@@ -57,30 +72,8 @@ class LSB_FeedItem {
 	}
 }
 
-class LSB_FeedBookItem extends LSB_FeedItem {
-
-	public function post_type() {
-		return 'lsb_book';
-	}
-
-	public function terms($taxonomy) {
-		if('lsb_tax_author' == $taxonomy && is_array($this->_item->get_item_tags('', 'lsb-author'))) {
-			return array_map(function($term){
-				return (object)[
-					'name' => $term['attribs']['']['name'],
-					'link' => $term['attribs']['']['url']
-				];
-			}, $this->_item->get_item_tags('', 'lsb-author'));
-		}
-	}
-}
-
 class LSB_FeedItemFactory {
 	public static function create_feed_item($simple_pie_item, $post_type = 'post' ) {
-		if('lsb_book' == $post_type) {
-			return new LSB_FeedBookItem($simple_pie_item);
-		} else {
-			return new LSB_FeedItem($simple_pie_item);
-		}
+		return new LSB_FeedItem($simple_pie_item);
 	}
 }

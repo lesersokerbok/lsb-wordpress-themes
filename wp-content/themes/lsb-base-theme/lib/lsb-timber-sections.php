@@ -21,7 +21,11 @@ class LSB_PostsSection extends LSB_Section {
 	protected $_posts;
 
 	public function layout() {
-		return $this->_post_type();
+		if('lsb_book' == $this->_post_type()) {
+			return 'card';
+		} else {
+			return 'teaser';
+		}
 	}
 
 	public function title() {
@@ -159,7 +163,7 @@ class LSB_FeedSection extends LSB_Section {
 	}
 
 	protected function _max_number_of_items() {
-		return $this->layout() === 'lsb_book' ? 12 : 5;
+		return $this->layout() === 'card' ? 12 : 5;
 	}
 }
 
