@@ -1,3 +1,4 @@
+{% if section.posts | length > 0 %}
 <section class="lsb_section is-{{ section.layout }} is-scroll">
 	<div class="lsb_section__header">
 		<h2 class="lsb_section__title">
@@ -16,3 +17,25 @@
 		<span class="glyphicon glyphicon-chevron-right"></span>
 	</button>
 </section>
+{% elseif user %}
+<section class="lsb_section is-post">
+	<div class="lsb_section__header">
+		<h2 class="lsb_section__title">
+			<a href="{{ section.link }}"><span>{{ section.title }}</span> <span>{{ section.subtitle }}</span></a>
+		</h2>
+	</div>
+	<article class="lsb_teaser is-post">
+		<div class="lsb_teaser__body">
+			<p>
+				<strong>{{ __('Ingen poster å vise, sjekk seksjonsinnstillingene', 'lsb') }}</strong>
+				<br/>
+				{{ __('Denne beskjeden vises kun til deg som er innlogget, ikke vanlige besøkende.', 'lsb') }}
+			</p>
+			{% if section.error %}
+			<pre>{{ dump(section.error) }}</pre>
+			{% endif %}
+		</div>
+	</article>
+</section>
+{% endif %}
+

@@ -105,12 +105,17 @@ class LSB_FeedSection extends LSB_Section {
 
 	protected $_feed;
 	protected $_posts;
+	protected $_error;
 
 	public function layout() {
 		return $this->_acf_section['lsb_feed_layout'];
 	}
 
 	public function posts() {
+		if(!$this->_feed()) {
+			return;
+		}
+
 		if(!$this->_posts) {
 			$this->_posts = array_map(function($item) {
 				return LSB_FeedItemFactory::create_feed_item($item, $this->layout());
@@ -120,16 +125,31 @@ class LSB_FeedSection extends LSB_Section {
 	}
 
 	public function link() {
+		if(!$this->_feed()) {
+			return;
+		}
 		return $this->_feed()->get_permalink();
 	}
 
 	public function title() {
+		if(!$this->_feed()) {
+			parent::title();
+		}
 		return parent::title() ?: $this->_feed()->get_title();
+	}
+
+	public function error() {
+		return $this->_error;
 	}
 
 	protected function _feed() {
 		if(!$this->_feed) {
-			$this->_feed = fetch_feed( $this->_feed_url() );
+			$feed = fetch_feed( $this->_feed_url() );
+			if( !is_wp_error( $feed )) {
+				$this->_feed = $feed;
+			} else {
+				$this->_error = $feed;
+			}
 		}
 		return $this->_feed;
 	}
