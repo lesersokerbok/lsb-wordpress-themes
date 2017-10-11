@@ -4,9 +4,6 @@ class LsbFeedUtil {
 	public function __construct() {
 		add_filter('the_excerpt_rss', array($this, 'add_featured_image_to_feed_content'));
 		add_filter('the_content_feed', array($this, 'add_featured_image_to_feed_content'));
-		if ( WP_ENV === 'development') {
-			add_filter( 'http_request_args', array($this, 'set_reject_unsafe_urls_to_false'));
-		}
 	}
 
 	public static function add_featured_image_to_feed_content($content) {
@@ -23,11 +20,6 @@ class LsbFeedUtil {
 		}
 
 		return $content;
-	}
-
-	public static function set_reject_unsafe_urls_to_false( $args ) {
-		$args['reject_unsafe_urls'] = false;
-		return $args;
 	}
 
 	public static function get_image_from_feed_item_description($item) {
