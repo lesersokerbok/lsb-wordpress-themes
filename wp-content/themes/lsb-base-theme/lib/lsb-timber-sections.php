@@ -107,14 +107,14 @@ class LSB_FeedSection extends LSB_Section {
 	protected $_posts;
 
 	public function layout() {
-		return 'lsb_book';
+		return $this->_acf_section['lsb_feed_layout'];
 	}
 
 	public function posts() {
 		if(!$this->_posts) {
 			$this->_posts = array_map(function($item) {
-				return new LSB_FeedItem($item);
-			},$this->_feed()->get_items());
+				return LSB_FeedItemFactory::create_feed_item($item, $this->layout());
+			},$this->_feed()->get_items(0, $this->_max_number_of_items()));
 		}
 		return $this->_posts;
 	}
@@ -136,6 +136,10 @@ class LSB_FeedSection extends LSB_Section {
 
 	protected function _feed_url() {
 		return $this->_acf_section['lsb_feed_url'];
+	}
+
+	protected function _max_number_of_items() {
+		return $this->layout() === 'lsb_book' ? 12 : 5;
 	}
 }
 

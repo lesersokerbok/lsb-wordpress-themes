@@ -54,14 +54,14 @@ function create_layout_field($key, $name, $label) {
 	);
 }
 
-function create_select_field($key, $name, $label, $choices) {
+function create_select_field($key, $name, $label, $choices, $default = null) {
 	return array (
 		'key' => $key,
 		'name' => $name,
 		'label' => $label,
 		'type' => 'radio',
 		'instructions' => '',
-		'required' => 0,
+		'required' => $default ? 1 : 0,
 		'conditional_logic' => 0,
 		'wrapper' => array (
 			'width' => '',
@@ -72,7 +72,7 @@ function create_select_field($key, $name, $label, $choices) {
 		'allow_null' => 1,
 		'other_choice' => 0,
 		'save_other_choice' => 0,
-		'default_value' => '',
+		'default_value' => $default ? $default : '',
 		'layout' => 'horizontal',
 		'return_format' => 'value',
 	);

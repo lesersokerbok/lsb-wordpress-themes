@@ -5,6 +5,10 @@ class LSB_Post extends TimberPost {
 	var $_read_more;
 	var $_sections;
 
+	public function preview() {
+		return parent::preview()->length(50)->read_more('');
+	}
+
 	public function content($page = 0, $len = -1) {
 
 		if($this->post_type !== 'lsb_book') {
