@@ -2,7 +2,6 @@
 
 class LSB_Post extends TimberPost {
 
-	var $_authors;
 	var $_read_more;
 	var $_sections;
 
