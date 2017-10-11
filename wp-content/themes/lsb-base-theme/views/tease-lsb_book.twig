@@ -1,4 +1,4 @@
-<article class="lsb_teaser is-{{ post.post_type }}">
+<article class="lsb_book is-{{ post.post_type }}">
 	<a href="{{ post.link }}" class="lsb_book__thumbail" aria-hidden="true" tabindex="-1">
 		{% if post.thumbnail.src %}
 			<img src="{{ post.thumbnail.src | resize(250) }}" alt="{{ post.title }}" />
