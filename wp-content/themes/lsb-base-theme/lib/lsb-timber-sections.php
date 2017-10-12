@@ -21,11 +21,7 @@ class LSB_PostsSection extends LSB_Section {
 	protected $_posts;
 
 	public function layout() {
-		if('lsb_book' == $this->_post_type()) {
-			return 'card';
-		} else {
-			return 'teaser';
-		}
+		return $this->_acf_section['lsb_section_layout'];
 	}
 
 	public function title() {
@@ -112,7 +108,7 @@ class LSB_FeedSection extends LSB_Section {
 	protected $_error;
 
 	public function layout() {
-		return $this->_acf_section['lsb_feed_layout'];
+		return $this->_acf_section['lsb_section_layout'];
 	}
 
 	public function posts() {
