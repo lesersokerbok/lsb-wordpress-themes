@@ -24,7 +24,7 @@ function roots_scripts() {
 		'js'				=> time()
 	);
 
-	if (defined( 'WP_ENV' ) && 'development' !== WP_ENV) {
+	if (!defined( 'WP_ENV' ) || 'development' !== WP_ENV) {
 		// Production assets
 		$assets['css'] = 'assets/css/bundle.min.css';
 		$assets['js'] = 'assets/js/bundle.min.js';
