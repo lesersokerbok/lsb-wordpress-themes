@@ -137,7 +137,7 @@ class LSB_FeedSection extends LSB_Section {
 
 	public function title() {
 		if(!$this->_feed()) {
-			parent::title();
+			return parent::title();
 		}
 		return parent::title() ?: $this->_feed()->get_title();
 	}
