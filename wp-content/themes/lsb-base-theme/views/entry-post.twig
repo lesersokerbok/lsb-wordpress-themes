@@ -8,6 +8,9 @@
 	<div class="lsb_entry__body is-content">
 		{{ post.content }}
 	</div>
+	{% for section in post.sections %}
+		{% include ['section-'~section.layout~'.twig', 'section.twig'] %}
+	{% endfor %}
 	<footer class="lsb_entry__footer is-content">
 		<p>
 			{{ __('Skrevet av %s den %s.', 'lsb') | format(post.author, post.date) }}
