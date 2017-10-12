@@ -24,7 +24,7 @@ function roots_scripts() {
 		'js'				=> time()
 	);
 
-	if (!defined( 'WP_ENV' ) || 'development' !== WP_ENV) {
+	if ('development' !== WP_ENV) {
 		// Production assets
 		$assets['css'] = 'assets/css/bundle.min.css';
 		$assets['js'] = 'assets/js/bundle.min.js';
@@ -52,7 +52,7 @@ add_action('wp_enqueue_scripts', 'roots_scripts', 100);
  * Google Analytics snippet from HTML5 Boilerplate
  */
 function roots_google_analytics() {
-	if (defined( 'WP_ENV' ) && WP_ENV === 'development') { ?>
+	if (WP_ENV === 'development') { ?>
 		<script>
 			(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
 			function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
