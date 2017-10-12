@@ -2,6 +2,17 @@
 
 namespace LSB\Section;
 
+function create_post_layouts() {
+	$post_types = [ \get_post_type_object( 'post' ) ];
+	if(post_type_exists( 'lsb_book' )) {
+		$post_types[] = \get_post_type_object( 'lsb_book' );
+	}
+
+	return array_map(function($post_type) {
+		return create_post_layout($post_type);
+	}, $post_types);
+}
+
 function create_post_layout($post_type) {
 	$layout_key = "lsb_acf_section_layout_{$post_type->name}";
 	$layout_name = $post_type->name;
@@ -27,13 +38,4 @@ function create_post_layout($post_type) {
 	}
 
 	return $layout_field;
-}
-
-function create_post_layouts() {
-	$layouts = array ();
-
-	foreach (get_post_types(array( '_builtin' => false ), 'objects') as $key => $post_type) {
-		$layouts[] = create_post_layout($post_type);
-	}
-	return $layouts;
 }

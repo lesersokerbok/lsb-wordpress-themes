@@ -50,7 +50,7 @@ class LSB_PostsSection extends LSB_Section {
 		if(!$this->_posts) {
 			$args = array(
 				'post_type' => $this->_post_type(),
-				'posts_per_page' => 12
+				'posts_per_page' => $this->layout() == 'card' ? 12 : 5
 			);
 
 			if($this->_filter_term()) {
