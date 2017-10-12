@@ -32,7 +32,7 @@
 				{{ __('Denne beskjeden vises kun til deg som er innlogget, ikke vanlige besøkende.', 'lsb') }}
 			</p>
 			{% if section.error %}
-			<pre>{{ dump(section.error) }}</pre>
+			<pre>{{ section.error | print_r }}</pre>
 			{% endif %}
 		</div>
 	</article>
