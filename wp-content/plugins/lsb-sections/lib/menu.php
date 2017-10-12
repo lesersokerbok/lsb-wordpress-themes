@@ -8,6 +8,14 @@ function create_menu_layout() {
 	$label = __('Meny(er)', 'lsb_sections');
 
 	$layout_field = create_layout_field($layout_key, 'lsb_menu_nav', __('Navigasjon', 'lsb_sections'));
+	$layout_field['sub_fields'][] = create_select_field($layout_key.'_layout',
+	'lsb_section_layout',
+	 __('Layout', 'lsb_sections'),
+	 [
+		'pills'=> __('Pills', 'lsb_sections'),
+		'blurb'=> __('Blurbs', 'lsb_sections')
+	],
+		'pills' );
 	$layout_field['sub_fields'][] = create_taxonomy_field($layout_key.'_'.$name, $name, $label, false );
 
 	return $layout_field;

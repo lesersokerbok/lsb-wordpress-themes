@@ -1,12 +1,12 @@
-<section class="lsb_section is-menu">
+<section class="lsb_section is-menu is-{{ section.style }}">
+	{% if section.title %}
 	<div class="lsb_section__header">
 		<h2 class="lsb_section__title">
 			<span>{{ section.title }}</span> <span>{{ section.subtitle }}</span>
 		</h2>
 	</div>
+	{% endif %}
 	<div class="lsb_section__body">
-
-	{% include ['menu.twig'] with { 'items': section.menu.items, 'style': 'pills' } %}
-	
+	{% include ['menu.twig'] with { 'items': section.menu.items, 'style': section.style | default('pills') } %}
 	</div>
 </section>

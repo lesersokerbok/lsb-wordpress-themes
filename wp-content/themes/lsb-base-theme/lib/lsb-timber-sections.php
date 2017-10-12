@@ -89,15 +89,15 @@ class LSB_MenuSection extends LSB_Section {
 		return 'menu';
 	}
 
+	public function style() {
+		return $this->_acf_section['lsb_section_layout'];
+	}
+
 	public function menu() {
 		if(!$this->_menu) {
 			$this->_menu = new TimberMenu($this->_acf_section['nav_menu']->slug);
 		}
 		return $this->_menu;
-	}
-
-	public function title() {
-		return parent::title() ?: $this->menu()->title;
 	}
 }
 
