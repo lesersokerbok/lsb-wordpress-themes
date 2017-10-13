@@ -43,69 +43,6 @@
   }
 }
 
-.lsb_section__scroll {
-  .btn;
-  .btn-primary;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 0;
-  outline: none !important;
-  font-size: 2rem;
-  display: none;
-
-  &.is-left {
-    left: 0;
-    transform: translateX(-50%);
-  }
-
-  &.is-right {
-    right: 0;
-    transform: translateX(50%);
-  }
-}
-
-.lsb_section.is-lsb_card {
-  .lsb_section__scroll {
-    top: 275px;
-    bottom: auto;
-  }
-
-  .lsb_section__body {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    margin: -1rem;
-
-    > article {
-      display: inline-block;
-      vertical-align: top;
-      width: 49%;
-      flex: 0 0 50%;
-      padding: 1rem;
-      text-align: center;
-
-      img {
-        max-height: 250px;
-      }
-
-      @media (min-width: 576px) {
-        width: 32%;
-        flex-basis: 33.3%;
-      }
-
-      @media (min-width: 768px) {
-        width: 24%;
-        flex-basis: 25%;
-      }
-
-      @media (min-width: 992px) {
-        width: 19%;
-        flex-basis: 20%;
-      }
-    }
-  }
-}
-
 .lsb_section.is-embed {
   .lsb_section__body {
     display: flex;

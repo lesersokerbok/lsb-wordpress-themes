@@ -1,3 +1,14 @@
+{% extends "section.twig" %}
+
+{% block body_class %}
+{{ section.style == 'pills' ? 'is-narrow' : '' }}
+{% endblock %}
+
+{% block body %}
+{% include ['menu.twig'] with { 'items': section.menu.items, 'style': section.style | default('pills') } %}
+{% endblock %}
+
+
 {% if section.posts | length > 0 %}
 <section class="lsb_section is-lsb_{{ section.layout }} is-scroll">
 	{% if section.title %}

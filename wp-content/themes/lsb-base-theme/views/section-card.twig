@@ -1,0 +1,15 @@
+{% extends "section.twig" %}
+
+{% block body %}
+<div class="lsb_card-wrapper lsb_scroll">
+	{% for post in section.posts %}
+		{% include ['card-'~section.post_type~'.twig', 'card.twig'] with {'h_size': 'h3'} %}
+	{% endfor %}
+	<button aria-hidden="true" tabindex="-1" data-scroll="left" class="lsb_scroll__button is-left">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</button>
+	<button aria-hidden="true" tabindex="-1" data-scroll="right" class="lsb_scroll__button is-right">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+	</button>
+</div>
+{% endblock %}

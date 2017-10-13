@@ -21,12 +21,19 @@
 			{% include ['section-'~section.layout~'.twig', 'section.twig'] %}
 		{% endfor %}
 	{% else %}
-		{% set layout = 'lsb_book' == post_type ? 'card' : 'teaser' %}
-		<section class="lsb_section is-lsb_{{ layout }}">
+		<section class="lsb_section">
 			<div class="lsb_section__body">
+			{% if 'lsb_book' == post_type %}
+				<div class="lsb_card-wrapper">
 				{% for post in posts %}
-					{% include [''~layout~'-'~post.post_type~'.twig', ''~layout~'.twig'] %}
+					{% include ['card'~post.post_type~'.twig', 'card.twig'] %}
 				{% endfor %}
+				</div>
+			{% else %}
+				{% for post in posts %}
+					{% include ['teaser'~post.post_type~'.twig', 'teaser.twig'] %}
+				{% endfor %}
+			{% endif %}
 			</div>
 		</section>
 	{% endif %}

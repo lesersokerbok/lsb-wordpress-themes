@@ -14,165 +14,127 @@
  * remove or comment out: add_theme_support('jquery-cdn');
  * ======================================================================== */
 
-(function ($) {
+(function($) {
+  // Use this variable to set up the common and page specific functions. If you
+  // rename this variable, you will also need to rename the namespace below.
+  var Roots = {
+    // All pages
+    common: {
+      init: function() {
+        // JavaScript to be fired on all pages
 
-	// Use this variable to set up the common and page specific functions. If you
-	// rename this variable, you will also need to rename the namespace below.
-	var Roots = {
-		// All pages
-		common: {
-			init: function () {
-				// JavaScript to be fired on all pages
+        function toggleScroll($scrollArea, $leftButton, $rightButton) {
+          var scrollLeftPos = $scrollArea.scrollLeft();
+          var scrollWidth = $scrollArea.get(0).scrollWidth;
+          var width = $scrollArea.width();
 
-				// Hide scroll arrows when not needed
-				function toggleScrollButtons($bookSectionScroll) {
+          if (scrollLeftPos > 0) {
+            $leftButton.show();
+          } else {
+            $leftButton.hide();
+          }
 
-					var scrollLeftPos = $bookSectionScroll.scrollLeft();
-					var scrollWidth = $bookSectionScroll.get(0).scrollWidth;
-					var width = $bookSectionScroll.width();
+          if (scrollWidth - scrollLeftPos > width) {
+            $rightButton.show();
+          } else {
+            $rightButton.hide();
+          }
+        }
 
-					if (scrollLeftPos > 0) {
-						$bookSectionScroll.siblings('.book-shelf-left-scroll').show();
-					} else {
-						$bookSectionScroll.siblings('.book-shelf-left-scroll').hide();
-					}
+        function doToggleScroll($scrollArea) {
+          toggleScroll(
+            $scrollArea,
+            $scrollArea.children(".lsb_scroll__button.is-left"),
+            $scrollArea.children(".lsb_scroll__button.is-right")
+          );
+        }
 
-					if (scrollWidth - scrollLeftPos > width) {
-						$bookSectionScroll.siblings('.book-shelf-right-scroll').show();
-					} else {
-						$bookSectionScroll.siblings('.book-shelf-right-scroll').hide();
-					}
+        $(".lsb_scroll__button").click(function() {
+          $scrollArea = $(this).parent(".lsb_scroll");
+          $scrollStep = Math.min($scrollArea.width() * 0.8, 500);
+          $scrollPrefix = $(this).data("scroll") === "left" ? "-=" : "+=";
+          $scrollArea.animate(
+            {
+              scrollLeft: $scrollPrefix + $scrollStep + "px"
+            },
+            500
+          );
+        });
 
-				};
+        $(window).resize(function() {
+          $(".lsb_scroll").each(function() {
+            doToggleScroll($(this));
+          });
+        });
 
-				function scrollStep($bookSectionScroll) {
-					$bookSectionScroll.find('.lsb_book.summary').show();
-					var scrollWidth = $bookSectionScroll.width();
-					return Math.min(scrollWidth * 0.8, 500);
-				}
+        $(".lsb_scroll").scroll(function() {
+          doToggleScroll($(this));
+        });
 
-				$('.book-shelf-scroll').scroll(function () {
-					toggleScrollButtons($(this));
-				});
+        $(".lsb_scroll").each(function() {
+          doToggleScroll($(this));
+        });
+      }
+    },
+    // Home page
+    home: {
+      init: function() {
+        // JavaScript to be fired on the home page
+      }
+    },
 
-				// Respond to left scroll button click
-				$('.book-shelf .book-shelf-left-scroll').click(function () {
-					$(this).siblings('.book-shelf-scroll').animate({
-						scrollLeft: "-=" + scrollStep($(this).siblings('.book-shelf-scroll')) + "px"
-					}, 500);
-				});
+    // Books
+    single_lsb_book: {
+      init: function() {
+        // JavaScript to be fired on a book page
 
-				// Respond to right scroll button click
-				$('.book-shelf .book-shelf-right-scroll').click(function () {
-					$(this).siblings('.book-shelf-scroll').animate({
-						scrollLeft: "+=" + scrollStep($(this).siblings('.book-shelf-scroll')) + "px"
-					}, 500);
-				});
+        $(".lsb_library select").change(function() {
+          var selectedCounty = $(this).val();
 
-				// New twig section
+          $(".lsb_library table").addClass("hidden");
+          $(".lsb_library table").removeClass("show");
 
-				function toggleScroll($scrollArea, $leftButton, $rightButton) {
-					var scrollLeftPos = $scrollArea.scrollLeft();
-					var scrollWidth = $scrollArea.get(0).scrollWidth;
-					var width = $scrollArea.width();
+          if (selectedCounty) {
+            $(".lsb_library table." + selectedCounty).removeClass("hidden");
+            $(".lsb_library table." + selectedCounty).addClass("show");
+          }
+        });
+      }
+    },
 
-					if (scrollLeftPos > 0) {
-						$leftButton.show();
-					} else {
-						$leftButton.hide();
-					}
+    // About us page, note the change from about-us to about_us.
+    about_us: {
+      init: function() {
+        // JavaScript to be fired on the about us page
+      }
+    }
+  };
 
-					if (scrollWidth - scrollLeftPos > width) {
-						$rightButton.show();
-					} else {
-						$rightButton.hide();
-					}
-				}
+  // The routing fires all common scripts, followed by the page specific scripts.
+  // Add additional events for more control over timing e.g. a finalize event
+  var UTIL = {
+    fire: function(func, funcname, args) {
+      var namespace = Roots;
+      funcname = funcname === undefined ? "init" : funcname;
+      if (
+        func !== "" &&
+        namespace[func] &&
+        typeof namespace[func][funcname] === "function"
+      ) {
+        namespace[func][funcname](args);
+      }
+    },
+    loadEvents: function() {
+      UTIL.fire("common");
 
-				$('.lsb_section__scroll').click(function () {
-					$sectionBody = $(this).siblings('.lsb_section__body');
-					$scrollStep = Math.min($sectionBody.width() * 0.8, 500);
-					$scrollPrefix = $(this).data('scroll') === 'left' ? "-=" : "+=";
-					$sectionBody.animate({
-						scrollLeft: $scrollPrefix + $scrollStep + "px"
-					}, 500);
-				});
+      $.each(document.body.className.replace(/-/g, "_").split(/\s+/), function(
+        i,
+        classnm
+      ) {
+        UTIL.fire(classnm);
+      });
+    }
+  };
 
-				function doToggleScroll($section) {
-					toggleScroll($section, $section.siblings('.lsb_section__scroll.is-left'), $section.siblings('.lsb_section__scroll.is-right'));
-				}
-
-				$(window).resize(function () {
-					$('.lsb_section__body').each(function () {
-						doToggleScroll($(this));
-					});
-				});
-
-				$('.lsb_section__body').scroll(function () {
-					doToggleScroll($(this));
-				});
-
-				$('.lsb_section__body').each(function () {
-					doToggleScroll($(this));
-				});
-
-
-			}
-		},
-		// Home page
-		home: {
-			init: function () {
-				// JavaScript to be fired on the home page
-			}
-		},
-
-		// Books
-		single_lsb_book: {
-
-			init: function () {
-				// JavaScript to be fired on a book page
-
-				$('.lsb_library select').change(function () {
-					var selectedCounty = $(this).val();
-
-					$('.lsb_library table').addClass('hidden');
-					$('.lsb_library table').removeClass('show');
-
-					if (selectedCounty) {
-						$('.lsb_library table.' + selectedCounty).removeClass('hidden');
-						$('.lsb_library table.' + selectedCounty).addClass('show');
-					}
-				});
-			}
-		},
-
-		// About us page, note the change from about-us to about_us.
-		about_us: {
-			init: function () {
-				// JavaScript to be fired on the about us page
-			}
-		}
-	};
-
-	// The routing fires all common scripts, followed by the page specific scripts.
-	// Add additional events for more control over timing e.g. a finalize event
-	var UTIL = {
-		fire: function (func, funcname, args) {
-			var namespace = Roots;
-			funcname = (funcname === undefined) ? 'init' : funcname;
-			if (func !== '' && namespace[func] && typeof namespace[func][funcname] === 'function') {
-				namespace[func][funcname](args);
-			}
-		},
-		loadEvents: function () {
-			UTIL.fire('common');
-
-			$.each(document.body.className.replace(/-/g, '_').split(/\s+/), function (i, classnm) {
-				UTIL.fire(classnm);
-			});
-		}
-	};
-
-	$(document).ready(UTIL.loadEvents);
-
+  $(document).ready(UTIL.loadEvents);
 })(jQuery); // Fully reference jQuery after this point.

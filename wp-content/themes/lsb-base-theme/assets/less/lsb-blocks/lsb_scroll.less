@@ -1,0 +1,30 @@
+.lsb_scroll {
+  flex-wrap: nowrap;
+  overflow: scroll;
+
+  .lsb_scroll__button {
+    top: 275px;
+    bottom: auto;
+  }
+}
+
+.lsb_scroll__button {
+  .btn;
+  .btn-primary;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  outline: none !important;
+  font-size: 2rem;
+  display: none;
+
+  &.is-left {
+    left: 0;
+    transform: translateX(-50%);
+  }
+
+  &.is-right {
+    right: 0;
+    transform: translateX(50%);
+  }
+}
