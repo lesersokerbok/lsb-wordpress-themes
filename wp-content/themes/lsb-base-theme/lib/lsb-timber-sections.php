@@ -38,10 +38,6 @@ class LSB_PostsSection extends LSB_Section {
 		}
 	}
 
-	public function subtitle() {
-		return parent::subtitle();
-	}
-
 	public function link() {
 		return $this->_filter_term() ? get_term_link($this->_filter_term()) : get_post_type_archive_link($this->_post_type());
 	}
@@ -71,6 +67,12 @@ class LSB_PostsSection extends LSB_Section {
 			}, 600);
 		}
 		return $this->_posts;
+	}
+
+	public function error() {
+		if(!$this->posts()) {
+			return __('Ingen innlegg/bøker å vise for instillingene.', 'lsb');
+		}
 	}
 
 	protected function _post_type() {
@@ -143,7 +145,9 @@ class LSB_FeedSection extends LSB_Section {
 	}
 
 	public function error() {
-		return $this->_error;
+		if(!$this->posts()) {
+			return $this->_error ?: __('Mest sannsynligvis er det ingen poster i feeden', 'lsb');
+		}
 	}
 
 	protected function _feed() {

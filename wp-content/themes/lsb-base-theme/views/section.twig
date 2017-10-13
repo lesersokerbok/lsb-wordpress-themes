@@ -1,3 +1,4 @@
+{% if not section.error or user %}
 <section class="lsb_section">
 	{% if section.title %}
 	<div class="lsb_section__header">
@@ -10,9 +11,19 @@
 		</h2>
 	</div>
 	{% endif %}
+	{% if not section.error %}
 	<div class="lsb_section__body {% block body_class %}{% endblock %}">
 		{% block body %}
-			Noe er galt
+			SECTION_BODY
 		{% endblock %}
 	</div>
+	{% else %}
+	<div class="lsb_section__body is-narrow">
+		<strong>{{ __('Noe er galt', 'lsb') }}</strong>
+		<br/>
+		{{ __('Denne beskjeden vises kun til deg som er innlogget, ikke vanlige besøkende.', 'lsb') }}
+		<pre>{{ section.error | print_r }}</pre>
+	</div>
+	{% endif %}
 </section>
+{% endif %}

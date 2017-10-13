@@ -1,0 +1,7 @@
+{% extends "section.twig" %}
+
+{% block body %}
+	{% for post in section.posts %}
+		{% include ['teaser-'~section.post_type~'.twig', 'teaser.twig'] with {'h_size': 'h3'} %}
+	{% endfor %}
+{% endblock %}
