@@ -1,5 +1,9 @@
-<section class="lsb_section is-hero">
-	<div class="lsb_section__body is-narrow">
-		<p class="h2">{{ section.text }}</p>
-	</div>
-</section>
+{% extends "section.twig" %}
+
+{% block body_class %}
+is-narrow
+{% endblock %}
+
+{% block body %}
+<p class="h2">{{ section.text }}</p>
+{% endblock %}
