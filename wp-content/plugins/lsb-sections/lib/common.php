@@ -3,54 +3,80 @@
 namespace LSB\Section;
 
 function create_layout_field($key, $name, $label) {
-
 	return array (
 		'key' => $key,
 		'name' => $name,
 		'label' => $label,
 		'display' => 'row',
-		'sub_fields' => array (
-			array (
-				'key' => "{$key}_title",
-				'label' => __('Overskrift', 'lsb_sections'),
-				'name' => 'lsb_title',
-				'type' => 'text',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'maxlength' => '',
-			),
-			array (
-				'key' => "{$key}_subtitle",
-				'label' => __('Underoverskrift', 'lsb_sections'),
-				'name' => 'lsb_subtitle',
-				'type' => 'text',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array (
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'maxlength' => '',
-			),
-		),
+		'sub_fields' => [],
 		'min' => '',
 		'max' => '',
+	);
+}
+
+function create_title_field($key) {
+	return array (
+		'key' => "{$key}_title",
+		'label' => __('Overskrift', 'lsb_sections'),
+		'name' => 'lsb_title',
+		'type' => 'text',
+		'instructions' => '',
+		'required' => 0,
+		'conditional_logic' => 0,
+		'wrapper' => array (
+			'width' => '',
+			'class' => '',
+			'id' => '',
+		),
+		'default_value' => '',
+		'placeholder' => '',
+		'prepend' => '',
+		'append' => '',
+		'maxlength' => '',
+	);
+}
+
+function create_subtitle_field($key) {
+	return array (
+		'key' => "{$key}_subtitle",
+		'label' => __('Underoverskrift', 'lsb_sections'),
+		'name' => 'lsb_subtitle',
+		'type' => 'text',
+		'instructions' => '',
+		'required' => 0,
+		'conditional_logic' => 0,
+		'wrapper' => array (
+			'width' => '',
+			'class' => '',
+			'id' => '',
+		),
+		'default_value' => '',
+		'placeholder' => '',
+		'prepend' => '',
+		'append' => '',
+		'maxlength' => '',
+	);
+}
+
+function create_text_field($key) {
+	return array (
+		'key' => "{$key}_text",
+		'label' => __('Tekst', 'lsb_sections'),
+		'name' => 'lsb_text',
+		'type' => 'text',
+		'instructions' => '',
+		'required' => 0,
+		'conditional_logic' => 0,
+		'wrapper' => array (
+			'width' => '',
+			'class' => '',
+			'id' => '',
+		),
+		'default_value' => '',
+		'placeholder' => '',
+		'prepend' => '',
+		'append' => '',
+		'maxlength' => '',
 	);
 }
 

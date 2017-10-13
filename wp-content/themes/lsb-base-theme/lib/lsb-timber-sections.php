@@ -8,11 +8,15 @@ class LSB_Section {
 	}
 
 	public function title() {
-		return $this->_acf_section['lsb_title'];
+		if( array_key_exists('lsb_title', $this->_acf_section)) {
+			return $this->_acf_section['lsb_title'];
+		}
 	}
 
 	public function subtitle() {
-		return $this->_acf_section['lsb_subtitle'];
+		if(array_key_exists('lsb_subtitle', $this->_acf_section)) {
+			return $this->_acf_section['lsb_subtitle'];
+		}
 	}
 }
 
@@ -163,6 +167,22 @@ class LSB_FeedSection extends LSB_Section {
 	}
 }
 
+class LSB_HeroSection extends LSB_Section {
+
+		protected $_text;
+
+		public function layout() {
+			return 'hero';
+		}
+
+		public function text() {
+			if(!$this->_text) {
+				$this->_text = $this->_acf_section['lsb_text'];
+			}
+			return $this->_text;
+		}
+	}
+
 class LSB_SectionsFactory {
 	public static function create_sections($object) {
 		$acf_sections = get_field('lsb_sections', $object) ? get_field('lsb_sections', $object) : array ();
@@ -176,6 +196,8 @@ class LSB_SectionsFactory {
 				return new LSB_MenuSection($acf_section);
 			} elseif($layout == 'lsb_feed') {
 				return new LSB_FeedSection($acf_section);
+			} elseif($layout == 'lsb_hero') {
+				return new LSB_HeroSection($acf_section);
 			} else {
 				return new LSB_Section($acf_section);
 			}

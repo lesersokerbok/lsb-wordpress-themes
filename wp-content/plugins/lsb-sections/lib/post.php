@@ -21,6 +21,8 @@ function create_post_layout($post_type) {
 	$filters = array_map( function($taxonomy) { return $taxonomy->label; }, get_object_taxonomies( $post_type->name, 'objects' ));
 
 	$layout_field = create_layout_field($layout_key, $layout_name, $layout_label);
+	$layout_field['sub_fields'][] = create_title_field($layout_key);
+	$layout_field['sub_fields'][] = create_subtitle_field($layout_key);
 	$layout_field['sub_fields'][] = create_select_field($layout_key.'_layout', 'lsb_section_layout', __('Layout', 'lsb_sections'), [ 'card'=> __('Cards', 'lsb_sections'), 'teaser' => __('Teasers', 'lsb_sections') ], $post_type->name == 'lsb_book' ? 'card' : 'teaser' );
 	$layout_field['sub_fields'][] = create_select_field($layout_key.'filter', 'lsb_filter', __('Filtrer', 'lsb_sections'), $filters);
 

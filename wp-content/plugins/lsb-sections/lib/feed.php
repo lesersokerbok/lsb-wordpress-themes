@@ -8,6 +8,8 @@ function create_feed_layout() {
 	$layout_label = __('RSS Strøm', 'lsb_sections');
 
 	$layout_field = create_layout_field($layout_key, $layout_name, $layout_label);
+	$layout_field['sub_fields'][] = create_title_field($layout_key);
+	$layout_field['sub_fields'][] = create_subtitle_field($layout_key);
 	$layout_field['sub_fields'][] = create_url_field($layout_key.'_url', 'lsb_feed_url', __('RSS URL', 'lsb_sections'));
 	$layout_field['sub_fields'][] = create_select_field($layout_key.'_layout', 'lsb_section_layout', __('Layout', 'lsb_sections'), [ 'card'=> __('Cards', 'lsb_sections'), 'teaser' => __('Teasers', 'lsb_sections') ], 'card' );
 

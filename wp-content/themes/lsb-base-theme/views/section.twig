@@ -1,10 +1,12 @@
 {% if section.posts | length > 0 %}
 <section class="lsb_section is-lsb_{{ section.layout }} is-scroll">
+	{% if section.title %}
 	<div class="lsb_section__header">
 		<h2 class="lsb_section__title">
 			<a href="{{ section.link }}"><span>{{ section.title }}</span> <span>{{ section.subtitle }}</span></a>
 		</h2>
 	</div>
+	{% endif %}
 	<div class="lsb_section__body">
 		{% for post in section.posts %}
 			{% include [''~section.layout~'-'~section.post_type~'.twig', ''~section.layout~'.twig'] with {'h_size': 'h3'} %}
@@ -19,11 +21,13 @@
 </section>
 {% elseif user %}
 <section class="lsb_section is-post">
+	{% if section.title %}
 	<div class="lsb_section__header">
 		<h2 class="lsb_section__title">
 			<a href="{{ section.link }}"><span>{{ section.title }}</span> <span>{{ section.subtitle }}</span></a>
 		</h2>
 	</div>
+	{% endif %}
 	<article class="lsb_teaser is-post">
 		<div class="lsb_teaser__body">
 			<p>

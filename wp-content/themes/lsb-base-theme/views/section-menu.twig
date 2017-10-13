@@ -6,7 +6,7 @@
 		</h2>
 	</div>
 	{% endif %}
-	<div class="lsb_section__body">
+	<div class="lsb_section__body {{ section.style == 'pills' ? 'is-narrow' : '' }}">
 	{% include ['menu.twig'] with { 'items': section.menu.items, 'style': section.style | default('pills') } %}
 	</div>
 </section>

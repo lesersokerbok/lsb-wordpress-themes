@@ -8,6 +8,8 @@ function create_menu_layout() {
 	$label = __('Meny(er)', 'lsb_sections');
 
 	$layout_field = create_layout_field($layout_key, 'lsb_menu_nav', __('Navigasjon', 'lsb_sections'));
+	$layout_field['sub_fields'][] = create_title_field($layout_key);
+	$layout_field['sub_fields'][] = create_subtitle_field($layout_key);
 	$layout_field['sub_fields'][] = create_select_field($layout_key.'_layout',
 	'lsb_section_layout',
 	 __('Layout', 'lsb_sections'),
