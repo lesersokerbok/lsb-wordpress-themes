@@ -1,0 +1,14 @@
+{% extends "section.twig" %}
+
+{% block body_class %}
+{{ section.oembeds | length < 2 ? 'is-narrow' : '' }}
+{% endblock %}
+
+{% block body %}
+	<div class="lsb_embeds-wrapper is-scroll-area">
+		{% for oembed in section.oembeds %}
+			{% include ['oembed.twig'] %}
+		{% endfor %}
+	</div>
+	{% include ['scroll-buttons.twig'] %}
+{% endblock %}

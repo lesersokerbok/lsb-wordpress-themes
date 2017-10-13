@@ -26,7 +26,7 @@
         function toggleScroll($scrollArea, $leftButton, $rightButton) {
           var scrollLeftPos = $scrollArea.scrollLeft();
           var scrollWidth = $scrollArea.get(0).scrollWidth;
-          var width = $scrollArea.width();
+          var width = $scrollArea.width() + 20; //account for negative margins and small errors
 
           if (scrollLeftPos > 0) {
             $leftButton.show();
@@ -44,13 +44,13 @@
         function doToggleScroll($scrollArea) {
           toggleScroll(
             $scrollArea,
-            $scrollArea.children(".lsb_scroll__button.is-left"),
-            $scrollArea.children(".lsb_scroll__button.is-right")
+            $scrollArea.siblings(".lsb_scroll-button.is-left"),
+            $scrollArea.siblings(".lsb_scroll-button.is-right")
           );
         }
 
-        $(".lsb_scroll__button").click(function() {
-          $scrollArea = $(this).parent(".lsb_scroll");
+        $(".lsb_scroll-button").click(function() {
+          $scrollArea = $(this).siblings(".is-scroll-area");
           $scrollStep = Math.min($scrollArea.width() * 0.8, 500);
           $scrollPrefix = $(this).data("scroll") === "left" ? "-=" : "+=";
           $scrollArea.animate(
@@ -62,16 +62,16 @@
         });
 
         $(window).resize(function() {
-          $(".lsb_scroll").each(function() {
+          $(".is-scroll-area").each(function() {
             doToggleScroll($(this));
           });
         });
 
-        $(".lsb_scroll").scroll(function() {
+        $(".is-scroll-area").scroll(function() {
           doToggleScroll($(this));
         });
 
-        $(".lsb_scroll").each(function() {
+        $(".is-scroll-area").each(function() {
           doToggleScroll($(this));
         });
       }

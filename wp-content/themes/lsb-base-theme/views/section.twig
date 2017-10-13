@@ -14,7 +14,7 @@
 	{% if not section.error %}
 	<div class="lsb_section__body {% block body_class %}{% endblock %}">
 		{% block body %}
-			SECTION_BODY
+			{{ section.layout }}
 		{% endblock %}
 	</div>
 	{% else %}

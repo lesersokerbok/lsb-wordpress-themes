@@ -1,26 +1,72 @@
-.lsb_embed {
-	position: relative;
-	padding-bottom: 56.25%;
-	height: 0;
-	overflow: hidden;
-	max-width: 100%;
-	height: auto;
-	background: @gray-lighter;
+.lsb_embeds-wrapper {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin: -1rem;
 
-	iframe,
-	.issuuembed {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100% !important;
-		height: 100% !important;
+  .lsb_embed {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    flex: 0 0 100%;
+    padding: 1rem;
+    text-align: center;
 
-		>div div:first-child {
-			height: 100% !important;
-		}
+    img {
+      max-height: 250px;
+    }
 
-		>div div:last-child {
-			display: none;
-		}
-	}
+    &:first-child:last-child {
+      width: 100%;
+      flex-basis: 100%;
+    }
+
+    @media (min-width: 768px) {
+      width: 49%;
+      flex-basis: 50%;
+
+      &:first-child:last-child {
+        width: 60%;
+        flex-basis: 60%;
+      }
+
+      &:first-child:nth-last-child(2),
+      &:last-child:nth-child(2) {
+        width: 49%;
+        flex-basis: 50%;
+      }
+    }
+
+    @media (min-width: 992px) {
+      width: 32%;
+      flex-basis: 33.3%;
+    }
+  }
+}
+
+.lsb_embed__inner {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+  background: @gray-lighter;
+
+  iframe,
+  .issuuembed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+
+    > div div:first-child {
+      height: 100% !important;
+    }
+
+    > div div:last-child {
+      display: none;
+    }
+  }
 }

@@ -6,8 +6,8 @@
 		<h1 class="lsb_entry__title">{{ post.title }}</h1>
 	</div>
 	<div class="lsb_entry__meta">
-		{% set taxonomies = [ 
-				{ key: 'lsb_tax_author', label: 'Forfatter' }, 
+		{% set taxonomies = [
+				{ key: 'lsb_tax_author', label: 'Forfatter' },
 				{ key: 'lsb_tax_illustrator', label: 'Illustratør' },
 				{ key: 'lsb_tax_topic', label: 'Tema' },
 				{ key: 'lsb_tax_audience', label: 'Tilpasset' },
@@ -47,8 +47,8 @@
 	{% endif %}
 
 	<div class="lsb_entry__meta">
-		{% set taxonomies = [ 
-				{ key: 'lsb_tax_genre', label: 'Sjanger' }, 
+		{% set taxonomies = [
+				{ key: 'lsb_tax_genre', label: 'Sjanger' },
 				{ key: 'lsb_tax_publisher', label: 'Forlag' },
 				{ key: 'lsb_tax_translator', label: 'Oversetter' },
 				{ key: 'lsb_tax_audience', label: 'Målgruppe' },
@@ -71,22 +71,15 @@
 	{% endif %}
 
 	{% if post.get_field('lsb_oembeds') %}
-		<section class="lsb_section is-embed is-scroll">
-			<div class="lsb_section__body">
-				{% for oembed in post.get_field('lsb_oembeds') %}
-					<article>
-						<div class="lsb_embed">
-							{{ oembed.lsb_oembed }}
-						</div>
-					</article>
-				{% endfor %}
+		<section class="lsb_section">
+			<div class="lsb_section__body {{ post.get_field('lsb_oembeds') | length < 2 ? 'is-narrow' : '' }}">
+				<div class="lsb_embeds-wrapper is-embed is-scroll-area">
+					{% for oembed in post.get_field('lsb_oembeds') %}
+						{% include ['oembed.twig'] with {'oembed': oembed.lsb_oembed } %}
+					{% endfor %}
+				</div>
+				{% include ['scroll-buttons.twig'] %}
 			</div>
-			<button aria-hidden="true" tabindex="-1" data-scroll="left" class="lsb_section__scroll is-left">
-				<span class="glyphicon glyphicon-chevron-left"></span>
-			</button>
-			<button aria-hidden="true" tabindex="-1" data-scroll="right" class="lsb_section__scroll is-right">
-				<span class="glyphicon glyphicon-chevron-right"></span>
-			</button>
 		</section>
 	{% endif %}
 

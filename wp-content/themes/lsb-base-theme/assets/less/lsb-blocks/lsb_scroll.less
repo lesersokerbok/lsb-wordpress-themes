@@ -1,14 +1,11 @@
-.lsb_scroll {
-  flex-wrap: nowrap;
-  overflow: scroll;
-
-  .lsb_scroll__button {
-    top: 275px;
-    bottom: auto;
+.is-scroll-area {
+  @media (min-width: 768px) {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
   }
 }
 
-.lsb_scroll__button {
+.lsb_scroll-button {
   .btn;
   .btn-primary;
   border-radius: 50%;
