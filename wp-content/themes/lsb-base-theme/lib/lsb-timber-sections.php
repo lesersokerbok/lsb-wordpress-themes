@@ -54,20 +54,19 @@ class LSB_PostsSection extends LSB_Section {
 			);
 
 			if($this->_filter_term()) {
-				$args['tax_query'][] = array (
+				$args['tax_query'] = array (
 					array (
 						'taxonomy' => $this->_filter_term()->taxonomy,
-						'field' => 'object',
-						'terms' => $this->_filter_term()
+						'field' => 'slug',
+						'terms' => array($this->_filter_term()->slug)
 					)
 				);
 			}
 
-			$query = new WP_Query( $args );
-			$hashed = md5(serialize($query));
+			$hashed = md5(serialize($args));
 
-			$this->_posts = TimberHelper::transient('lsb_section_'.$hashed, function()  use ($query) {
-				return Timber::get_posts($query, LSB_Post::class);
+			$this->_posts = TimberHelper::transient('lsb_section_'.$hashed, function() use ($args) {
+				return Timber::get_posts($args, LSB_Post::class);
 			}, 600);
 		}
 		return $this->_posts;
