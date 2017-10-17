@@ -58,11 +58,11 @@ function create_subtitle_field($key) {
 	);
 }
 
-function create_text_field($key) {
+function create_text_field($key, $name, $label) {
 	return array (
-		'key' => "{$key}_text",
-		'label' => __('Tekst', 'lsb_sections'),
-		'name' => 'lsb_text',
+		'key' => $key,
+		'label' => $label,
+		'name' => $name,
 		'type' => 'text',
 		'instructions' => '',
 		'required' => 0,
@@ -77,6 +77,19 @@ function create_text_field($key) {
 		'prepend' => '',
 		'append' => '',
 		'maxlength' => '',
+	);
+}
+
+
+function create_link_field($key, $name, $label) {
+	return array (
+		'key' => $key,
+		'label' => $label,
+		'name' => $name,
+		'type' => 'link',
+		'instructions' => '',
+		'required' => 0,
+		'conditional_logic' => 0,
 	);
 }
 

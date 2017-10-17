@@ -1,79 +1,92 @@
 .is-button {
-	.btn;
-	.btn-default;
-	text-decoration: none;
-	white-space: normal;
+  .btn;
+  .btn-default;
+  text-decoration: none;
+  white-space: normal;
+  padding: 0.5em 1em;
+
+  .is-lsb_icon {
+    margin: -0.5em 0;
+    max-height: 2em;
+    &:first-child {
+      margin-right: 0.5em;
+    }
+    &:last-child {
+      margin-left: 0.5em;
+    }
+  }
 }
 
 .has-right-arrow,
 .has-left-arrow {
-	transition: margin .2s ease-in-out;
+  transition: margin 0.2s ease-in-out;
 
-	&:after,
-	&:before {
-		.glyphicon;
-		display: inline-block;
-		color: @brand-primary;
-		font-size: .8em;
-		transition: margin .2s ease-in-out;
-	}
+  &:after,
+  &:before {
+    .glyphicon;
+    display: inline-block;
+    color: @brand-primary;
+    font-size: 0.8em;
+    transition: margin 0.2s ease-in-out;
+  }
 }
 
 .has-right-arrow {
-	&:after {
-		content: "\e080";
-		font-size: .8em;
-		margin-left: 0.5rem;
-	}
+  &:after {
+    content: "\e080";
+    font-size: 0.8em;
+    margin-left: 0.5rem;
+  }
 
-	&:hover {
-		margin-right: -0.5rem;
-	}
+  &:hover {
+    margin-right: -0.5rem;
+  }
 
-	&:hover:after {
-		margin-left: 1rem;
-	}
+  &:hover:after {
+    margin-left: 1rem;
+  }
 }
 
 .has-left-arrow {
-	&:before {
-		content: "\e079";
-		font-size: .8em;
-		margin-right: 0.5rem;
-	}
+  &:before {
+    content: "\e079";
+    font-size: 0.8em;
+    margin-right: 0.5rem;
+  }
 
-	&:hover {
-		margin-left: -0.5rem;
-	}
+  &:hover {
+    margin-left: -0.5rem;
+  }
 
-	&:hover:before {
-		margin-right: 1rem;
-	}
+  &:hover:before {
+    margin-right: 1rem;
+  }
 }
 
 .is-content {
+  > * {
+    max-width: 512px;
 
-	> * {
-		max-width: 512px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
+  a {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 
-	a {
-		text-decoration: underline;
-		&:hover {
-			text-decoration: none;
-		}
-	}
+  hr,
+  p,
+  ul {
+    margin-bottom: 1rem 0;
+  }
 
-	hr, p, ul {
-		margin-bottom: 1rem 0;
-	}
-
-	hr {
-		margin-left: 0;
-		max-width: 5rem;
-	}
+  hr {
+    margin-left: 0;
+    max-width: 5rem;
+  }
 }

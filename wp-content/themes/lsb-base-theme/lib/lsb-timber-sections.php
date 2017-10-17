@@ -181,12 +181,25 @@ class LSB_FeedSection extends LSB_Section {
 class LSB_HeroSection extends LSB_Section {
 
 	protected $_text;
+	protected $_action;
 
 	public function text() {
 		if(!$this->_text) {
 			$this->_text = $this->_acf_section['lsb_text'];
 		}
 		return $this->_text;
+	}
+
+	public function action() {
+		if(!$this->_action) {
+			if($this->_acf_section['lsb_action_link']) {
+				$this->_action = [
+					'text' => $this->_acf_section['lsb_action_text'],
+					'link' => $this->_acf_section['lsb_action_link']
+				];
+			}
+		}
+		return $this->_action;
 	}
 }
 
