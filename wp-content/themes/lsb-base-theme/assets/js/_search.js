@@ -1,4 +1,8 @@
 (function($) {
+  if (typeof algolia === "undefined") {
+    return;
+  }
+
   if (
     algolia.indices.searchable_posts === undefined &&
     jQuery(".admin-bar").length > 0
