@@ -32,16 +32,20 @@ class LSB_Term extends TimberTerm {
 				return strpos($key, 'lsb_translation') !== false;
 			});
 
-			$this->_translations = array_map(function($key) {
+			$translations = array_map(function($key) {
 				$translation = get_field_object($key, $this);
 				return [
 					'title' => $translation['value']['lsb_title'],
-					'translation' => $translation['value']['lsb_description'],
+					'description' => $translation['value']['lsb_description'],
 					'key' => $key,
 					'label' => $translation['label'],
 					'class' => $translation['wrapper']['class']
 				];
 			}, $field_keys);
+
+			$this->_translations = array_filter($translations, function($translation) {
+				return !!$translation['description'];
+			});
 		}
 		return $this->_translations;
 	}
