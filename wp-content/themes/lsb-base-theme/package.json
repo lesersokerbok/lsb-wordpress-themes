@@ -20,10 +20,12 @@
     "build": "npm-run-all --parallel build:*",
     "build:js": "uglifyjs $npm_package_config_boostrapJs ./assets/js/_*.js --output ./assets/js/bundle.min.js",
     "build:less": "lessc ./assets/less/_main.less ./assets/css/bundle.min.css --clean-css",
+    "build:less-admin": "lessc ./assets/less/_admin.less ./assets/css/admin.min.css --clean-css",
     "build:cacheBust": "hashsum ./assets/ -pr -f json > ./assets/manifest.json",
     "dev": "npm-run-all --parallel dev:*",
     "dev:js": "uglifyjs $npm_package_config_boostrapJs ./assets/js/_*.js --output ./assets/js/bundle.temp.js",
     "dev:less": "lessc ./assets/less/_main.less ./assets/css/bundle.temp.css --source-map",
+    "dev:less-admin": "lessc ./assets/less/_admin.less ./assets/css/admin.temp.css --source-map",
     "watch": "npm-run-all --parallel watch:*",
     "watch:js": "nodemon -e js -x \"npm run dev:js\"",
     "watch:less": "nodemon -e less -x \"npm run dev:less\""

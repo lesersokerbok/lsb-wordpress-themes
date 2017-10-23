@@ -5,8 +5,10 @@
 		{% endif %}
 		<h1 class="lsb_entry__title">{{ post.title }}</h1>
 	</div>
-	<div class="lsb_entry__body is-content">
-		{{ post.content }}
+	<div class="lsb_entry__body">
+		<div class="is-content">
+			{{ post.content }}
+		</div>
 	</div>
 
 	{% for section in post.sections %}

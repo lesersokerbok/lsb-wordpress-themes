@@ -1,11 +1,12 @@
-(function($) {
-  if (
-    algolia.indices.searchable_posts === undefined &&
-    jQuery(".admin-bar").length > 0
-  ) {
-    alert(
-      "It looks like you haven't indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it."
-    );
+(function ($) {
+  if (typeof algolia === "undefined") {
+    console.log("Algolia is not set up properly");
+    return;
+  }
+
+  if (algolia.indices.searchable_posts === undefined) {
+    console.log("It looks like you haven't indexed the searchable posts index.");
+    return;
   }
 
   if (algolia.indices.searchable_posts.name.includes("wp_lsb_")) {
@@ -99,7 +100,7 @@
       facetingAfterDistinct: true,
       attributesToSnippet: ["lsb_review:20", "lsb_quote:20"]
     },
-    searchFunction: function(helper) {
+    searchFunction: function (helper) {
       console.log("Search", search.helper.state.query);
       var savedPage = helper.state.page;
       var isSearchPage = $("body").hasClass("search");
@@ -126,7 +127,7 @@
   });
 
   // Search box widget
-  $("#algolia-form input").each(function() {
+  $("#algolia-form input").each(function () {
     search.addWidget(
       instantsearch.widgets.searchBox({
         container: this,
@@ -143,7 +144,7 @@
       container: "#algolia-hits",
       hitsPerPage: 30,
       transformData: {
-        item: function(book) {
+        item: function (book) {
           addRelevantMetaAndContent(book);
           return book;
         }
@@ -172,8 +173,8 @@
   // Start
   search.start();
 
-  $searchInput = $("#algolia-form").each(function() {
-    $(this).bind("submit", function(e) {
+  $searchInput = $("#algolia-form").each(function () {
+    $(this).bind("submit", function (e) {
       e.preventDefault();
       $(this)
         .find("input")

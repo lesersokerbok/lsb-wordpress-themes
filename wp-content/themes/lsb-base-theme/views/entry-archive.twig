@@ -8,8 +8,26 @@
 	{% if description %}
 		<div class="lsb_entry__body">
 			<div class="is-content">
-			{{ description }}
+				{{ description }}
 			</div>
+			{% if translations %}
+				<div class="lsb_tabs">
+					<div class="lsb_tabs__nav">
+						{% for translation in translations %}
+						<div class="lsb_tabs__nav-item" data-id="{{ translation.key }}">{{ translation.label }}</div>
+						{% endfor %}
+					</div>
+
+					{% for translation in translations %}
+					<div class="lsb_tabs__tab" data-id="{{ translation.key }}">
+						<div class="is-content {{ translation.class }}">
+							<h2 class="is-title">{{ translation.title }}</h2>
+							{{ translation.description }}
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			{% endif %}
 		</div>
 	{% endif %}
 

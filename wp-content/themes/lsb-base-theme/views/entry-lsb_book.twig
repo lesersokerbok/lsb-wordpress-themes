@@ -22,8 +22,10 @@
       {% endfor %}
 		</ul>
 	</div>
-	<div class="lsb_entry__body is-content">
-		{{ post.content }}
+	<div class="lsb_entry__body">
+		<div class="is-content">
+			{{ post.content }}
+		</div>
 	</div>
 
 	{% if post.terms(['lsb_tax_list', 'lsb_tax_series']) or post.lsb_support_cat %}

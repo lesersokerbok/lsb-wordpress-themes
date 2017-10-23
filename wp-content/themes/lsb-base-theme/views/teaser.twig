@@ -9,8 +9,10 @@
 			<a href="{{ post.link }}">{{ post.title }}</a>
 		</{{ h_size | default('h2') }}>
 	</div>
-	<div class="lsb_teaser__body is-content">
-		<p>{{ post.preview }}</p>
-		<a class="lsb_teaser__read-more" href="{{ post.link }}" aria-hidden="true" tabindex="-1">{{ post.read_more }}</a>
+	<div class="lsb_teaser__body">
+		<div class="is-content">
+			<p>{{ post.preview }}</p>
+			<a class="lsb_teaser__read-more" href="{{ post.link }}" aria-hidden="true" tabindex="-1">{{ post.read_more }}</a>
+		</div>
 	</div>
 </article>

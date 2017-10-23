@@ -8,32 +8,34 @@
 		<{{ h_size | default('h2') }} class="lsb_teaser__title">
 			{{ post.title }}
 		</{{ h_size | default('h2') }}>
-    <strong>{{ post.role_label }}</strong>
+		<strong>{{ post.role_label }}</strong>
 	</div>
-	<div class="lsb_teaser__body is-content">
-    {% if 'boardMember' == post.role %}
-      <p><a href="{{ post.company_url }}">{{ post.company }}</a></p>
-    {% else %}
-      <p class="lsb_contact-info">
-        {% if post.email %}
-				  {{ post.email }} <br/>
-        {% endif %}
-        {% if post.phone_numbers  %}
-          {{ post.phone_numbers | join(' / ') }}
-        {% endif %}
-      </p>
-    {% endif %}
-    
-    {% if post.bio %}
-      <p>{{ post.bio }}</p>
-    {% endif %}
+	<div class="lsb_teaser__body">
+		<div class="is-content">
+			{% if 'boardMember' == post.role %}
+				<p><a href="{{ post.company_url }}">{{ post.company }}</a></p>
+			{% else %}
+				<p class="lsb_contact-info">
+					{% if post.email %}
+						{{ post.email }} <br/>
+					{% endif %}
+					{% if post.phone_numbers  %}
+						{{ post.phone_numbers | join(' / ') }}
+					{% endif %}
+				</p>
+			{% endif %}
 
-    {% if post.get_field('links') %}
-    <ul>
-      {% for link in post.get_field('links') %}
-        <li><a href="{{ link.url }}">{{ link.tag }}</a></li>
-      {% endfor %}
-    <ul>
-    {% endif %}
+			{% if post.bio %}
+				<p>{{ post.bio }}</p>
+			{% endif %}
+
+			{% if post.get_field('links') %}
+			<ul>
+				{% for link in post.get_field('links') %}
+					<li><a href="{{ link.url }}">{{ link.tag }}</a></li>
+				{% endfor %}
+			<ul>
+			{% endif %}
+		</div>
 	</div>
 </article>

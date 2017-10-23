@@ -48,6 +48,38 @@ function roots_scripts() {
 }
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);
 
+function roots_admin_scripts() {
+
+		/**
+		 * The build task in Grunt renames production assets with a hash
+		 * Read the asset names from assets-manifest.json
+		 */
+
+		// Development assets
+		$assets = array(
+			'css'       => 'assets/css/admin.temp.css',
+			);
+
+		$version = array(
+			'css'				=> time()
+		);
+
+		if ('development' !== WP_ENV) {
+			// Production assets
+			$assets['css'] = 'assets/css/admin.min.css';
+
+			$manifest_json = file_get_contents(get_template_directory() . '/assets/manifest.json');
+			$manifest     = json_decode($manifest_json, true);
+
+			$version['css'] = $manifest[$assets['css']];
+		}
+
+		$assets['css'] = get_template_directory_uri() . '/' . $assets['css'];
+
+		wp_enqueue_style('lsb_css', $assets['css'], array(), $version['css'], 'all');
+	}
+	add_action('admin_enqueue_scripts', 'roots_admin_scripts', 100);
+
 /**
  * Google Analytics snippet from HTML5 Boilerplate
  */
