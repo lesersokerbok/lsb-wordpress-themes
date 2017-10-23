@@ -12,5 +12,7 @@ namespace LSB\Translations;
 include('lib/common.php');
 include('lib/group.php');
 include('lib/init.php');
+include('lib/rule-match.php');
 
 add_action( 'acf/init', __NAMESPACE__ . '\\init' );
+add_filter( 'acf/location/rule_match/lsb_tax_audience', __NAMESPACE__ . '\\location_rules_match_lsb_tax_audience', 10, 3);

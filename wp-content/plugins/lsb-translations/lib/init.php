@@ -26,13 +26,20 @@ function init() {
 		'location' => array (
 			array (
 				array (
+					'param' => 'lsb_tax_audience',
+					'operator' => '==',
+					'value' => 'ny-i-norge',
+				),
+			),
+			array (
+				array (
 					'param' => 'taxonomy',
 					'operator' => '==',
 					'value' => 'lsb_tax_lsb_cat',
 				),
 			),
 		),
-		'menu_order' => 0,
+		'menu_order' => 10,
 		'position' => 'normal',
 		'style' => 'default',
 		'label_placement' => 'top',
