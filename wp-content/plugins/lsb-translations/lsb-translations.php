@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: LSB: Oversettelser
- * Description: Oversettelse av Boksøks hovedkategorier
+ * Description: Oversettelse av Boksøks hovedkategorier (og ny-i-norge målgruppen).
  * Version: 1.0.0
  * Author: Lilly Labs
  * Author URI: http://lillylabs.no
