@@ -9,7 +9,7 @@
     return;
   }
 
-  if (algolia.indices.searchable_posts.name.includes("wp_lsb_")) {
+  if (algolia.indices.searchable_posts.name.indexOf("wp_lsb_") > -1) {
     console.log("Do not instasearch");
     return;
   }
