@@ -101,7 +101,6 @@
       attributesToSnippet: ["lsb_review:20", "lsb_quote:20"]
     },
     searchFunction: function (helper) {
-      console.log("Search", search.helper.state.query);
       var savedPage = helper.state.page;
       var isSearchPage = $("body").hasClass("search");
       var mainSections = $("main");
