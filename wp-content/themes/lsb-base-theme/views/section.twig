@@ -4,7 +4,7 @@
 	<div class="lsb_section__header">
 		<h2 class="lsb_section__title">
 		{% if section.link %}
-			<a href="{{ section.link }}"><span>{{ section.title }}</span> <span>{{ section.subtitle }}</span></a>
+			<a href="{{ section.link.url }}" target="{{ section.link.target }}"><span>{{ section.title }}</span> <span>{{ section.subtitle }}</span></a>
 		{% else %}
 			<span>{{ section.title }}</span> <span>{{ section.subtitle }}</span>
 		{% endif %}
