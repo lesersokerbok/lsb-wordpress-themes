@@ -10,6 +10,7 @@ function create_oembeds_layout() {
   $layout_field = create_layout_field($layout_key, $layout_name, $layout_label);
   $layout_field['sub_fields'][] = create_title_field($layout_key);
   $layout_field['sub_fields'][] = create_subtitle_field($layout_key);
+  $layout_field['sub_fields'][] = create_link_field($layout_key.'_title_link', 'lsb_title_link', __('Overskriftslenke', 'lsb_sections'));
 
   $layout_field['sub_fields'][] = array (
     'key' => $layout_key.'_items',
