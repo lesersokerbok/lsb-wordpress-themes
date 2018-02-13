@@ -19,6 +19,15 @@ class LSB_Section {
 		}
 	}
 
+	public function link() {
+		if(is_array($this->_acf_section['lsb_title_link'])) {
+			$link = [];
+			$link["target"] = $this->_acf_section['lsb_title_link']["target"] ? $this->_acf_section['lsb_title_link']["target"] :  "_self";
+			$link["url"] = $this->_acf_section['lsb_title_link']["url"];
+			return $link;
+		}
+	}
+
 	public function layout() {
 		return str_replace('lsb_', '', $this->_acf_section['acf_fc_layout']);
 	}
@@ -43,7 +52,10 @@ class LSB_PostsSection extends LSB_Section {
 	}
 
 	public function link() {
-		return $this->_filter_term() ? get_term_link($this->_filter_term()) : get_post_type_archive_link($this->_post_type());
+		$link = [];
+		$link["url"] = $this->_filter_term() ? get_term_link($this->_filter_term()) : get_post_type_archive_link($this->_post_type());
+		$link["target"] = "_self";
+		return $link;
 	}
 
 	public function posts() {
@@ -137,11 +149,17 @@ class LSB_FeedSection extends LSB_Section {
 		if(!$this->_feed()) {
 			return;
 		}
+
+		$link = [];
+		$link["target"] = "_blank";
+
 		if($this->_acf_section['lsb_feed_url'] === 'https://boksok.no/bok/') {
-			return 'https://boksok.no';
+			$link["url"] = 'https://boksok.no';
 		} else {
-			return $this->_acf_section['lsb_feed_url'];
+			$link["url"] =  $this->_acf_section['lsb_feed_url'];
 		}
+
+		return $link;
 	}
 
 	public function title() {
@@ -208,7 +226,7 @@ class LSB_OembedsSection extends LSB_Section {
 	protected $_oembeds;
 
 	public function oembeds() {
-		if(!$this->_oembeds) {
+		if(!$this->_oembeds && $this->_acf_section['lsb_items']) {
 			$this->_oembeds = array_map(function($item) {
 				return $item['lsb_oembed'];
 			}, $this->_acf_section['lsb_items']);
