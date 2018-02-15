@@ -43,6 +43,10 @@ class LSB_PostsSection extends LSB_Section {
 		return $this->_acf_section['lsb_section_layout'];
 	}
 
+	public function post_type() {
+		return get_post_type_object($this->_post_type())->labels->name;
+	}
+
 	public function title() {
 		if(parent::title()) {
 			return parent::title();
@@ -134,6 +138,10 @@ class LSB_FeedSection extends LSB_Section {
 		return $this->_acf_section['lsb_section_layout'];
 	}
 
+	public function post_type() {
+		return strpos($this->link()["url"], 'boksok') !== false ? "lsb_book" : "feed-item";
+	}
+
 	public function posts() {
 		if(!$this->_feed()) {
 			return;
@@ -149,19 +157,14 @@ class LSB_FeedSection extends LSB_Section {
 
 	public function link() {
 		if(!$this->_feed()) {
-			return;
+			return parent::link();
 		}
 
 		$link = [];
-		$link["target"] = "_blank";
+		$link["url"] = $this->_feed()->get_link();
+		$link["tagert"] = "_blank";
 
-		if($this->_acf_section['lsb_feed_url'] === 'https://boksok.no/bok/') {
-			$link["url"] = 'https://boksok.no';
-		} else {
-			$link["url"] =  $this->_acf_section['lsb_feed_url'];
-		}
-
-		return $link;
+		return parent::link() ?: $link;
 	}
 
 	public function title() {

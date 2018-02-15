@@ -9,6 +9,10 @@ class LSB_FeedItem {
 		$this->_item = $item;
 	}
 
+	public function post_type() {
+		return strpos($this->link()["url"], 'boksok') !== false ? "lsb_book" : "feed-item";
+	}
+
 	public function title() {
 		return $this->_item->get_title();
 	}
