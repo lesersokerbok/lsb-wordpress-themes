@@ -1,7 +1,11 @@
 <article class="lsb_entry is-{{ post.post_type }}" id="post-{{post.ID}}">
 	<div class="lsb_entry__header">
-		{% if post.thumbnail.src %}
-			<img src="{{ post.thumbnail.src | resize(384) }}" class="lsb_entry__thumbail" aria-hidden="true" alt="Image for {{ post.title }}" />
+		{% if post.thumbnail.src and post.lsb_look_inside  %}
+			<a href="{{  post.lsb_look_inside }}" target="_blank">
+				<img src="{{ post.thumbnail.src | resize(384) }}" class="lsb_entry__thumbail" aria-hidden="true" alt="Image for {{ post.title }}" />
+			</a>
+		{% elseif post.thumbnail.src %}
+				<img src="{{ post.thumbnail.src | resize(384) }}" class="lsb_entry__thumbail" aria-hidden="true" alt="Image for {{ post.title }}" />
 		{% endif %}
 		<h1 class="lsb_entry__title">{{ post.title }}</h1>
 	</div>

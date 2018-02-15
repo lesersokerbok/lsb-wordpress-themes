@@ -16,15 +16,21 @@ class LSB_Post extends TimberPost {
 		}
 
 		if( !$this->_content ) {
-			$lsb_review = $lsb_pre_reading = get_field_object( 'lsb_review', $this );
-			$lsb_quote = $lsb_pre_reading = get_field_object( 'lsb_quote', $this );
+			$lsb_review = get_field_object( 'lsb_review', $this );
+			$lsb_quote = get_field_object( 'lsb_quote', $this );
+			$lsb_look_inside = get_field_object( 'lsb_look_inside', $this );
 
 			$this->_content = "";
 			if( !empty($lsb_review['value']) ) {
 				$this->_content .= sprintf("<h2>%s</h2>%s", $lsb_review['label'], $lsb_review['value']);
 			}
+
 			if( !empty($lsb_quote['value']) ) {
 				$this->_content .= sprintf("<h2>%s</h2>%s", $lsb_quote['label'], $lsb_quote['value']);
+			}
+
+			if( !empty($lsb_look_inside['value']) ) {
+				$this->_content .= sprintf("<p><a href='%s'>%s</a></p>", $lsb_look_inside['value'], $lsb_look_inside['label']);
 			}
 		}
 
