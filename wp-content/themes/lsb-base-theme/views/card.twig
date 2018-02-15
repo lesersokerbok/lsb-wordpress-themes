@@ -11,9 +11,12 @@
 			</div>
 		{% endif %}
 	</a>
+
+	{% if not (post.title == post.preview) %}
 	<{{ h_size | default('h2') }} class="lsb_card__title">
 		<a href="{{ post.link }}">{{ post.title }}</a>
 	</{{ h_size | default('h2') }}>
+	{% endif %}
 
 	{% if post.terms('lsb_tax_author') %}
 	<div class="lsb_card__body">

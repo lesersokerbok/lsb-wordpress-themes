@@ -1,7 +1,7 @@
 {% extends "section.twig" %}
 
 {% block body %}
-	<div class="lsb_card-wrapper is-scroll-area">
+	<div class="lsb_card-wrapper is-{{ section.post_type }} is-scroll-area">
 		{% for post in section.posts %}
 			{% include ['card-'~section.post_type~'.twig', 'card.twig'] with {'h_size': 'h3'} %}
 		{% endfor %}
