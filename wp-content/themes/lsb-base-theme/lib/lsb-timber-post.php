@@ -73,6 +73,7 @@ class LSB_Post extends TimberPost {
 		if( !$this->_sections ) {
 			$this->_sections = LSB_SectionsFactory::create_sections($this);
 		}
-		return $this->_sections;
+		global $page;
+		return $page > 1 ? [] : $this->_sections;
 	}
 }
