@@ -16,7 +16,7 @@ class LSBBreadcrumbs {
 	public function __construct( $menu_location = '' ) {
 
     $this->_menu_location = $menu_location;
-		$menu_locations = get_nav_menu_locations();	
+		$menu_locations = get_nav_menu_locations();
 
 		if ( isset( $menu_locations[ $this->_menu_location ] ) ) {
 			$this->_menu = wp_get_nav_menu_object( $menu_locations[ $this->_menu_location ] );
@@ -25,7 +25,7 @@ class LSBBreadcrumbs {
 
 		// Convinience
 		$this->_blog_home_key = (int) get_option( 'page_for_posts' );
-		$this->_front_page_key = (int) get_option( 'page_on_front' );		
+		$this->_front_page_key = (int) get_option( 'page_on_front' );
 
 		if($filter = get_lsb_cat_filter_term() ) {
 			$this->_filter = $filter;
@@ -42,33 +42,33 @@ class LSBBreadcrumbs {
 
 		if( is_home() ) {
 
-			$this->_trail = array( 
-				$this->_blog_home_key 
+			$this->_trail = array(
+				$this->_blog_home_key
 			);
 
 		} else if( is_page() ) {
 
-			$this->_trail = array_merge( 
-				[ get_the_ID() ], 
-				get_post_ancestors( get_the_ID() ) 
+			$this->_trail = array_merge(
+				[ get_the_ID() ],
+				get_post_ancestors( get_the_ID() )
 			);
 
 		} else if ( is_singular( 'post' ) ) {
-			
-			$this->_trail = array( 
+
+			$this->_trail = array(
 				get_the_ID(),
 				$this->_blog_home_key
 			);
 
 		} else if ( is_singular( 'lsb_book' ) ) {
-			
-			$this->_trail = array( 
+
+			$this->_trail = array(
 				get_the_ID(),
 				$this->_filter ? $this->_filter->term_id : $this->_front_page_key
 			);
 
 		} else if( is_singular() ) { // custom post type single
-			
+
 			$this->_trail = array(
 				get_the_ID(),
 				get_post_type()
@@ -76,20 +76,20 @@ class LSBBreadcrumbs {
 
 		} else if( is_category() || is_tag() ) {
 
-			$this->_trail = array( 
-				get_queried_object_id(), 
+			$this->_trail = array(
+				get_queried_object_id(),
 				$this->_blog_home_key
 			);
 
 		} else if( is_tax('lsb_tax_lsb_cat') ) {
 
-			$this->_trail = array( 
+			$this->_trail = array(
 				get_queried_object_id()
 			);
 
 		} else if( is_tax() && get_post_type() === 'lsb_book' ) {
-			
-			$this->_trail = array( 
+
+			$this->_trail = array(
 				get_queried_object_id(),
 				$this->_filter ? $this->_filter->term_id : $this->_front_page_key
 			);
@@ -105,7 +105,7 @@ class LSBBreadcrumbs {
 	}
 
 	private function filter_menu_items( $current_filter ) {
-		
+
 		if( !$current_filter ) {
 			return;
 		}
@@ -115,7 +115,7 @@ class LSBBreadcrumbs {
 		$keys = [];
 
 		foreach ( $filters as $filter ) {
-			$menu_item = false; 
+			$menu_item = false;
 
 			if( $filter->term_id !== $current_filter ) {
 				$menu_item = LSBBreadcrumbs::get_menu_item_object( $filter->term_id, $this->_menu_items );
@@ -125,7 +125,7 @@ class LSBBreadcrumbs {
 				$keys[] = $menu_item->ID;
 			}
 		}
-		
+
 		// Removed all menu items that also are filter terms (exept current filter)
 		while( $keys = LSBBreadcrumbs::keys_with_parent( $keys, $this->_menu_items ) ) {
 			$this->_menu_items = array_filter($this->_menu_items, function($menu_item) use ($keys) {
@@ -156,6 +156,11 @@ class LSBBreadcrumbs {
 			array_unshift($trail, LSBBreadcrumbs::custom_paged_item());
 		}
 
+		global $page;
+		if( $page > 1 ) {
+			array_unshift($trail, LSBBreadcrumbs::custom_page_item());
+		}
+
 		if( !empty( $trail)) {
 			$trail[0]->active = true;
 		}
@@ -164,7 +169,7 @@ class LSBBreadcrumbs {
 	}
 
 	private function custom_menu_item( $key ) {
-		
+
 		if( !is_int($key) ) {
 			return LSBBreadcrumbs::custom_post_type_item( $key );
 		} else if ( $key === $this->_blog_home_key || $key === $this->_front_page_key ) {
@@ -181,6 +186,13 @@ class LSBBreadcrumbs {
 	static private function custom_paged_item( ) {
 		return (object) [
 			'title' => sprintf(__('Side %s', 'lsb'), get_query_var('paged'))
+		];
+	}
+
+	static private function custom_page_item( ) {
+		global $page;
+		return (object) [
+			'title' => sprintf(__('Side %s', 'lsb'), $page)
 		];
 	}
 

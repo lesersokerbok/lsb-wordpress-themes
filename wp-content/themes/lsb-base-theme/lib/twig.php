@@ -15,14 +15,17 @@ function lsb_add_to_context( $data ){
 		$data['breadcrumbs'] = new LSBBreadcrumbs('site_map');
 	}
 
+	global $page;
 	if(
 		count($data['breadcrumbs']->items) == 1 ||
-		is_paged() && count($data['breadcrumbs']->items) == 2
+		is_paged() && count($data['breadcrumbs']->items) == 2 ||
+		$page > 1 && count($data['breadcrumbs']->items) == 2
 	) {
 		$data['is_root'] = true;
 		if (has_nav_menu('site_map')) {
 			$site_map = new TimberMenu('site_map');
-			$data['is_section_home'] = array_reduce(
+
+			$data['is_section_home'] = $page > 1 ? false : array_reduce(
 				$site_map->items,
 				function($carry, $item) {
 					return $carry || $item->current;

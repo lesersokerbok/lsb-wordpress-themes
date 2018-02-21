@@ -10,6 +10,11 @@
 	<div class="lsb_entry__body">
 		<div class="is-content">
 			{{ post.paged_content }}
+			{% if post.pagination.next %}
+				<hr/>
+				<a class="lsb_entry__read-more" href="{{ post.pagination.next.link }}">
+					{{ __('Les mer om %s', 'lsb') | format(post.title) }}</a>
+			{% endif %}
 		</div>
 	</div>
 
