@@ -8,6 +8,7 @@ $includes = array(
 	'lib/init.php',           // Initial theme setup and constants
 
 	'lib/lsb_pagination.php', // Changes to offsets and pagination
+	'lib/lsb_wysiwyg.php',    // Changes to offsets and pagination
 	'lib/lsb-breadcrumbs.php',// Breadcrumbs logic
 	'lib/lsb-cat-filter.php', // Filter on selected category
 	'lib/lsb-mime-types.php', // Custom upload mime types
