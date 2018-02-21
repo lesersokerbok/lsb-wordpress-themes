@@ -1,9 +1,7 @@
-<article class="lsb_entry is-archive">
-	{% if not hide_title %}
+<article class="lsb_entry is-archive {{ is_root ? 'is-root' : '' }}">
 	<div class="lsb_entry__header">
 		<h1 class="lsb_entry__title">{{ title }}</h1>
 	</div>
-	{% endif %}
 
 	{% if description %}
 		<div class="lsb_entry__body">

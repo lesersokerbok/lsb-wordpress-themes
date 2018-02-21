@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 add_filter('timber/context', 'lsb_add_to_context');
 function lsb_add_to_context( $data ){
@@ -14,7 +14,27 @@ function lsb_add_to_context( $data ){
 	if (has_nav_menu('site_map')) {
 		$data['breadcrumbs'] = new LSBBreadcrumbs('site_map');
 	}
-	
+
+	if(
+		count($data['breadcrumbs']->items) == 1 ||
+		is_paged() && count($data['breadcrumbs']->items) == 2
+	) {
+		$data['is_root'] = true;
+		if (has_nav_menu('site_map')) {
+			$site_map = new TimberMenu('site_map');
+			$data['is_section_home'] = array_reduce(
+				$site_map->items,
+				function($carry, $item) {
+					return $carry || $item->current;
+				} ,
+				false);
+		}
+	}
+
+
+
+
+
 	$data['is_front_page'] = is_front_page();
 	return $data;
 }

@@ -54,11 +54,4 @@ if ( is_home() ) {
 	}
 }
 
-if(
-	count($context['breadcrumbs']->items) == 1 ||
-	is_paged() && count($context['breadcrumbs']->items) == 2
-) {
-	$context['hide_title'] = true;
-}
-
 Timber::render( $templates, $context );

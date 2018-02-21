@@ -91,11 +91,30 @@
       text-transform: uppercase;
       font-size: 100%;
     }
+  }
 
-    .lsb_entry__body a:first-child:last-child {
-      .has-right-arrow;
-      margin: 0.5em 0;
-      display: inline-block;
+  &.is-root {
+    .lsb_entry__header {
+      display: none;
+    }
+
+    .lsb_entry__body {
+      p:first-child {
+        margin-top: 3rem;
+      }
+    }
+  }
+
+  &.is-section-home {
+    .lsb_entry__body {
+      p:first-child {
+        .h2;
+      }
+
+      p:first-child + p a:first-child:last-child {
+        .is-button;
+        margin: 1.5rem 0;
+      }
     }
   }
 }
