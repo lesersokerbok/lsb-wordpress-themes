@@ -12,6 +12,9 @@ function lsb_add_to_context( $data ){
 		$data['main_menu'] = new TimberMenu('main_navigation');
 	}
 	if (has_nav_menu('site_map')) {
+		$data['site_map'] = new TimberMenu('site_map');
+	}
+	if (has_nav_menu('site_map')) {
 		$data['breadcrumbs'] = new LSBBreadcrumbs('site_map');
 	}
 
@@ -23,10 +26,8 @@ function lsb_add_to_context( $data ){
 	) {
 		$data['is_root'] = true;
 		if (has_nav_menu('site_map')) {
-			$site_map = new TimberMenu('site_map');
-
 			$data['is_section_home'] = $page > 1 ? false : array_reduce(
-				$site_map->items,
+				$data['site_map']->items,
 				function($carry, $item) {
 					return $carry || $item->current;
 				} ,

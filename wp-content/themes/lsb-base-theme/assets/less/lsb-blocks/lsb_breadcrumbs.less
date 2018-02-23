@@ -4,7 +4,8 @@
 }
 
 .lsb_breadcrumbs__item {
-	text-decoration: none;
+	text-decoration: none !important;
+	display: inline;
 
 	span {
 		display: inline-block;
@@ -13,24 +14,24 @@
   	}
 	}
 
-	&:focus {
-		text-decoration: none;
+	&:not(.is-active) {
+		&:not(:first-child) {
+
+			color: @text-muted;
+
+			span {
+				text-decoration: underline;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
 	}
 
 	&:before {
 		color: @text-muted;
 		content: "/ ";
-	}
-
-	&:not(.is-active) {
-		span {
-			transition: border .2s ease-in-out;
-			border-bottom: 2px solid transparent;
-
-			&:hover {
-				border-color: currentColor;
-			}
-		}
 	}
 
 	&.is-active {
@@ -43,6 +44,12 @@
 
 		&:before {
 			content: "";
+		}
+
+		&:not(.is-active) {
+			span:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 }

@@ -1,9 +1,16 @@
 <nav class="lsb_breadcrumbs">
 	{% for item in items %}
 		{% if item.active %}
-			<span class="lsb_breadcrumbs__item is-active"><span>{{ item.title }}</span></span>
+			<div class="lsb_breadcrumbs__item is-active"><span>{{ item.title }}</span></div>
 		{% else %}
-			<a href="{{ item.url }}" class="lsb_breadcrumbs__item"><span>{{ item.title }}</span></a>
+			<a href="{{ item.url }}" class="lsb_breadcrumbs__item {{ item.active ? 'is-active' : '' }}"><span>{{ item.title }}</span></a>
+		{% endif %}
+	{% endfor %}
+	{% for item in site_map.items %}
+		{% if item.current and item.children and not post.pagination.prev %}
+			{% for item in item.children %}
+				<a href="{{ item.url }}" class="lsb_breadcrumbs__item is-menu"><span>{{ item.title }}</span></a>
+			{% endfor %}
 		{% endif %}
 	{% endfor %}
 </nav>
