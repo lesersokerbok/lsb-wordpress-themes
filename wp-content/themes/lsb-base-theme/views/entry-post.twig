@@ -1,4 +1,4 @@
-<article class="lsb_entry is-{{ post.post_type }}" id="post-{{post.ID}}">
+<article class="lsb_entry is-{{ post.post_type }} is-{{ post.format }}" id="post-{{post.ID}}">
 	<div class="lsb_entry__header">
 		{% if post.thumbnail.src %}
 			<img src="{{ post.thumbnail.src | resize(384) }}" class="lsb_entry__thumbail" aria-hidden="true" alt="Image for {{ post.title }}" />

@@ -1,18 +1,25 @@
-<article class="lsb_teaser is-{{ post.post_type }}" id="post-{{post.ID}}">
+<article class="lsb_teaser is-{{ post.post_type }} is-{{ post.format }}" id="post-{{post.ID}}">
 	<div class="lsb_teaser__header">
 		{% if post.thumbnail.src %}
-			<a href="{{ post.link }}" target="{{ section.link.target }}" class="lsb_teaser__thumbail" aria-hidden="true" tabindex="-1">
+			<a href="{{ post.link }}" target="{{ section.link.target | default(post.target) }}" class="lsb_teaser__thumbail" aria-hidden="true" tabindex="-1">
 				<img src="{{ post.thumbnail.src | resize(false, 200) }}" alt="Image for {{ post.title }}" />
 			</a>
 		{% endif %}
 		<{{ h_size | default('h2') }} class="lsb_teaser__title">
-			<a href="{{ post.link }}" target="{{ section.link.target }}">{{ post.title }}</a>
+			<a href="{{ post.link }}" target="{{ section.link.target | default(post.target) }}">{{ post.title }}</a>
 		</{{ h_size | default('h2') }}>
 	</div>
 	<div class="lsb_teaser__body">
 		<div class="is-content">
-			<p>{{ post.preview }}</p>
-			<a class="lsb_teaser__read-more" href="{{ post.link }}" target="{{ section.link.target }}" aria-hidden="true" tabindex="-1">{{ post.read_more }}</a>
+			{% if post.read_more %}
+				<p>{{ post.preview }}</p>
+			{% else %}
+				{{ post.content }}
+			{% endif %}
+
+			{% if post.read_more %}
+				<a class="lsb_teaser__read-more" href="{{ post.link }}" target="{{ section.link.target }}" aria-hidden="true" tabindex="-1">{{ post.read_more }}</a>
+			{% endif %}
 		</div>
 	</div>
 </article>

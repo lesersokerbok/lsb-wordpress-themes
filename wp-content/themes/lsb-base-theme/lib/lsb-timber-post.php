@@ -6,7 +6,32 @@ class LSB_Post extends TimberPost {
 	var $_sections;
 
 	public function preview() {
-		return parent::preview()->length(50)->read_more('');
+		return parent::preview()->length(50)->force(false)->strip(true)->read_more('');
+	}
+
+	public function link() {
+		if( !$this->_link ) {
+			if($this->format === 'link') {
+				$url = get_url_in_content( $this->content );
+				$this->_link = $url ? $url : parent::link();
+			} else {
+				$this->_link = parent::link();
+			}
+		}
+
+		return $this->_link;
+	}
+
+	public function target() {
+		if( !$this->_target ) {
+			if($this->format === 'link') {
+				if ( preg_match( '/<a\s[^>]*?target=([\'"])(.+?)\1/is', $this->content, $matches ) ) {
+					$this->_target = $matches[2];
+				}
+			}
+		}
+
+		return $this->_target;
 	}
 
 	public function content($page = 0, $len = -1) {
@@ -57,6 +82,10 @@ class LSB_Post extends TimberPost {
 	}
 
 	public function read_more() {
+		if($this->format === 'link') {
+			return null;
+		}
+
 		if( !$this->_read_more ) {
 			$post_type_obj = get_post_type_object( $this->post_type );
 			if(isset($post_type_obj->labels->lsb_read_more)) {
