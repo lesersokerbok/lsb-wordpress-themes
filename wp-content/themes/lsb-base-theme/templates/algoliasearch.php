@@ -28,11 +28,37 @@
 			</a>
 		</div>
 		<header>
-			<h2 class="entry-title"><a href="{{ data.permalink }}">{{{ data._highlightResult.post_title.value }}}</a></h2>
+			<# if (data._highlightResult.post_title) { #>
+				<h2 class="entry-title"><a href="{{ data.permalink }}">{{{ data._highlightResult.post_title.value }}}</a></h2>
+			<# } #>
+
+			<# if (data._highlightResult.lsb_isbn && data._highlightResult.lsb_isbn.matchLevel !== "none") { #>
+				<p class="meta">
+					<?php esc_html_e( 'ISBN:', 'lsb' ); ?>
+					{{{ data._highlightResult.lsb_isbn.value }}}
+				</p>
+			<# } #>
+
+			<# if (data._highlightResult.lsb_published_year && data._highlightResult.lsb_published_year.matchLevel !== "none") { #>
+				<p class="meta">
+					<?php esc_html_e( 'Utgivelsesår:', 'lsb' ); ?>
+					{{{ data._highlightResult.lsb_published_year.value }}}
+				</p>
+			<# } #>
+
 			<# if (data.relevant_meta.creators.length > 0 ) { #>
 				<p class="meta">
 					<# for (var index in data.relevant_meta.creators) { #>
 						<a href="{{ data.relevant_meta.creators[index].permalink }}">{{{ data.relevant_meta.creators[index].value }}}</a>
+					<# } #>
+				</p>
+			<# } #>
+
+			<# if (data.relevant_meta.publishers.length > 0 ) { #>
+				<p class="meta">
+					<?php esc_html_e( 'Forlag:', 'lsb' ); ?>
+					<# for (var index in data.relevant_meta.publishers) { #>
+						<a href="{{ data.relevant_meta.publishers[index].permalink }}">{{{ data.relevant_meta.publishers[index].value }}}</a>
 					<# } #>
 				</p>
 			<# } #>
@@ -60,6 +86,33 @@
 					<?php esc_html_e( 'Passer for:', 'lsb' ); ?>
 					<# for (var index in data.relevant_meta.audience) { #>
 						<a href="{{ data.relevant_meta.audience[index].permalink }}">{{{ data.relevant_meta.audience[index].value }}}</a>
+					<# } #>
+				</p>
+			<# } #>
+
+			<# if (data.relevant_meta.genre.length > 0 ) { #>
+				<p class="meta">
+					<?php esc_html_e( 'Sjanger:', 'lsb' ); ?>
+					<# for (var index in data.relevant_meta.genre) { #>
+						<a href="{{ data.relevant_meta.genre[index].permalink }}">{{{ data.relevant_meta.genre[index].value }}}</a>
+					<# } #>
+				</p>
+			<# } #>
+
+			<# if (data.relevant_meta.customization.length > 0 ) { #>
+				<p class="meta">
+					<?php esc_html_e( 'Egenskap:', 'lsb' ); ?>
+					<# for (var index in data.relevant_meta.customization) { #>
+						<a href="{{ data.relevant_meta.customization[index].permalink }}">{{{ data.relevant_meta.customization[index].value }}}</a>
+					<# } #>
+				</p>
+			<# } #>
+
+			<# if (data.relevant_meta.language.length > 0 ) { #>
+				<p class="meta">
+					<?php esc_html_e( 'Språk:', 'lsb' ); ?>
+					<# for (var index in data.relevant_meta.language) { #>
+						<a href="{{ data.relevant_meta.language[index].permalink }}">{{{ data.relevant_meta.language[index].value }}}</a>
 					<# } #>
 				</p>
 			<# } #>

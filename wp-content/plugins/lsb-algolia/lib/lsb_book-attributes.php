@@ -9,7 +9,7 @@ function lsb_book_attributes( array $attributes, WP_Post $post ) {
   $attributes['lsb_quote'] = get_field( 'lsb_acf_quote', $post->ID );
   $attributes['lsb_isbn'] = get_field( 'lsb_acf_isbn', $post->ID );
   $attributes['lsb_supported'] = get_field( 'lsb_acf_supported', $post->ID );
-  $attributes['lsb_published_year'] = intval(get_field( 'lsb_acf_published_year', $post->ID ));
+  $attributes['lsb_published_year'] = get_field( 'lsb_acf_published_year', $post->ID );
 
   // If book is part of 100-lista add it as a lsb_favorite, to be used later in the ranking algoritm
   $attributes['lsb_favorite'] = has_term( '100-lista', 'lsb_tax_list', $post ) ? true : false;
@@ -24,6 +24,6 @@ function lsb_book_attributes( array $attributes, WP_Post $post ) {
     $terms = is_array( $terms ) ? $terms : array();
     $attributes['taxonomies_permalinks'][ $taxonomy->name ] = array_map( 'get_term_link', $terms );
   }
-  
+
   return $attributes;
 }

@@ -21,12 +21,17 @@
     var relevant_meta = {};
 
     relevant_meta.creators = [];
+    relevant_meta.publishers = [];
     relevant_meta.topics = [];
     relevant_meta.partof = [];
     relevant_meta.audience = [];
+    relevant_meta.genre = [];
+    relevant_meta.customization = [];
+    relevant_meta.language = [];
 
     for (var tax_key in book._highlightResult.taxonomies) {
       var tax_terms = book._highlightResult.taxonomies[tax_key];
+
       for (var term_index in tax_terms) {
         var tax_term = tax_terms[term_index];
         if (tax_term.matchLevel !== "none" || tax_key === "lsb_tax_author") {
@@ -36,6 +41,11 @@
             tax_key === "lsb_tax_translator"
           ) {
             relevant_meta.creators.push({
+              value: tax_term.value,
+              permalink: book.taxonomies_permalinks[tax_key][term_index]
+            });
+          } else if (tax_key === "lsb_tax_publisher") {
+            relevant_meta.publishers.push({
               value: tax_term.value,
               permalink: book.taxonomies_permalinks[tax_key][term_index]
             });
@@ -60,16 +70,43 @@
               value: tax_term.value,
               permalink: book.taxonomies_permalinks[tax_key][term_index]
             });
+          } else if (
+            tax_key === "lsb_tax_genre"
+          ) {
+            relevant_meta.genre.push({
+              value: tax_term.value,
+              permalink: book.taxonomies_permalinks[tax_key][term_index]
+            });
+          } else if (
+            tax_key === "lsb_tax_customization"
+          ) {
+            relevant_meta.customization.push({
+              value: tax_term.value,
+              permalink: book.taxonomies_permalinks[tax_key][term_index]
+            });
+          } else if (
+            tax_key === "lsb_tax_language"
+          ) {
+            relevant_meta.language.push({
+              value: tax_term.value,
+              permalink: book.taxonomies_permalinks[tax_key][term_index]
+            });
           }
         }
 
         if (tax_term.matchLevel !== "none") {
+          // Do not show relevant content when you have a hit in taxonomy
           useRelevantContent = false;
         }
       }
     }
 
-    if (book._highlightResult.post_title.matchLevel !== "none") {
+    if (
+      (book._highlightResult.lsb_isbn && book._highlightResult.lsb_isbn.matchLevel !== "none")
+      || (book._highlightResult.lsb_published_year && book._highlightResult.lsb_published_year.matchLevel !== "none")
+      || (book._highlightResult.post_title && book._highlightResult.post_title.matchLevel !== "none")
+    ) {
+      // Do not show relevant content when you have a hit on more specific content
       useRelevantContent = false;
     }
 
