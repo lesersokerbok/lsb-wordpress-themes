@@ -14,6 +14,7 @@
     return;
   }
 
+  console.log(algolia);
   console.log("Set up instasearch");
 
   function addRelevantMetaAndContent(book) {
