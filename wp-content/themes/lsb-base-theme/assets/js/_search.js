@@ -23,6 +23,7 @@
 
     relevant_meta.creators = [];
     relevant_meta.publishers = [];
+    relevant_meta.categories = [];
     relevant_meta.topics = [];
     relevant_meta.partof = [];
     relevant_meta.audience = [];
@@ -47,6 +48,11 @@
             });
           } else if (tax_key === "lsb_tax_publisher") {
             relevant_meta.publishers.push({
+              value: tax_term.value,
+              permalink: book.taxonomies_permalinks[tax_key][term_index]
+            });
+          } else if (tax_key === "lsb_tax_lsb_cat") {
+            relevant_meta.categories.push({
               value: tax_term.value,
               permalink: book.taxonomies_permalinks[tax_key][term_index]
             });

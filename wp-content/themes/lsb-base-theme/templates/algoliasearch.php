@@ -63,6 +63,15 @@
 				</p>
 			<# } #>
 
+			<# if (data.relevant_meta.categories.length > 0 ) { #>
+				<p class="meta">
+					<?php esc_html_e( 'Hovedkategori:', 'lsb' ); ?>
+					<# for (var index in data.relevant_meta.categories) { #>
+						<a href="{{ data.relevant_meta.categories[index].permalink }}">{{{ data.relevant_meta.categories[index].value }}}</a>
+					<# } #>
+				</p>
+			<# } #>
+
 			<# if (data.relevant_meta.topics.length > 0 ) { #>
 				<p class="meta">
 					<?php esc_html_e( 'Tema:', 'lsb' ); ?>
