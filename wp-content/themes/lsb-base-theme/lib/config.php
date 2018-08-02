@@ -2,7 +2,11 @@
 /**
  * Configuration values
  */
-define('GOOGLE_ANALYTICS_ID', LSB_GOOGLE_ANALYTICS_ID); // UA-XXXXX-Y (Note: Universal Analytics only, not Classic Analytics)
+if(strpos(home_url(), 'boksok.no') !== false) {
+	define('GOOGLE_ANALYTICS_ID', BOKSOK_GOOGLE_ANALYTICS_ID);
+} else {
+	define('GOOGLE_ANALYTICS_ID', LSB_GOOGLE_ANALYTICS_ID);
+}
 
 /**
  * .main classes
