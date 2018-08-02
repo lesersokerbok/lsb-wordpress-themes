@@ -55,4 +55,11 @@
     }
   });
 
+  // Track library usage
+  $('#countySelect').change(function (e) {
+    // console.log(e);
+    // console.log(this);
+    ga('send', 'event', 'Library', 'select', $(this).find('option:selected').val());
+  })
+
 })(jQuery);
