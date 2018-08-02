@@ -48,4 +48,11 @@
     ga('send', 'event', 'Scroll', 'click');
   });
 
+  // Track tab usage
+  $('.lsb_tabs__nav-item').click(function (e) {
+    if (!$(this).hasClass('is-active')) {
+      ga('send', 'event', 'Tab', 'select', $(this).data("id"));
+    }
+  });
+
 })(jQuery);
