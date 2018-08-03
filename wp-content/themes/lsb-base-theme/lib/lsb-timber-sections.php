@@ -204,6 +204,7 @@ class LSB_HeroSection extends LSB_Section {
 
 	protected $_text;
 	protected $_action;
+	protected $_some;
 
 	public function text() {
 		if(!$this->_text) {
@@ -212,11 +213,26 @@ class LSB_HeroSection extends LSB_Section {
 		return $this->_text;
 	}
 
+	public function some() {
+		if(!$this->_some) {
+			$this->_some = [];
+			$someItems = ['facebook', 'twitter', 'instagram', 'youtube'];
+			foreach($someItems as $item) {
+				if($this->_acf_section['lsb_'. $item .'_link']) {
+					$this->_some[] = [
+						'key' => $item,
+						'link' => $this->_acf_section['lsb_'. $item .'_link']
+					];
+				}
+			}
+		}
+		return $this->_some;
+	}
+
 	public function action() {
 		if(!$this->_action) {
 			if($this->_acf_section['lsb_action_link']) {
 				$this->_action = [
-					'text' => $this->_acf_section['lsb_action_text'],
 					'link' => $this->_acf_section['lsb_action_link']
 				];
 			}

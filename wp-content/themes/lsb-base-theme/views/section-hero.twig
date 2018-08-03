@@ -6,9 +6,21 @@ is-narrow
 
 {% block body %}
 	<p class="h2">{{ section.text }}</p>
-	{% if section.action %}
-	<a class="is-button has-right-arrow" href="{{ section.action.link.url }}">
-		<span>{{ section.action.text }}</span>
-	</a>
+	{% if section.some|length > 0 and section.action %}
+	<div>
+		{% for some in section.some %}
+			<a href="{{ some.link.url }}" aria-label="{{ some.link.title | default(some.key) }}" class="is-button social {{ some.key }}"></a>
+		{% endfor %}
+
+		{% if section.action %}
+		<a class="is-button has-right-arrow" href="{{ section.action.link.url }}">
+			<span>{{ section.action.link.title }}</span>
+		</a>
+		{% endif %}
+	</div>
+	{% elseif section.action %}
+		<a class="is-button has-right-arrow" href="{{ section.action.link.url }}">
+			<span>{{ section.action.link.title }}</span>
+		</a>
 	{% endif %}
 {% endblock %}
