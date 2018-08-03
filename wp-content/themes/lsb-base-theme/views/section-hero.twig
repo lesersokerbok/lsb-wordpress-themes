@@ -9,7 +9,7 @@ is-narrow
 	{% if section.some|length > 0 and section.action %}
 	<div>
 		{% for some in section.some %}
-			<a href="{{ some.link.url }}" aria-label="{{ some.link.title | default(some.key) }}" class="is-button social {{ some.key }}"></a>
+			<a href="{{ some.link.url }}" target="{{ some.link.target }}" aria-label="{{ some.link.title | default(some.key) }}" class="is-button social {{ some.key }}"></a>
 		{% endfor %}
 
 		{% if section.action %}
@@ -19,7 +19,7 @@ is-narrow
 		{% endif %}
 	</div>
 	{% elseif section.action %}
-		<a class="is-button has-right-arrow" href="{{ section.action.link.url }}">
+		<a href="{{ section.action.link.url }}" target="{{ section.action.link.target }}" class="is-button has-right-arrow">
 			<span>{{ section.action.link.title }}</span>
 		</a>
 	{% endif %}
